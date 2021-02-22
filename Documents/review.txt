@@ -32,3 +32,4 @@ Entrées - Sorties (Input (i), Output (o))
 exemple balise input
 i = value, placeholder.. ATTRIBUT Parent vers l'enfant
 o = change, click... EVENEMENT Enfant vers le parent
+a
