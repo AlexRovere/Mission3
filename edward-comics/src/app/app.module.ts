@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -33,6 +32,10 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { MeteoService } from './services/meteo.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
+import { SlideMenuModule } from 'primeng/slidemenu';
+import { ButtonModule } from 'primeng/button';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -70,6 +73,10 @@ import { AuthService } from './services/auth.service';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule
+    SlideMenuModule,
+    ButtonModule,
+    BrowserAnimationsModule
+
   ],
   providers: [MeteoService, AuthService],
   bootstrap: [AppComponent]
