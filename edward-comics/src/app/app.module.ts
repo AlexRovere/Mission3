@@ -9,8 +9,6 @@ import { FooterComponent } from './footer/footer.component';
 import { ListeArticleComponent } from './liste-article/liste-article.component';
 import { DetailArticleComponent } from './detail-article/detail-article.component';
 import { PanierComponent } from './panier/panier.component';
-import { ConnexionComponent } from './connexion/connexion.component';
-import { InscriptionComponent } from './inscription/inscription.component';
 import { PaiementComponent } from './paiement/paiement.component';
 import { ModalValidationComponent } from './modal-validation/modal-validation.component';
 import { DetailCompteComponent } from './detail-compte/detail-compte.component';
@@ -30,6 +28,8 @@ import { CarouselImageComponent } from './carousel-image/carousel-image.componen
 import { PaginatorComponent } from './liste-article/paginator/paginator.component';
 import { PanierNotifComponent } from './header/panier-notif/panier-notif.component';
 import { ValidationAchatComponent } from './validation-achat/validation-achat.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -40,8 +40,6 @@ import { ValidationAchatComponent } from './validation-achat/validation-achat.co
     ListeArticleComponent,
     DetailArticleComponent,
     PanierComponent,
-    ConnexionComponent,
-    InscriptionComponent,
     PaiementComponent,
     ModalValidationComponent,
     DetailCompteComponent,
@@ -60,7 +58,9 @@ import { ValidationAchatComponent } from './validation-achat/validation-achat.co
     CarouselImageComponent,
     PaginatorComponent,
     PanierNotifComponent,
-    ValidationAchatComponent
+    ValidationAchatComponent,
+    SigninComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
