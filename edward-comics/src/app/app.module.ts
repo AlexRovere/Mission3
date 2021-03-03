@@ -30,6 +30,9 @@ import { PanierNotifComponent } from './header/panier-notif/panier-notif.compone
 import { ValidationAchatComponent } from './validation-achat/validation-achat.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { MeteoService } from './services/meteo.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -64,9 +67,11 @@ import { SignupComponent } from './auth/signup/signup.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [MeteoService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
