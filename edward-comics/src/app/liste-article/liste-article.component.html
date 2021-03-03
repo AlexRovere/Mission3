@@ -1,1 +1,20 @@
-<p>liste-article works!</p>
+<div class="d-flex justify-content-center mt-4">
+    <div class="d-flex flex-wrap justify-content-around list-card">
+        <div class="card" *ngFor="let comic of comics; let i = index">
+            <img class="card-img-top" src="{{ comic.photo }}" />
+            <div class="card-body text-center">
+                <p class="card-title">{{ comic.titre }}</p>
+                <p class="card-text disponible" *ngIf="comic.disponibilite === 1">Disponible</p>
+                <p class="card-text indisponible" *ngIf="comic.disponibilite === 2">Indisponible</p>
+                <p class="card-text precommande" *ngIf="comic.disponibilite === 3">Précommande</p>
+                <p class="card-text">{{ comic.prix }}TTC</p>
+                <p class="card-text note" *ngIf="comic.avis === 5">★★★★★</p>
+                <p class="card-text note" *ngIf="comic.avis === 4">★★★★</p>
+                <p class="card-text note" *ngIf="comic.avis === 3">★★★</p>
+                <p class="card-text note" *ngIf="comic.avis === 2">★★</p>
+                <p class="card-text note" *ngIf="comic.avis === 1">★</p>
+                <img class="cart" src="assets/img/panier.png" width="45px" height="45px"/>
+            </div>
+        </div>
+    </div>
+</div>

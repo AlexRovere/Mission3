@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { IComics } from 'src/models/comic.model';
+import { ComicsService } from '../services/comics.service';
 
 @Component({
   selector: 'app-liste-article',
@@ -7,9 +11,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListeArticleComponent implements OnInit {
 
-  constructor() { }
+  comics!: Array<IComics>;
+  comicsSubscription!: Subscription;
+  etat!: number;
+
+  constructor(private comicsService: ComicsService, private router: Router) {  
+    this.etat = this.comicsService.comics.disponibilite;
+  }
 
   ngOnInit(): void {
+    this.comicsSubscription = this.comicsService.comicsSubject.subscribe(
+      (comics: Array<IComics>) => {
+        this.comics = comics;
+      }
+    );
+    this.comicsService.emitComics();
   }
 
 }

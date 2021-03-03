@@ -30,6 +30,8 @@ import { PanierNotifComponent } from './header/panier-notif/panier-notif.compone
 import { ValidationAchatComponent } from './validation-achat/validation-achat.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { ComicsService } from './services/comics.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -64,9 +66,12 @@ import { SignupComponent } from './auth/signup/signup.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    ComicsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
