@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MeteoService } from '../services/meteo.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private meteoService: MeteoService) { }
 
   ngOnInit(): void {
+    this.meteoService.fetchWeather();
   }
 
 }

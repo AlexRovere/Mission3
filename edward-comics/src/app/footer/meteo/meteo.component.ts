@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { MeteoService } from 'src/app/services/meteo.service';
+import { IMeteoData } from 'src/app/services/WeatherData';
 
 @Component({
   selector: 'app-meteo',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MeteoComponent implements OnInit {
 
-  constructor() { }
+  meteoDirectSubcription!: Subscription;
+
+  meteoDirect!: IMeteoData;
+
+  constructor(private meteoService: MeteoService) { }
 
   ngOnInit(): void {
+
+    this.meteoDirectSubcription = this.meteoService.meteoDirectSubject.subscribe(
+      (meteoDirect: IMeteoData) => {
+        this.meteoDirect = meteoDirect;
+        console.log(this.meteoDirect);
+      }
+    );
+    this.meteoService.emitMeteoDirectSubject();
+  }
+  ngOnDestroy(){
+    this.meteoDirectSubcription.unsubscribe();
   }
 
 }

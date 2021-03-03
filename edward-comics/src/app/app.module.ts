@@ -29,9 +29,13 @@ import { PanierNotifComponent } from './header/panier-notif/panier-notif.compone
 import { ValidationAchatComponent } from './validation-achat/validation-achat.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { MeteoService } from './services/meteo.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from './services/auth.service';
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { ButtonModule } from 'primeng/button';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -67,12 +71,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
     SlideMenuModule,
     ButtonModule,
-    BrowserModule,
     BrowserAnimationsModule
+
   ],
-  providers: [],
+  providers: [MeteoService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
