@@ -1,0 +1,77 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 15px 0px;
+    grid-template-areas:
+      "divHeader"
+      "divSearchHeader";
+  }
+  .divHeader {
+    display: grid;
+    grid-template-columns: 0.7fr 1.6fr 0.7fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "divMenuBurger divTitreHeader divPanierHeader";
+    grid-area: divHeader;
+  }
+  .divTitreHeader {
+       grid-area: divTitreHeader; 
+       display: flex;
+       align-items: center;
+       justify-content: center;
+    }
+  .divMenuBurger { 
+      grid-area: divMenuBurger; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  .divPanierHeader { 
+      grid-area: divPanierHeader; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  .divSearchHeader { 
+      grid-area: divSearchHeader; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+.titreHeader {
+    width: 80%;
+    display: block;
+}
+.logoHeader {
+  display: none;
+}
+
+.panierHeader {
+    width: 50px;
+}
+
+.searchHeader {
+    width: 95%;
+
+}
+
+@media screen and (min-width: 768px) {
+  .titreHeader {
+    display: none;
+  }
+  .logoHeader {
+    display: block;
+    width: 20%;
+  }
+  .panierHeader {
+    width: 20%;
+    height: 50px;
+  }
+  .searchHeader {
+    width: 50%;
+  }
+ 
+}
