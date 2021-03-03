@@ -1,0 +1,22 @@
+:host ::ng-deep .p-button {
+   background-color: white;
+   color: #BE2537;
+   border-color: #BE2537;
+   width: 30px;
+   height: 30px;
+}
+
+:host ::ng-deep .p-button:hover {
+    background-color:#BE2537;
+    color:white;
+    border-color: white;
+ }
+ 
+
+:host ::ng-deep .p-menuitem-text {
+    color: #BE2537 !important;  
+}
+
+:host ::ng-deep .p-menuitem-link:hover {
+    background-color: #DCDCDC !important; 
+}
