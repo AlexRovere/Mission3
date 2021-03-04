@@ -30,7 +30,6 @@ import { ValidationAchatComponent } from './validation-achat/validation-achat.co
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { ComicsService } from './services/comics.service';
-import { FormsModule } from '@angular/forms';
 import { MeteoService } from './services/meteo.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
@@ -75,16 +74,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
     SlideMenuModule,
     ButtonModule,
     BrowserAnimationsModule
   ],
   providers: [
-    ComicsService
+    ComicsService, MeteoService, AuthService
   ],
-  providers: [MeteoService, AuthService],
-
   bootstrap: [AppComponent]
 })
 export class AppModule { }
