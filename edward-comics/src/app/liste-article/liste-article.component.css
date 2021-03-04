@@ -1,5 +1,13 @@
+.menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
 .card-body {
     width: 100%;
+    
     padding: 0pc;
     display: flex;
     flex-direction: column;

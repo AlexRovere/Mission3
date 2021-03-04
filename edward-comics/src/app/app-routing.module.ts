@@ -5,6 +5,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { ContactComponent } from './contact/contact.component';
 import { DetailCompteComponent } from './detail-compte/detail-compte.component';
 import { HomeComponent } from './home/home.component';
+import { ListeArticleComponent } from './liste-article/liste-article.component';
 import { PanierComponent } from './panier/panier.component';
 import { ValidationAchatComponent } from './validation-achat/validation-achat.component';
 
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: "home", component: HomeComponent},
   {path: "auth/signin", component: SigninComponent},
   {path: "auth/signup", component: SignupComponent},
+  {path: "liste", component: ListeArticleComponent},
   {path: "contact", component: ContactComponent},
   {path: "panier", component: PanierComponent},
   {path: "validation-achat", component: ValidationAchatComponent},
