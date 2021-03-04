@@ -74,13 +74,13 @@ export class AppComponent {
   title = 'edward-comics';
   constructor() {
     var firebaseConfig = {
-      apiKey: "AIzaSyAyaiabM6EDPvMIzSKwq8M37jJQDxpkmHQ",
-      authDomain: "edward-comics.firebaseapp.com",
-      databaseURL: "https://edward-comics-default-rtdb.europe-west1.firebasedatabase.app/",
-      projectId: "edward-comics",
-      storageBucket: "edward-comics.appspot.com",
-      messagingSenderId: "930276707236",
-      appId: "1:930276707236:web:c40bf741eca686c39c8f31"
+      apiKey: "AIzaSyDULLQOrVBhcMJV1F49cZvWRbMdH-5c0qs",
+      authDomain: "mission3-69b2b.firebaseapp.com",
+      databaseURL: "https://mission3-69b2b-default-rtdb.europe-west1.firebasedatabase.app/",
+      projectId: "mission3-69b2b",
+      storageBucket: "mission3-69b2b.appspot.com",
+      messagingSenderId: "641873096537",
+      appId: "1:641873096537:web:cce921bf31f8c614b16648"
     };
     firebase.initializeApp(firebaseConfig);
   }
