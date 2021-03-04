@@ -37,7 +37,7 @@ export class AppComponent {
       .then(() => console.log('ok'))
       .catch(err => console.error(err));
     })
-  }
 
+  }
 }
 

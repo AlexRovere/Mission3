@@ -20,3 +20,9 @@
 :host ::ng-deep .p-menuitem-link:hover {
     background-color: #DCDCDC !important; 
 }
+:host ::ng-deep .p-menuitem-link {
+    height: 50px;
+}
+
+
+
