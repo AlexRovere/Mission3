@@ -72,10 +72,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
     SlideMenuModule,
     ButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
 
   ],
   providers: [MeteoService, AuthService],
