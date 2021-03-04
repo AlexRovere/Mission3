@@ -14,8 +14,8 @@ export class ListeArticleComponent implements OnInit {
   comics!: Array<IComics>;
   comicsSubscription!: Subscription;
 
-  constructor(private comicsService: ComicsService, private router: Router) {  
-  }
+  constructor(private comicsService: ComicsService, private router: Router) { 
+   }
 
   ngOnInit(): void {
     this.comicsSubscription = this.comicsService.comicsSubject.subscribe(
@@ -23,7 +23,15 @@ export class ListeArticleComponent implements OnInit {
         this.comics = comics;
       }
     );
-    this.comicsService.emitComics();
+    this.comicsService.emitComics()
   }
+
+  showDescription(i:number){
+    document.getElementById(`${i}`)?.classList.replace('description', 'description-hover')
+  }
+  hideDescription(i:number){
+    document.getElementById(`${i}`)?.classList.replace('description-hover', 'description')
+  }
+
 
 }

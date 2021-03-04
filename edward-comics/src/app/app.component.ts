@@ -37,52 +37,7 @@ export class AppComponent {
       .then(() => console.log('ok'))
       .catch(err => console.error(err));
     })
-
-
-
-
-
-
-
-  //   firebase.firestore().collection("Comics").add({
-  //     "avis" : 5,
-  //     "categorie" : "Super-vilains",
-  //     "date" : "12/06/2020",
-  //     "dessinateur" : "Sejic Stjepan",
-  //     "disponibilite" : 2,
-  //     "editeur" : "Urban Comics",
-  //     "isbn" : 1026816068,
-  //     "nbr-pages" : 224,
-  //     "nouveaute" : true,
-  //     "photo" : "assets/img/Harleen.png",
-  //     "prix" : "20€",
-  //     "promotion" : false,
-  //     "resume" : "Après des études mouvementées qui ont entamé sa confiance en elle, la jeune psychologue Harleen Quinzel pense enfin avoir décroché le poste de ses rêves en étant embauchée à l’Asile d’Arkham afin d’apporter son soutien et son expertise aux plus grands criminels de Gotham. Mais il est un être au sein de cet asile qui va à la fois faire chavirer son esprit et son cœur : le Joker ! Petit à petit, Harleen va se laisser séduire puis sombrer dans un abîme de folie y laissant à tout jamais son innocence et ses illusions perdues.",
-  //     "scenariste" : "Sejic Stjepan",
-  //     "selection" : false,
-  //     "titre" : "Harleen",
-  //     "univers" : "DC Comics"
-  //   }).then((docRef) => {
-  //     console.log("Document written with ID: ", docRef.id);
-  //   }).catch((error) => {
-  //     console.error("Error adding document: ", error);
-  // });
-  
   }
-}
 
-  title = 'edward-comics';
-  constructor() {
-    var firebaseConfig = {
-      apiKey: "AIzaSyAyaiabM6EDPvMIzSKwq8M37jJQDxpkmHQ",
-      authDomain: "edward-comics.firebaseapp.com",
-      databaseURL: "https://edward-comics-default-rtdb.europe-west1.firebasedatabase.app/",
-      projectId: "edward-comics",
-      storageBucket: "edward-comics.appspot.com",
-      messagingSenderId: "930276707236",
-      appId: "1:930276707236:web:c40bf741eca686c39c8f31"
-    };
-    firebase.initializeApp(firebaseConfig);
-  }
 }
 
