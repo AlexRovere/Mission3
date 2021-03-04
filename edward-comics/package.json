@@ -21,6 +21,7 @@
     "@angular/router": "~11.2.1",
     "bootstrap": "^5.0.0-beta2",
     "firebase": "^8.2.9",
+    "ng-shopping-cart": "^1.0.0",
     "primeicons": "^4.1.0",
     "primeng": "^11.3.0-rc.1",
     "rxjs": "~6.6.0",
