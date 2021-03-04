@@ -29,6 +29,8 @@ import { PanierNotifComponent } from './header/panier-notif/panier-notif.compone
 import { ValidationAchatComponent } from './validation-achat/validation-achat.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { ComicsService } from './services/comics.service';
+import { FormsModule } from '@angular/forms';
 import { MeteoService } from './services/meteo.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
@@ -36,6 +38,7 @@ import { SlideMenuModule } from 'primeng/slidemenu';
 import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'primeng/carousel';
+
 
 
 @NgModule({
@@ -78,8 +81,13 @@ import { CarouselModule } from 'primeng/carousel';
     ButtonModule,
     BrowserAnimationsModule,
     CarouselModule,
+    BrowserAnimationsModule,
+  ],
+  providers: [
+    ComicsService
   ],
   providers: [MeteoService, AuthService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
