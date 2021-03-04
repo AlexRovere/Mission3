@@ -83,7 +83,10 @@ import { CarouselModule } from 'primeng/carousel';
     BrowserAnimationsModule,
   ],
   providers: [
-    ComicsService, MeteoService, AuthService
+    ComicsService,
+    MeteoService,
+    AuthService, 
+    ComicsService, 
   ],
   bootstrap: [AppComponent]
 })
