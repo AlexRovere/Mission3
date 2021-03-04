@@ -13,10 +13,8 @@ export class ListeArticleComponent implements OnInit {
 
   comics!: Array<IComics>;
   comicsSubscription!: Subscription;
-  etat!: number;
 
   constructor(private comicsService: ComicsService, private router: Router) {  
-    this.etat = this.comicsService.comics.disponibilite;
   }
 
   ngOnInit(): void {

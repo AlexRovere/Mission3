@@ -9,25 +9,7 @@ import DataSnapshot = firebase.database.DataSnapshot
 })
 export class ComicsService {
 
-  comics: IComics = {
-    avis: 1,
-    categorie: "",
-    date: "",
-    dessinateur: "",
-    disponibilite: 1,
-    editeur: "",
-    isbn: 1,
-    nbrpages: 1,
-    nouveaute: false,
-    photo: "",
-    prix: "",
-    pomotion: false,
-    resume: "",
-    scenariste: "",
-    selection: false,
-    titre: "",
-    univers: ""
-  };
+  comics: IComics[] = [];
   comicsSubject = new Subject<any>();
   constructor() { 
     this.getComics();
@@ -38,13 +20,19 @@ export class ComicsService {
     this.comicsSubject.next(this.comics);
   }
   getComics() {
-    firebase.database().ref('/Comics')
-      .on('value', (data: DataSnapshot) => {
-        this.comics = data.val() ? data.val(): [];
-        this.emitComics();
-        
-      })
-  }
+      const db = firebase.firestore();
+      db.collection("Comics").get().then(
+        (querySnapshot) => {
+          querySnapshot.forEach((_doc) => {
+            const doc = _doc.data();
+            if(doc){
+              this.comics.push(doc as any);
+            }
+          })
+          this.emitComics();
+        }
+      )
+      }
 
   getSingleComic(id: number) {
     return new Promise(
