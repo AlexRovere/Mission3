@@ -1,61 +1,61 @@
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 15px 0px;
-    grid-template-areas:
-      "divHeader"
-      "divSearchHeader";
+.nav-burger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.panier {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.gridHeader {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 15px 0px;
+  grid-template-areas:
+    "nav-burger logo panier"
+    "search-bar search-bar search-bar";
+  grid-area: header;
+}
+
+.nav-burger { 
+  grid-area: nav-burger;
+ }
+
+.logo { 
+  grid-area: logo;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+
+.panier {
+   grid-area: panier; 
+   
   }
-  .divHeader {
-    display: grid;
-    grid-template-columns: 0.7fr 1.6fr 0.7fr;
-    grid-template-rows: 1fr;
-    gap: 0px 0px;
-    grid-template-areas:
-      "divMenuBurger divTitreHeader divPanierHeader";
-    grid-area: divHeader;
-  }
-  .divTitreHeader {
-       grid-area: divTitreHeader; 
-       display: flex;
-       align-items: center;
-       justify-content: center;
-    }
-  .divMenuBurger { 
-      grid-area: divMenuBurger; 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  .divPanierHeader { 
-      grid-area: divPanierHeader; 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-  .divSearchHeader { 
-      grid-area: divSearchHeader; 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+
+.search-bar {
+   grid-area: search-bar;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   }
+
 
 .titreHeader {
-    width: 80%;
-    display: block;
+  width:200px;
+  display: block;
 }
 .logoHeader {
-  display: none;
+display: none;
 }
-
 .panierHeader {
-    width: 50px;
+  width: 50px;
 }
-
 .searchHeader {
-    width: 95%;
-
+  width: 100%;
 }
 
 @media screen and (min-width: 768px) {
@@ -66,12 +66,46 @@
     display: block;
     width: 20%;
   }
-  .panierHeader {
-    width: 20%;
-    height: 50px;
+
+  .gridHeader {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 0.5fr 2fr 0.5fr;
+    grid-template-areas:
+      "logo nav-burger search-bar panier";
+      gap: 5px 5px;
+  }
+
+  .logoHeader {
+    width:150px;
+    display: block;
+  }
+  .logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .panier {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-burger {
+    display: flex;
+    justify-content: center;
+  }
+  .search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .searchHeader {
-    width: 50%;
+    width: 100%;
+    margin-right: 50px;
   }
- 
+  .panierHeader {
+    width: 40px;
+    height: 30px;
+  }
 }
