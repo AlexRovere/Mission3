@@ -11,8 +11,8 @@
     <div class="d-flex flex-wrap justify-content-around list-card">
         <div class="card"  (mouseenter)= "showDescription(i)" (mouseleave) = "hideDescription(i)" *ngFor="let comic of comics; let i = index">
             <img class="card-img-top" src="{{ comic.photo }}" />
-            <div class="description" id={{i}}>
-                <p> class="card-title">{{ comic.titre }}</p>
+            <div class="description" id="{{i}}">
+                <p class="card-title">{{ comic.titre }}</p>
                 <div class="etat">
                     <p class="card-text disponible" *ngIf="comic.disponibilite === 1">Disponible</p>
                     <p class="card-text indisponible" *ngIf="comic.disponibilite === 2">Indisponible</p>
