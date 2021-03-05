@@ -1,5 +1,5 @@
 <div class="d-flex flex-column justify-content-center align-items-center">
-    <form>
+    <form [formGroup]="updateForm" (ngSubmit)="updateUser()">
         <div class="fond">
             <h2 class="text-center rouge">Mon compte</h2>
             <div class="d-flex flex-column align-items-center justify-content-center bandeau">
@@ -13,31 +13,27 @@
                 <div class="nom-prenom form-group">
                     <div class="nom">
                         <label class="rouge">Nom</label>
-                        <input type="text" class="form-control" id="nom" value="{{ infoUser.nom }}">
+                        <input type="text" class="form-control" id="nom" value="{{ infoUser.nom }}" formControlName="nom">
                     </div>
                     <div class="prenom">
                         <label class="rouge">Prénom</label>
-                        <input type="text" class="form-control" id="prenom" value="{{ infoUser.prenom }}">
+                        <input type="text" class="form-control" id="prenom" value="{{ infoUser.prenom }}" formControlName="prenom">
                     </div>
                 </div>
                 <div class="mail-tel form-group">
                     <div class="email">
                         <label class="rouge" for="email">Adresse mail</label>
-                        <input type="text" id="email" class="form-control" value="{{ infoUser.email }}">
+                        <input type="text" id="email" class="form-control" value="{{ infoUser.email }}" disabled>
                     </div>
                     <div class="tel">
                         <label class="rouge">Téléphone</label>
-                        <input type="text" class="form-control" id="telephone" value="{{ infoUser.telephone }}">
+                        <input type="text" class="form-control" id="telephone" value="{{ infoUser.telephone }}" formControlName="telephone">
                     </div>
                 </div>
                 <div class="mdp-mdpconfirm form-group">
-                    <div class="mot-de-passe">
-                        <label class="rouge" for="password">Ancien mot de passe</label>
-                        <input type="password" id="password" class="form-control" >
-                    </div>
-                    <div class="mot-de-passe-confirm">
-                        <label class="rouge">Nouveau mot de passe</label>
-                        <input type="text" class="form-control">
+                    <div class="d-flex flex-column justify-content-cente align-items-center mot-de-passe">
+                        <label class="rouge" for="password">Mot de passe</label>
+                        <button class="btn btn-primary btn-modif-mdp">Modifier ></button>
                     </div>
                 </div>
                 <div class="info-factu form-group">
@@ -50,6 +46,7 @@
 
             </div>
         </div>
-        <button class="btn btn-primary mb-3 maj">Mettre à jour</button>
+        <button type="submit" class="btn btn-primary mb-3 maj" [disabled]="updateForm.invalid">Mettre à jour</button>
     </form>
+    <p class="text-danger">{{ errorMessage }}</p>
 </div>
