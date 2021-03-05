@@ -16,6 +16,7 @@ const routes: Routes = [
   {path: "panier", component: PanierComponent},
   {path: "validation-achat", component: ValidationAchatComponent},
   {path: "detail-compte", component: DetailCompteComponent},
+  {path: "", redirectTo: "home", pathMatch: "full"}
 ];
 
 @NgModule({

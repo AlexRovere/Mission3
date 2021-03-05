@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import * as firebase from 'firebase';
 import { MenuItem } from 'primeng/api';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 
@@ -13,13 +15,14 @@ export class MenuComponent implements OnInit{
   items!: MenuItem[];
 
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.items = [
       {
          label:'Accueil',
          icon:'pi pi-fw pi-home',
+         routerLink: 'home'
       },
       {
          label:'Promo',
@@ -79,11 +82,18 @@ export class MenuComponent implements OnInit{
           },
           {
               label:'Nemesis',
-              icon:'pi pi-minus',
-          }, 
+              icon:'pi pi-minus'
+
+          },
         ]
       },
-           
+      {
+        label: 'Déconnexion',
+        icon: "",
+        command: (event) => {
+          this.authService.user = null;
+        }
+      },           
       {
          separator:true
       },
