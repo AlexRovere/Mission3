@@ -26,13 +26,16 @@ export class ComicsService {
           querySnapshot.forEach((_doc) => {
             const doc = _doc.data();
             if(doc){
-              this.comics.push(doc as any);
+              this.comics.push(doc as any);              
             }
           })
           this.emitComics();
+          console.log(this.comics)
         }
       )
       }
+
+    
 
   getSingleComic(id: number) {
     return new Promise(
