@@ -27,11 +27,24 @@ export class ListeArticleComponent implements OnInit {
   }
 
   showDescription(i:number){
-    document.getElementById(`${i}`)?.classList.replace('description', 'description-hover')
+    const md = window.matchMedia("(min-width: 1280px)")
+    if(md.matches){
+      document.getElementById(`${i}`)?.classList.replace('description', 'description-hover')
+    }
+    else{
+      return
+    }
   }
   hideDescription(i:number){
+    const md = window.matchMedia("(min-width: 1280px)")
+    if(md.matches){
     document.getElementById(`${i}`)?.classList.replace('description-hover', 'description')
   }
+  else{
+    return
+  }
+  }
+  
 
 
 }
