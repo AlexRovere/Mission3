@@ -4,8 +4,8 @@
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
         <li><h6 class="dropdown-header">TITRE</h6></li>
-        <li><a class="dropdown-item" (click)="titreAsc()">de A à Z</a></li>
-        <li><a class="dropdown-item" href="#">de Z à A</a></li>
+        <li><a class="dropdown-item" (click)="setOrder('titre')">de A à Z</a></li>
+        <li><a class="dropdown-item" (click)="setOrder('titre', true)">de Z à A</a></li>
         <li><h6 class="dropdown-header">PRIX</h6></li>
         <li><a class="dropdown-item" href="#">du - au +</a></li>
         <li><a class="dropdown-item" href="#">du - au +</a></li>
