@@ -1,7 +1,7 @@
 
 <div class="menu">
     <app-filtre></app-filtre>
-    <app-tri></app-tri>
+    <app-tri (onChange)="onOrderChanged($event)"></app-tri>
 </div>
 
 <div class="d-flex justify-content-center main">

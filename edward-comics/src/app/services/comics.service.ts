@@ -4,6 +4,11 @@ import { IComics } from 'src/models/comic.model';
 import firebase from 'firebase';
 import DataSnapshot = firebase.database.DataSnapshot
 
+export interface IComicsRequestOrder {
+  colName: string, 
+  order: "asc" | "desc"
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,20 +25,32 @@ export class ComicsService {
     this.comicsSubject.next(this.comics);
   }
   getComics() {
-      const db = firebase.firestore();
-      db.collection("Comics").get().then(
-        (querySnapshot) => {
-          querySnapshot.forEach((_doc) => {
-            const doc = _doc.data();
-            if(doc){
-              this.comics.push(doc as any);              
-            }
-          })
-          this.emitComics();
-          console.log(this.comics)
-        }
-      )
-      }
+    this.getComicsPromise()
+      .then(newComics => {
+        this.comics = newComics;
+        this.emitComics();
+      })
+  }
+
+  getComicsPromise(): Promise<Array<IComics>>{
+    const db = firebase.firestore();
+    return new Promise((resolve, reject) => {
+      db.collection("Comics")
+        .get()
+        .then(
+          (querySnapshot) => {
+            querySnapshot.forEach((_doc) => {
+              const doc = _doc.data();
+              if(doc){
+                this.comics.push(doc as any);              
+              }
+            })
+            resolve(this.comics)
+          }
+        )
+        .catch(reject);
+      });
+  }
 
     
 
@@ -49,6 +66,28 @@ export class ComicsService {
         );
       }
     );
+  }
+
+
+  getOrderedComics(orderInfo: IComicsRequestOrder): Promise<Array<IComics>> {
+    const orderCol = orderInfo.colName || "titre";
+    const order = orderInfo.order || "asc";
+    const db = firebase.firestore();
+    var comicsRef = db.collection("Comics");
+
+    return new Promise((resolve, reject) => {
+      comicsRef.orderBy(orderCol, order)
+        .get()
+        .then((querySnapshot) => {
+          const newComics: Array<IComics> = [];
+          querySnapshot.forEach((_doc) => {
+            newComics.push(_doc.data() as IComics);
+          })
+          resolve(newComics);
+        })
+        .catch(reject);
+    })
+    
   }
 
 }
