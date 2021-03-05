@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { IComics } from '../../models/comic.model';
+import { ComicsService } from '../services/comics.service';
 
 @Component({
   selector: 'app-carousel-card',
@@ -7,7 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarouselCardComponent implements OnInit {
 
-  constructor() { }
+  comics!: Array<IComics>;
+  comicsSubscription!: Subscription;
+
+  constructor(private comicsService: ComicsService) { }
   responsiveOptions =
   {
 
@@ -65,7 +71,11 @@ products  = [
 ]
 
   ngOnInit(): void {
-    console.log(this.products[0].name)
+    this.comicsSubscription = this.comicsService.comicsSubject.subscribe(
+      (comics: Array<IComics>) => {
+        this.comics = comics;
+      }
+    );
   }
 
 }

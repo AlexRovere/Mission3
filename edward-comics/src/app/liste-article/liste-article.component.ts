@@ -23,7 +23,6 @@ export class ListeArticleComponent implements OnInit {
         this.comics = comics;
       }
     );
-    this.comicsService.emitComics()
   }
 
   showDescription(i:number){
