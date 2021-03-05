@@ -9,6 +9,11 @@ export interface IComicsRequestOrder {
   order: "asc" | "desc"
 }
 
+export interface IcomicsFilterOrder {
+  theme: string,
+  valeur: string
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -54,7 +59,7 @@ export class ComicsService {
 
     
 
-  getSingleComic(id: number) {
+  /*getSingleComic(id: number) {
     return new Promise(
       (resolve, reject) => {
         firebase.database().ref('/Comics' + id).once('value').then(
@@ -66,7 +71,7 @@ export class ComicsService {
         );
       }
     );
-  }
+  }*/
 
 
   getOrderedComics(orderInfo: IComicsRequestOrder): Promise<Array<IComics>> {
@@ -88,6 +93,27 @@ export class ComicsService {
         .catch(reject);
     })
     
+  }
+  
+  
+  getFilterComics(filterInfo: IcomicsFilterOrder): Promise<Array<IComics>> {
+    const themeCol = filterInfo.theme || "univers";
+    const value = filterInfo.valeur || "Marvel";
+    const db = firebase.firestore();
+    var comicsRef = db.collection("Comics");
+    
+    return new Promise((resolve, reject) => {
+      comicsRef.where(themeCol, "==", value)
+      .get()
+      .then((querySnapshot) => {
+        const newComics: Array<IComics> = [];
+        querySnapshot.forEach((_doc) => {
+          newComics.push(_doc.data() as IComics);
+        })
+        resolve(newComics);
+      })
+      .catch(reject);
+    })
   }
 
 }

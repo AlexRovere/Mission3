@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IComics } from 'src/models/comic.model';
-import { ComicsService, IComicsRequestOrder } from '../services/comics.service';
+import { ComicsService, IcomicsFilterOrder, IComicsRequestOrder } from '../services/comics.service';
 
 @Component({
   selector: 'app-liste-article',
@@ -42,6 +42,13 @@ export class ListeArticleComponent implements OnInit {
   
   onOrderChanged(orderInfo: IComicsRequestOrder){
     this.comicsService.getOrderedComics(orderInfo)
+      .then((newComics: Array<IComics>) => {
+        this.comics = newComics;
+      })
+  }
+  
+  onFilterChanged(filterInfo: IcomicsFilterOrder){
+    this.comicsService.getFilterComics(filterInfo)
       .then((newComics: Array<IComics>) => {
         this.comics = newComics;
       })

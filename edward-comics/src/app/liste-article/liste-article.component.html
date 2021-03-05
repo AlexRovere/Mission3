@@ -1,6 +1,6 @@
 
 <div class="menu">
-    <app-filtre></app-filtre>
+    <app-filtre (onChange)="onFilterChanged($event)"></app-filtre>
     <app-tri (onChange)="onOrderChanged($event)"></app-tri>
 </div>
 
@@ -14,11 +14,11 @@
             <div class="description" id="{{i}}">
                 <p class="card-title">{{ comic.titre }}</p>
                 <div class="etat">
-                    <p class="card-text disponible" *ngIf="comic.disponibilite === 1">Disponible</p>
-                    <p class="card-text indisponible" *ngIf="comic.disponibilite === 2">Indisponible</p>
-                    <p class="card-text precommande" *ngIf="comic.disponibilite === 3">Précommande</p>
+                    <p class="card-text disponible" *ngIf="comic.disponibilite == 1">Disponible</p>
+                    <p class="card-text indisponible" *ngIf="comic.disponibilite == 2">Indisponible</p>
+                    <p class="card-text precommande" *ngIf="comic.disponibilite == 3">Précommande</p>
                 </div>
-                <p class="card-text">{{ comic.prix }}TTC</p>
+                <p class="card-text">{{ comic.prix }} €TTC</p>
                 <p class="card-text note" *ngIf="comic.avis === 5">★★★★★</p>
                 <p class="card-text note" *ngIf="comic.avis === 4">★★★★</p>
                 <p class="card-text note" *ngIf="comic.avis === 3">★★★</p>
@@ -28,10 +28,10 @@
             </div>
             <div class="card-body text-center">
                 <p class="card-title">{{ comic.titre }}</p>
-                <p class="card-text disponible" *ngIf="comic.disponibilite === 1">Disponible</p>
-                <p class="card-text indisponible" *ngIf="comic.disponibilite === 2">Indisponible</p>
-                <p class="card-text precommande" *ngIf="comic.disponibilite === 3">Précommande</p>
-                <p class="card-text">{{ comic.prix }}TTC</p>
+                <p class="card-text disponible" *ngIf="comic.disponibilite == 1">Disponible</p>
+                <p class="card-text indisponible" *ngIf="comic.disponibilite == 2">Indisponible</p>
+                <p class="card-text precommande" *ngIf="comic.disponibilite == 3">Précommande</p>
+                <p class="card-text">{{ comic.prix }} €TTC</p>
                 <p class="card-text note" *ngIf="comic.avis === 5">★★★★★</p>
                 <p class="card-text note" *ngIf="comic.avis === 4">★★★★</p>
                 <p class="card-text note" *ngIf="comic.avis === 3">★★★</p>
