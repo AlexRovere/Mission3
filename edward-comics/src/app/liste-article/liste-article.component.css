@@ -9,10 +9,10 @@
 
 @keyframes SlideIn {
     from {
-        transform: scaleX(0);
+        transform: translateX(-100%);
     }
     to {
-        transform: scaleX(1);
+        transform: translateX(0);
     }
 }
 
@@ -34,6 +34,7 @@
     margin-bottom: 5vh;
     padding: 0;
     border-style: none !important;
+    overflow: hidden;
 }
 .card-img-top {
     height:50%;
