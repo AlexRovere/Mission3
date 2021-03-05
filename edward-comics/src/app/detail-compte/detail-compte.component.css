@@ -46,7 +46,7 @@
 
 .mdp-mdpconfirm {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     gap: 0px 5px;
     grid-template-areas: "mot-de-passe mot-de-passe-confirm";
@@ -107,6 +107,9 @@
 }
 .img-droite{
     display: none;
+}
+.btn-modif-mdp{
+    width: 30%;
 }
 @media screen and (min-width: 768px){
     .img-droite{
