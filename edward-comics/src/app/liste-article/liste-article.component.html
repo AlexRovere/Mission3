@@ -1,4 +1,13 @@
+
+<div class="menu">
+    <app-filtre></app-filtre>
+    <app-tri></app-tri>
+</div>
+
+<div class="d-flex justify-content-center main">
+
 <div class="main">
+
     <div class="d-flex flex-wrap justify-content-around list-card">
         <div class="card"  (mouseenter)= "showDescription(i)" (mouseleave) = "hideDescription(i)" *ngFor="let comic of comics; let i = index">
             <img class="card-img-top" src="{{ comic.photo }}" />

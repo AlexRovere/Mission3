@@ -35,6 +35,8 @@ export class ComicsService {
       )
       }
 
+    
+
   getSingleComic(id: number) {
     return new Promise(
       (resolve, reject) => {

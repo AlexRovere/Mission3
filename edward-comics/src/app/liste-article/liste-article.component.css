@@ -1,3 +1,12 @@
+
+.menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+
 @keyframes SlideIn {
     from {
         transform: scaleX(0);
@@ -6,8 +15,10 @@
         transform: scaleX(1);
     }
 }
+
 .card-body {
     width: 100%;
+    
     padding: 0pc;
     display: flex;
     flex-direction: column;
