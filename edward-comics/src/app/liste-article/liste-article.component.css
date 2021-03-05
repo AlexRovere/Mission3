@@ -1,8 +1,19 @@
+
 .menu {
     display: flex;
     justify-content: space-around;
     align-items: center;
 
+}
+
+
+@keyframes SlideIn {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
 }
 
 .card-body {
@@ -15,7 +26,7 @@
     align-items: center;    
 }
 .description{
-    opacity: 0;
+    display: none;
 }
 .card {
     width: 45vw;
@@ -65,23 +76,40 @@
     font-size: 30px;
     text-shadow: rgb(0, 0, 0) 1px 0px 0px, rgb(0, 0, 0) 0.540302px 0.841471px 0px, rgb(0, 0, 0) -0.416147px 0.909297px 0px, rgb(0, 0, 0) -0.989992px 0.14112px 0px, rgb(0, 0, 0) -0.653644px -0.756802px 0px, rgb(0, 0, 0) 0.283662px -0.958924px 0px, rgb(0, 0, 0) 0.96017px -0.279415px 0px;
 }
+@media only screen and (min-device-width : 768px) and (max-device-width : 1280px) {
+    .card{
+        width: 30%;
+    }
+    }
 @media screen and (min-width: 1280px) {
     .card-body{
         display: none;   
+        
     }
     .card-img-top{
         height: 100%;
-        width: 90%;
+        width: 100%;
+        margin: auto;
     }
     .card{
        width: 20%;
        height: 35vh;
+       margin-left: 5px;
+       margin-right: 5px;
+       box-shadow: 15px 10px 62px 0px rgba(0,0,0,0.75) ;
+       -webkit-box-shadow: 15px 10px 62px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 15px 10px 62px 0px rgba(0,0,0,0.75);
     }
     .main {
         width: 70vw;
         margin: auto;
+        display: flex;
+        justify-content: center;
+        padding: 5vh;
+        border-radius: 10px;
     }
     .description-hover{
+        animation:  linear 0.3s SlideIn;;
         position:absolute;
         display: flex;
         flex-direction: column;
@@ -90,12 +118,11 @@
         color: white;
         font-size: 20px;
         top: 0;
-        justify-content: center;
+        justify-content: space-around;
         left: 0;
-        width: 90%;
+        width: 100%;
         height: 100%;     
         background-color: rgba(0, 0, 0, 0.60); 
-        opacity: 1;
         transition-duration: 500ms;       
     }
 }
