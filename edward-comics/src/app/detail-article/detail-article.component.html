@@ -1,1 +1,56 @@
-<p>detail-article works!</p>
+<div class="grid-container" *ngIf="comic != null">
+    <div class="image">
+        <img src="{{ comic.photo }}" />
+    </div>
+    <div class="infos">
+        <h5> {{ comic.titre }}</h5> 
+        <p>Par {{ comic.scenariste }} / {{ comic.dessinateur }}</p>
+        <p>ISBN: {{ comic.isbn }}</p>
+        <p class="card-text disponible" *ngIf="comic.disponibilite == 1">Etat: Disponible</p>
+        <p class="card-text indisponible" *ngIf="comic.disponibilite == 2">Etat: Indisponible</p>
+        <p class="card-text precommande" *ngIf="comic.disponibilite == 3">Etat: Précommande</p> 
+        <h4> {{ comic.prix }} €TTC</h4>
+    </div>
+    <div class="bouton">
+        <button type="button" class="btn btn-primary">Ajouter au panier</button>
+    </div>
+    <div class="resume">
+        <h4>Résumé</h4>
+        <p>{{ comic.resume }}</p>
+    </div>
+    <div class="caracteristiques">
+        <h5>Caractéristiques</h5>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Scénariste</th>
+                    <th>{{ comic.scenariste }}</th>
+                </tr>
+                <tr>
+                    <th>Dessinateur</th>
+                    <th>{{ comic.dessinateur }}</th>
+                </tr>
+                <tr>
+                    <th>Date de parution</th>
+                    <th>{{ comic.date }}</th>
+                </tr>
+                <tr>
+                    <th>Editeur</th>
+                    <th>{{ comic.editeur }}</th>
+                </tr>
+                <tr>
+                    <th>Nbr de pages</th>
+                   <th>{{ comic.nbrPages }}</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="avis">
+        <h5>Avis</h5>
+        <p *ngIf="comic.avis === 5">★★★★★</p>
+        <p *ngIf="comic.avis === 4">★★★★</p>
+        <p *ngIf="comic.avis === 3">★★★</p>
+        <p *ngIf="comic.avis === 2">★★</p>
+        <p *ngIf="comic.avis === 1">★</p>
+    </div>
+  </div>

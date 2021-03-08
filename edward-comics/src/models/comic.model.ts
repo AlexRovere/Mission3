@@ -1,4 +1,5 @@
 export interface IComics {
+    id: string,
     avis: number,
     categorie: string,
     date: string,
@@ -6,7 +7,7 @@ export interface IComics {
     disponibilite: number,
     editeur: string,
     isbn: number,
-    nbrpages: number,
+    nbrPages: number,
     nouveaute: boolean,
     photo: string,
     prix: string,
