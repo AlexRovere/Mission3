@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { CarouselImageComponent } from './carousel-image/carousel-image.component';
 import { ContactComponent } from './contact/contact.component';
 import { DetailCompteComponent } from './detail-compte/detail-compte.component';
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
@@ -21,7 +22,7 @@ const routes: Routes = [
   {path: "validation-achat", canActivate: [AuthGuardService], component: ValidationAchatComponent},
   {path: "detail-compte", canActivate: [AuthGuardService], component: DetailCompteComponent},
   {path: "not-found", component: FourOhFourComponent },
-  {path: "", component: ListeArticleComponent },
+  {path: "", component: ContactComponent },
   {path: "**", redirectTo: 'not-found' }
 ];
 
