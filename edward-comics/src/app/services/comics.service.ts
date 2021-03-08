@@ -2,11 +2,16 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { IComics } from 'src/models/comic.model';
 import firebase from 'firebase';
-import DataSnapshot = firebase.database.DataSnapshot
+
 
 export interface IComicsRequestOrder {
   colName: string, 
   order: "asc" | "desc"
+}
+
+export interface IcomicsFilterOrder {
+  theme: string,
+  valeur: string
 }
 
 @Injectable({
@@ -16,6 +21,7 @@ export class ComicsService {
 
   comics: IComics[] = [];
   comicsSubject = new Subject<any>();
+  
   constructor() { 
     this.getComics();
   }
@@ -54,21 +60,16 @@ export class ComicsService {
 
     
 
-  getSingleComic(id: number) {
-    return new Promise(
-      (resolve, reject) => {
-        firebase.database().ref('/Comics' + id).once('value').then(
-          (data: DataSnapshot) => {
-            resolve(data.val());
-          }, (error) => {
-            reject(error);
-          }
-        );
-      }
-    );
-  }
-
-
+ /*getSingleComic(id: string): Promise<Array<IComics>>{ 
+    const db = firebase.firestore()
+    const comicRef = db.collection("Comics").doc(id)
+    return new Promise((resolve, reject) => {
+      comicRef
+        .get
+        .then((
+          */
+    
+    
   getOrderedComics(orderInfo: IComicsRequestOrder): Promise<Array<IComics>> {
     const orderCol = orderInfo.colName || "titre";
     const order = orderInfo.order || "asc";
@@ -88,6 +89,27 @@ export class ComicsService {
         .catch(reject);
     })
     
+  }
+  
+  
+  getFilterComics(filterInfo: IcomicsFilterOrder): Promise<Array<IComics>> {
+    const themeCol = filterInfo.theme || "univers";
+    const value = filterInfo.valeur || "Marvel";
+    const db = firebase.firestore();
+    var comicsRef = db.collection("Comics");
+    
+    return new Promise((resolve, reject) => {
+      comicsRef.where(themeCol, "==", value)
+      .get()
+      .then((querySnapshot) => {
+        const newComics: Array<IComics> = [];
+        querySnapshot.forEach((_doc) => {
+          newComics.push(_doc.data() as IComics);
+        })
+        resolve(newComics);
+      })
+      .catch(reject);
+    })
   }
 
 }

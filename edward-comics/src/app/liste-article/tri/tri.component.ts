@@ -1,9 +1,6 @@
-import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
-import firebase from 'firebase';
-import { Subscription } from 'rxjs';
-import { ComicsService, IComicsRequestOrder } from 'src/app/services/comics.service';
-import { IComics } from 'src/models/comic.model';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { IComicsRequestOrder } from 'src/app/services/comics.service';
+
 
 @Component({
   selector: 'app-tri',
