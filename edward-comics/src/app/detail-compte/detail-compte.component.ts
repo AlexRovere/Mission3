@@ -49,11 +49,6 @@ export class DetailCompteComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    // this.updateForm.setValue({
-    //   formControlName1: this.infoUser.nom,
-    //   formControlName2: this.infoUser.prenom,
-    //   formControlName3: this.infoUser.telephone
-    // });
   }
 
 
