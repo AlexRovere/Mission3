@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: "validation-achat", canActivate: [AuthGuardService], component: ValidationAchatComponent},
   {path: "detail-compte", canActivate: [AuthGuardService], component: DetailCompteComponent},
   {path: "not-found", component: FourOhFourComponent },
-  {path: "", component: HomeComponent },
+  {path: "", component: ListeArticleComponent },
   {path: "**", redirectTo: 'not-found' }
 ];
 
