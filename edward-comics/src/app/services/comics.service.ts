@@ -133,5 +133,5 @@ export class ComicsService {
       .catch(reject);
     })
   }
-
+ 
 }

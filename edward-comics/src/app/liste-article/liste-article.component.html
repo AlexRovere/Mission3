@@ -1,4 +1,5 @@
 <app-miette></app-miette>
+<!-- <app-modal-validation></app-modal-validation> -->
 <div class="menu">
     <app-filtre (onChange)="onFilterChanged($event)"></app-filtre>
     <app-tri (onChange)="onOrderChanged($event)"></app-tri>
@@ -9,37 +10,39 @@
 <div class="main">
 
     <div class="d-flex flex-wrap justify-content-around list-card">
-        <div class="card"  (mouseenter)= "showDescription(i)" (mouseleave) = "hideDescription(i)" (click)= "onViewComic(comic.id)" *ngFor="let comic of comics; let i = index">
-            <img class="card-img-top" src="{{ comic.photo }}" />
+        <div class="card"  (mouseenter)= "showDescription(i)" (mouseleave) = "hideDescription(i)" *ngFor="let comic of comics; let i = index">
+            <img class="card-img-top" src="{{ comic.photo }}"  />
             <div class="description" id="{{i}}">
-                <p class="card-title">{{ comic.titre }}</p>
-                <div class="etat">
-                    <p class="card-text disponible" *ngIf="comic.disponibilite === 1">Disponible</p>
-                    <p class="card-text indisponible" *ngIf="comic.disponibilite === 2">Indisponible</p>
-                    <p class="card-text precommande" *ngIf="comic.disponibilite === 1">Précommande</p>
+                <div (click)= "onViewComic(comic.id)">
+                    <p class="card-title">{{ comic.titre }}</p>
+                    <div class="etat">
+                        <p class="card-text disponible" *ngIf="comic.disponibilite == 1">Disponible</p>
+                        <p class="card-text indisponible" *ngIf="comic.disponibilite == 2">Indisponible</p>
+                        <p class="card-text precommande" *ngIf="comic.disponibilite == 3">Précommande</p>
+                    </div>
+                    <p class="card-text">{{ comic.prix }} €TTC</p>
+                    <p class="card-text note" *ngIf="comic.avis == 5">★★★★★</p>
+                    <p class="card-text note" *ngIf="comic.avis == 4">★★★★</p>
+                    <p class="card-text note" *ngIf="comic.avis == 3">★★★</p>
+                    <p class="card-text note" *ngIf="comic.avis == 2">★★</p>
+                    <p class="card-text note" *ngIf="comic.avis == 1">★</p>
                 </div>
-                <p class="card-text">{{ comic.prix }} €TTC</p>
-                <p class="card-text note" *ngIf="comic.avis === 5">★★★★★</p>
-                <p class="card-text note" *ngIf="comic.avis === 4">★★★★</p>
-                <p class="card-text note" *ngIf="comic.avis === 3">★★★</p>
-                <p class="card-text note" *ngIf="comic.avis === 2">★★</p>
-                <p class="card-text note" *ngIf="comic.avis === 1">★</p>
-                <img class="cart" src="assets/img/panier.png" width="45px" height="45px" />
+                <img class="cart" (click)="enableModal(comic)" src="assets/img/panier.png" width="45px" height="45px" />
             </div>
             <div class="card-body text-center">
                 <p class="card-title">{{ comic.titre }}</p>
-
-                <p class="card-text disponible" *ngIf="comic.disponibilite === 1">Disponible</p>
-                <p class="card-text indisponible" *ngIf="comic.disponibilite === 2">Indisponible</p>
-                <p class="card-text precommande" *ngIf="comic.disponibilite === 3">Précommande</p>
-                <p class="card-text">{{ comic.prix }} €TTC</p>
-                <p class="card-text note" *ngIf="comic.avis === 5">★★★★★</p>
-                <p class="card-text note" *ngIf="comic.avis === 4">★★★★</p>
-                <p class="card-text note" *ngIf="comic.avis === 3">★★★</p>
-                <p class="card-text note" *ngIf="comic.avis === 2">★★</p>
-                <p class="card-text note" *ngIf="comic.avis === 1">★</p>
-                <img class="cart" src="assets/img/panier.png" width="45px" height="45px" />
+                <p class="card-text disponible" *ngIf="comic.disponibilite == 1">Disponible</p>
+                <p class="card-text indisponible" *ngIf="comic.disponibilite == 2">Indisponible</p>
+                <p class="card-text precommande" *ngIf="comic.disponibilite == 3">Précommande</p>
+                <p class="card-text">{{ comic.prix }} € TTC</p>
+                <p class="card-text note" *ngIf="comic.avis == 5">★★★★★</p>
+                <p class="card-text note" *ngIf="comic.avis == 4">★★★★</p>
+                <p class="card-text note" *ngIf="comic.avis == 3">★★★</p>
+                <p class="card-text note" *ngIf="comic.avis == 2">★★</p>
+                <p class="card-text note" *ngIf="comic.avis == 1">★</p>
+                <img class="cart" (click)="enableModal(comic)" src="assets/img/panier.png" width="45px" height="45px" />
             </div>
         </div>
     </div>
 </div>
+
