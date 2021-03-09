@@ -1,0 +1,43 @@
+.hiddenModal {
+    display: none;
+}
+
+.modalComponent {
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+}
+
+.modalBackDrop {
+    z-index: 2;
+    opacity: 0.5;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+.container {
+    background-color: white;
+    width: 500px;
+    height: 400px;
+    align-items: center;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h2 {
+    color: #BE2537;
+}

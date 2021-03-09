@@ -12,4 +12,14 @@ export class ModalValidationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  hideModal() {
+    const $modal : any = document.querySelector(".modalComponent");
+    $modal.classList.replace("modalComponent", "hiddenModal");
+  }
+
+  showModal() {
+    const $modal : any = document.querySelector(".hiddenModal");
+    $modal.classList.replace("hiddenModal", "modalComponent");
+  }
+
 }
