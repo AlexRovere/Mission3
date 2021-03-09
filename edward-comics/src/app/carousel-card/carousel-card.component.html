@@ -1,36 +1,37 @@
-<p-carousel [value]="comics" [numVisible]="4" [numScroll]="1" [circular]="false" [style]="'card'" [contentClass]="'card'">
+<p-carousel [value]="comics" [numVisible]="4" [numScroll]="1" [circular]="true" [contentClass]="'card'" [responsiveOptions]="responsiveOptions">
 
-        
-        
-        <ng-template let-comics pTemplate="item">
+    <ng-template let-comic pTemplate="item">
         <div class="product-item">
             <div class="product-item-content">
                 <div class="blocPhoto">
-                    <img class="photo" src="{{comics.photo}}">
+                    <img class="photo" src="{{comic.photo}}">
                 </div>
-                
-                <div>
-                    
-                    <div class="etat">
-                        <p class="card-text disponible" *ngIf="comics.disponibilite === 1">Disponible</p>
-                        <p class="card-text indisponible" *ngIf="comics.disponibilite === 2">Indisponible</p>
-                        <p class="card-text precommande" *ngIf="comics.disponibilite === 3">Précommande</p>
+               
+                <div class="grid-container">
+                    <div class="div-titre">
+                        <h3>{{comic.titre}}</h3>
                     </div>
-                    <h6 class="p-mt-0 p-mb-3">{{comics.prix}}</h6>
-                
-                    <p class="card-text note" *ngIf="comics.avis === 5">★★★★★</p>
-                    <p class="card-text note" *ngIf="comics.avis === 4">★★★★</p>
-                    <p class="card-text note" *ngIf="comics.avis === 3">★★★</p>
-                    <p class="card-text note" *ngIf="comics.avis === 2">★★</p>
-                    <p class="card-text note" *ngIf="comics.avis === 1">★</p>
-                    <span [class]="'product-badge status-'"></span>
-                    <!-- <div class="car-buttons p-mt-5">
-                        <p-button type="button" styleClass="p-button p-button-rounded p-mr-2" icon="pi pi-search"></p-button>
-                        <p-button type="button" styleClass="p-button-success p-button-rounded p-mr-2" icon="pi pi-star"></p-button>
-                        <p-button type="button" styleClass="p-button-help p-button-rounded" icon="pi pi-cog"></p-button>
-                    </div> -->
+                    <div class="div-disponibilite etat">
+                        <p class="card-text disponible" *ngIf="comic.disponibilite == 1">Disponible</p>
+                        <p class="card-text indisponible" *ngIf="comic.disponibilite == 2">Indisponible</p>
+                        <p class="card-text precommande" *ngIf="comic.disponibilite == 3">Précommande</p>
+                    </div>
+                    <div class="div-prix">
+                        <h4 class="prix">{{comic.prix}} €</h4>    
+                    </div>
+                    <div class="div-note">
+                        <p class="card-text note" *ngIf="comic.avis === 5">★★★★★</p>
+                        <p class="card-text note" *ngIf="comic.avis === 4">★★★★</p>
+                        <p class="card-text note" *ngIf="comic.avis === 3">★★★</p>
+                        <p class="card-text note" *ngIf="comic.avis === 2">★★</p>
+                        <p class="card-text note" *ngIf="comic.avis === 1">★</p>
+                    </div>
+                    <div class="div-panier">
+                        <a><img class="logo" src="../assets/img/panier.png"></a>
+                    </div>
                 </div>
             </div>
         </div>
-        </ng-template>
+    </ng-template>
 </p-carousel>
+
