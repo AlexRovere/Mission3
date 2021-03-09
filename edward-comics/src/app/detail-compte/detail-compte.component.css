@@ -111,13 +111,54 @@
 .btn-modif-mdp{
     width: 30%;
 }
-@media screen and (min-width: 768px){
-    .img-droite{
-        display: block;
+.maj{
+    width: 97%;
+    margin-left: 7px;
+}
+@media only screen and (min-device-width : 768px) { /* tablette */
+    .grid-container{
+        width: 100%;
+        margin: auto;
     }
-
+    form{
+        width: 95%;
+        margin: 0;
+    }
+    .milieu{
+        display: flex;
+        justify-content: center;
+    }
+    .fond{
+        width: 100%;
+        margin: 0;
+    }
     .maj{
-        width: 97%;
+        width: 50%;
+    }
+    .bandeau{
+        width: 90%;
+    }
+}
+@media only screen and (min-device-width : 1280px) { /* ordinateur */
+    form{
+        width: 100%;
+        margin: 0;
+    }
+    .grid-container{
+        width: 40%;
+    }
+    .bandeau{
+        width: 40%;
+    }
+    .milieu{
+        display: flex;
+        justify-content: center;
+    }
+    .master{
+        width: 100%;
+    }
+    .maj{
+        width: 50%;
         margin-left: 7px;
     }
 }

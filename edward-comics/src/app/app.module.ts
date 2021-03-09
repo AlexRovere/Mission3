@@ -19,7 +19,6 @@ import { SingleItemComponent } from './panier/single-item/single-item.component'
 import { SingleCardComponent } from './liste-article/single-card/single-card.component';
 import { FiltreComponent } from './liste-article/filtre/filtre.component';
 import { TriComponent } from './liste-article/tri/tri.component';
-import { MietteComponent } from './miette/miette.component';
 import { CarouselCardComponent } from './carousel-card/carousel-card.component';
 import { CarouselImageComponent } from './carousel-image/carousel-image.component';
 import { PaginatorComponent } from './liste-article/paginator/paginator.component';
@@ -37,9 +36,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'primeng/carousel';
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { AuthGuardService } from './services/auth-guard.service';
-import { ModificationMdpComponent } from './detail-compte/modification-mdp/modification-mdp.component';
 import { FacturationComponent } from './detail-compte/facturation/facturation.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
 
 
 
@@ -65,7 +64,6 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     SingleCardComponent,
     FiltreComponent,
     TriComponent,
-    MietteComponent,
     CarouselCardComponent,
     CarouselImageComponent,
     PaginatorComponent,
@@ -74,8 +72,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     SigninComponent,
     SignupComponent,
     FourOhFourComponent,
-    ModificationMdpComponent,
-    FacturationComponent
+    FacturationComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +85,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     CarouselModule,
     BrowserAnimationsModule,
     NgbCarouselModule, 
+    NgDynamicBreadcrumbModule
     ],
   providers: [
     ComicsService,

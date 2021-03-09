@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
@@ -15,7 +16,7 @@ export class MenuComponent implements OnInit{
   items!: MenuItem[];
 
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.items = [
@@ -92,6 +93,7 @@ export class MenuComponent implements OnInit{
         icon: "",
         command: (event) => {
           this.authService.user = null;
+          this.router.navigate(['home'])
         }
       },           
       {
