@@ -39,6 +39,9 @@ import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { ModificationMdpComponent } from './detail-compte/modification-mdp/modification-mdp.component';
 import { FacturationComponent } from './detail-compte/facturation/facturation.component';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 
 
@@ -84,7 +87,8 @@ import { FacturationComponent } from './detail-compte/facturation/facturation.co
     BrowserAnimationsModule,
     CarouselModule,
     BrowserAnimationsModule,
-  ],
+    NgbCarouselModule, 
+    ],
   providers: [
     ComicsService,
     MeteoService,

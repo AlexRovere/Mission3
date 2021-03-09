@@ -1,0 +1,65 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "image"
+      "infos"
+      "bouton"
+      "resume"
+      "caracteristiques"
+      "avis";
+  }
+  
+  .image { 
+      grid-area: image; 
+      width: 100%;
+    }
+
+  img {
+    width: 100%
+  }
+  
+  .infos { 
+      grid-area: infos; 
+    }
+  
+  .bouton { 
+      grid-area: bouton; 
+    }
+  
+  .resume { 
+      grid-area: resume; 
+    }
+  
+  .caracteristiques { 
+      grid-area: caracteristiques; 
+    }
+  
+  .avis { 
+      grid-area: avis; 
+    }
+
+    .disponible {
+      color: white;
+      background-color: rgb(0, 204, 0);
+      padding: 2px;
+      padding-left: 5px;
+      padding-right: 5px;
+  }
+  .indisponible {
+      color: white;
+      background-color: red;
+      padding: 2px;
+      padding-left: 5px;
+      padding-right: 5px;
+  }
+  .precommande {
+      color: white;
+      background-color: orange;
+      padding: 2px;
+      padding-left: 5px;
+      padding-right: 5px;
+  }
+  

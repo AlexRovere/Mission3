@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
 import { IComics } from '../../models/comic.model';
-import { ComicsService } from '../services/comics.service';
+import { ComicsService, IcomicsFilterOrder } from '../services/comics.service';
 
 @Component({
   selector: 'app-carousel-card',
@@ -11,71 +10,32 @@ import { ComicsService } from '../services/comics.service';
 export class CarouselCardComponent implements OnInit {
 
   comics!: Array<IComics>;
-  comicsSubscription!: Subscription;
 
-  constructor(private comicsService: ComicsService) { }
-  responsiveOptions =
-  {
-
+  @Input() config!: IcomicsFilterOrder 
+  
+  constructor(private comicsService: ComicsService) {    
   }
- 
-products  = [
-  {
-    id: 4,
-    code:"6532",
-    name:"test",
-    description:"nice",
-    price:500,
-    quantity:6,
-    inventoryStatus:"avaible",
-    category:"été",
-    image: "../assets/img/spawn.jpg",
-    rating:5
-  },
-  {
-    id: 4,
-    code:"6532",
-    name:"test2",
-    description:"nice",
-    price:5000,
-    quantity:6,
-    inventoryStatus:"avaible",
-    category:"été",
-    image: "../assets/img/spawn.jpg",
-    rating:5
-  },
-  {
-    id: 4,
-    code:"6532",
-    name:"test3",
-    description:"nice",
-    price:300,
-    quantity:6,
-    inventoryStatus:"avaible",
-    category:"été",
-    image: "../assets/img/spawn.jpg",
-    rating:5
-  },
-  {
-    id: 4,
-    code:"6532",
-    name:"test4",
-    description:"nice",
-    price:6500,
-    quantity:6,
-    inventoryStatus:"avaible",
-    category:"été",
-    image: "../assets/img/spawn.jpg",
-    rating:5
+  responsiveOptions =[
+    {
+        breakpoint: '768px',
+        numVisible: 3,
+        numScroll: 1
+    },
+    {
+      breakpoint: '560px',
+      numVisible: 2,
+      numScroll: 1
   }
-]
+  ]
 
   ngOnInit(): void {
-    this.comicsSubscription = this.comicsService.comicsSubject.subscribe(
-      (comics: Array<IComics>) => {
-        this.comics = comics;
-      }
-    );
+    this.comicsService.getFilterComics(this.config)
+    .then((newComics: Array<IComics>) => {
+      this.comics = newComics;
+      console.log(this.config)
+    })
+
   }
+
 
 }

@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { CarouselImageComponent } from './carousel-image/carousel-image.component';
 import { ContactComponent } from './contact/contact.component';
+import { DetailArticleComponent } from './detail-article/detail-article.component';
 import { DetailCompteComponent } from './detail-compte/detail-compte.component';
 import { FacturationComponent } from './detail-compte/facturation/facturation.component';
 import { ModificationMdpComponent } from './detail-compte/modification-mdp/modification-mdp.component';
@@ -14,6 +16,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { ValidationAchatComponent } from './validation-achat/validation-achat.component';
 
 const routes: Routes = [
+
   {
     path: "home",
     component: HomeComponent
@@ -64,12 +67,13 @@ const routes: Routes = [
   },
   {
     path: "",
-    component: ListeArticleComponent
+    component: HomeComponent
   },
   {
     path: "**",
     redirectTo: 'not-found'
   }
+
 ];
 
 @NgModule({

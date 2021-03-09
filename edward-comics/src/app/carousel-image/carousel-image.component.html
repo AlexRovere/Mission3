@@ -1,1 +1,9 @@
-<p>carousel-image works!</p>
+<div class="corps">
+    <h1>Nouveautés</h1>
+    <p-carousel [value]="comics" [numVisible]="3" [numScroll]="1" [circular]="false"
+        [responsiveOptions]="responsiveOptions" class="carouse">
+        <ng-template let-comic pTemplate="item">
+            <img class="photo" src="{{comic.photo}}">
+        </ng-template>
+    </p-carousel>
+</div>
