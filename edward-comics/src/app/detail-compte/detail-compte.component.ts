@@ -99,12 +99,4 @@ export class DetailCompteComponent implements OnInit {
       }
     );
   }
-  changePassword(){
-    console.log("test");
-    // this.auth.sendPasswordResetEmail(this.authService.user).then(function() {
-    //   // Email sent.
-    // }).catch(function(error) {
-    //   // An error happened.
-    // });
-  }
 }

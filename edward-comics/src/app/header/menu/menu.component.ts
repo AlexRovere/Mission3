@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit} from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
@@ -17,7 +18,7 @@ export class MenuComponent implements OnInit{
   
 
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.items = [
@@ -105,6 +106,7 @@ export class MenuComponent implements OnInit{
         icon: "",
         command: (event) => {
           this.authService.user = null;
+          this.router.navigate(['home'])
         }
       },           
       {

@@ -105,11 +105,25 @@
 .rouge {
     color: #BE2537;
 }
-.img-droite{
-    display: none;
+@media only screen and (min-device-width : 768px) { /* tablette */
+    .grid-container{
+        width: 80%;
+        margin: auto;
+    }
 }
-@media screen and (min-width: 768px){
-    .img-droite{
-        display: block;
+@media only screen and (min-device-width : 1280px) { /* ordinateur */
+    .fond{
+        width: 100%;
+        margin: 0;
+    }
+    .grid-container{
+        width: 60%;
+    }
+    .bandeau{
+        width: 60%;
+    }
+    .milieu{
+        display: flex;
+        justify-content: center;
     }
 }
