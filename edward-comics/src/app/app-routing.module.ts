@@ -34,6 +34,10 @@ const routes: Routes = [
     component: ListeArticleComponent
   },
   {
+    path: "liste/view/:id",
+    component: DetailArticleComponent
+  },
+  {
     path: "contact",
     component: ContactComponent
   },

@@ -11,7 +11,7 @@ export interface IComics {
     nouveaute: boolean,
     photo: string,
     prix: string,
-    pomotion: boolean,
+    promotion: boolean,
     resume: string,
     scenariste: string,
     selection: boolean,

@@ -22,9 +22,13 @@ export class DetailArticleComponent implements OnInit {
     this.comicsService.getSingleComic(id).then(
       (comic: IComics) => {
         this.comic = comic
-        console.log(this.comic);
       }
     );
   }
 
+  onBack() {
+    this.router.navigate(['/home']);
+  }
+
 }
+
