@@ -1,8 +1,8 @@
 .grid-container {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-    gap: 0px 0px;
+    grid-template-rows: 1fr 0.3fr 0.07fr 0.45fr 0.3fr 0.07fr;
+    gap: 25px 0px;
     grid-template-areas:
       "image"
       "infos"
@@ -10,6 +10,10 @@
       "resume"
       "caracteristiques"
       "avis";
+    background-color: #c4c4c448;
+    width: 95%;
+    padding: 3%;
+    margin: auto;
   }
   
   .image { 
@@ -44,22 +48,77 @@
     .disponible {
       color: white;
       background-color: rgb(0, 204, 0);
-      padding: 2px;
-      padding-left: 5px;
-      padding-right: 5px;
+      padding: 5px 5px 5px 0px;
+      margin-left: 20px;
+      border-radius: 2px;
   }
   .indisponible {
       color: white;
       background-color: red;
-      padding: 2px;
-      padding-left: 5px;
-      padding-right: 5px;
+      padding: 5px 5px 5px 0px;
+      margin-left: 20px;
+      border-radius: 2px;
   }
   .precommande {
       color: white;
       background-color: orange;
-      padding: 2px;
-      padding-left: 5px;
-      padding-right: 5px;
+      padding: 5px 5px 5px 0px;
+      margin-left: 20px;
+      border-radius: 2px;
   }
-  
+ 
+  .note {
+    color: gold;
+    font-size: 50px;
+    text-shadow: rgb(0, 0, 0) 1px 0px 0px, rgb(0, 0, 0) 0.540302px 0.841471px 0px, rgb(0, 0, 0) -0.416147px 0.909297px 0px, rgb(0, 0, 0) -0.989992px 0.14112px 0px, rgb(0, 0, 0) -0.653644px -0.756802px 0px, rgb(0, 0, 0) 0.283662px -0.958924px 0px, rgb(0, 0, 0) 0.96017px -0.279415px 0px;
+  }
+
+  .titreprix {
+    font-weight: bold;
+    font-size: 34px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+      gap: 0px 0px;
+      grid-template-areas:
+        "gauche droite";
+    }
+    
+    .gauche {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1.5fr 0.5fr;
+      gap: 0px 0px;
+      grid-area: gauche;
+    }
+    
+    .image { grid-area: 1 / 1 / 3 / 2; }
+    
+    .avis { grid-area: 2 / 1 / 3 / 2; }
+    
+    .droite {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr;
+      gap: 0px 0px;
+      grid-template-areas:
+        "infos"
+        "bouton"
+        "resume"
+        "caracteristiques";
+      grid-area: droite;
+    }
+    
+    .infos { grid-area: infos; }
+    
+    .bouton { grid-area: bouton; }
+    
+    .resume { grid-area: resume; }
+    
+    .caracteristiques { grid-area: caracteristiques; }
+    
+  }
