@@ -78,6 +78,10 @@ const routes: Routes = [
     }
   },
   {
+    path: "liste/view/:id",
+    component: DetailArticleComponent
+  },
+  {
     path: "contact",
     component: ContactComponent,
     data: {

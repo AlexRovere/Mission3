@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase';
+import { Component, OnInit} from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
+
 
 
 
@@ -14,6 +14,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class MenuComponent implements OnInit{
 
   items!: MenuItem[];
+
+  
 
 
   constructor(private authService: AuthService, private router: Router) { }
@@ -28,14 +30,17 @@ export class MenuComponent implements OnInit{
       {
          label:'Promo',
          icon:'pi pi-euro',
+         routerLink: ["liste", {theme:"promotion", valeur: true, valueType: "boolean" }]
       },
       {
         label:'Sélection du moment',
         icon:'pi pi-heart',
+        routerLink: ["liste", {theme:"selection", valeur: true, valueType: "boolean" }]
       },
       {
       label:'Nouveautés',
       icon:'pi pi-bell',
+      routerLink: ["liste", {theme:"nouveaute", valeur: true, valueType: "boolean" }]
       },
 
       {
@@ -44,25 +49,29 @@ export class MenuComponent implements OnInit{
             {
                label:'DC Comics',
                icon:'pi pi-minus',
-
+               routerLink: ["liste", {theme:'univers', valeur:'DC Comics'}]
             },
             {
                label:'Marvel',
                icon:'pi pi-minus',
+               routerLink: ["liste", {theme:'univers', valeur:'Marvel'}]
 
             },
          ]
       },
       {
-      label:'Séries',
+      label:'Héros',
       items:[
           {
               label:'Batman',
               icon:'pi pi-minus',
+              routerLink: ["liste", {theme:'heros', valeur:'Batman'}]
+              
           },
           {
               label:'Superman',
               icon:'pi pi-minus',
+              routerLink: ["liste", {theme:'heros', valeur:'Superman'}]
           },
         ]
       },
@@ -72,18 +81,22 @@ export class MenuComponent implements OnInit{
           {
               label:'Super-héros',
               icon:'pi pi-minus',
+              routerLink: ["liste", {theme:'categorie', valeur:'Super-héros'}]
           },
           {
               label:'Super-vilains',
               icon:'pi pi-minus',
+              routerLink: ["liste", {theme:'categorie', valeur:'Super-vilains'}]
           },
           {
               label:'Super-girls',
               icon:'pi pi-minus',
+              routerLink: ["liste", {theme:'categorie', valeur:'Super-girls'}]
           },
           {
-              label:'Nemesis',
-              icon:'pi pi-minus'
+              label:'Anti-héros',
+              icon:'pi pi-minus',
+              routerLink: ["liste", {theme:'categorie', valeur:'Anti-héros'}]
 
           },
         ]
