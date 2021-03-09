@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MietteComponent implements OnInit {
 
+  titrePage: string = "liste article";
+
   constructor() { }
 
   ngOnInit(): void {

@@ -29,6 +29,7 @@ export class DetailCompteComponent implements OnInit {
 
 
   db = firebase.firestore();
+  auth = firebase.auth();
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
     this.db.collection("Users").where("email", "==", this.authService.user)
@@ -49,11 +50,6 @@ export class DetailCompteComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    // this.updateForm.setValue({
-    //   formControlName1: this.infoUser.nom,
-    //   formControlName2: this.infoUser.prenom,
-    //   formControlName3: this.infoUser.telephone
-    // });
   }
 
 
@@ -102,7 +98,13 @@ export class DetailCompteComponent implements OnInit {
         alert("Il y à une erreur : " + error);
       }
     );
-
-
+  }
+  changePassword(){
+    console.log("test");
+    // this.auth.sendPasswordResetEmail(this.authService.user).then(function() {
+    //   // Email sent.
+    // }).catch(function(error) {
+    //   // An error happened.
+    // });
   }
 }

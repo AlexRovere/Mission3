@@ -11,12 +11,10 @@ import { PanierComponent } from './panier/panier.component';
 import { PaiementComponent } from './paiement/paiement.component';
 import { ModalValidationComponent } from './modal-validation/modal-validation.component';
 import { DetailCompteComponent } from './detail-compte/detail-compte.component';
-import { FacturationComponent } from './facturation/facturation.component';
 import { ContactComponent } from './contact/contact.component';
 import { SearchBarComponent } from './header/search-bar/search-bar.component';
 import { MenuComponent } from './header/menu/menu.component';
 import { MeteoComponent } from './footer/meteo/meteo.component';
-import { InfosFacturationComponent } from './detail-compte/infos-facturation/infos-facturation.component';
 import { SingleItemComponent } from './panier/single-item/single-item.component';
 import { SingleCardComponent } from './liste-article/single-card/single-card.component';
 import { FiltreComponent } from './liste-article/filtre/filtre.component';
@@ -39,7 +37,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'primeng/carousel';
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { ModificationMdpComponent } from './detail-compte/modification-mdp/modification-mdp.component';
+import { FacturationComponent } from './detail-compte/facturation/facturation.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -56,12 +57,10 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     PaiementComponent,
     ModalValidationComponent,
     DetailCompteComponent,
-    FacturationComponent,
     ContactComponent,
     SearchBarComponent,
     MenuComponent,
     MeteoComponent,
-    InfosFacturationComponent,
     SingleItemComponent,
     SingleCardComponent,
     FiltreComponent,
@@ -74,7 +73,9 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     ValidationAchatComponent,
     SigninComponent,
     SignupComponent,
-    FourOhFourComponent
+    FourOhFourComponent,
+    ModificationMdpComponent,
+    FacturationComponent
   ],
   imports: [
     BrowserModule,

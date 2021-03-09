@@ -7,3 +7,15 @@ export interface IAppInfoUser {
     telephone: number,
     ville: string
   }
+export interface IAppInfoFacturationUser {
+  nom: string,
+  prenom: string,
+  adresse: string,
+  codePostal: number,
+  ville: string,
+  proprietaireCarte: string,
+  numeroCarte: number,
+  dateCarte: string,
+  cryptogramme: number,
+  civilite: string
+}
