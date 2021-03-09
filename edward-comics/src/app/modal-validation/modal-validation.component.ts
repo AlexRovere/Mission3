@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { IComics } from 'src/models/comic.model';
+import { ModalService } from '../services/modal.service';
 
 @Component({
   selector: 'app-modal-validation',
@@ -6,20 +9,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modal-validation.component.css']
 })
 export class ModalValidationComponent implements OnInit {
+  comicSubscription!: Subscription;
+  activeSubscription!: Subscription;
+  comic!: IComics;
+  active!: boolean;
 
-  constructor() { }
+  constructor(private modalService: ModalService) {
+    this.active = this.modalService.active
+  }
 
   ngOnInit(): void {
+    this.comicSubscription = this.modalService.comicSubject.subscribe(
+      (comic: IComics) => {
+        this.comic = comic;
+      }
+    );
+    this.activeSubscription = this.modalService.activeSubject.subscribe(
+      (active: boolean) => {
+        this.active = active;
+      }
+    );
+    this.modalService.emitComic();
   }
 
-  hideModal() {
-    const $modal : any = document.querySelector(".modalComponent");
-    $modal.classList.replace("modalComponent", "hiddenModal");
+  disableModal() {
+    this.active = this.modalService.hideModal();
   }
 
-  showModal() {
-    const $modal : any = document.querySelector(".hiddenModal");
-    $modal.classList.replace("hiddenModal", "modalComponent");
+  activeModal() {
+    this.active = this.modalService.showModal();
   }
-
 }
