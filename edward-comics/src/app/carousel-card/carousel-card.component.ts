@@ -17,12 +17,12 @@ export class CarouselCardComponent implements OnInit {
   }
   responsiveOptions =[
     {
-        breakpoint: '768px',
+        breakpoint: '1024px',
         numVisible: 3,
         numScroll: 1
     },
     {
-      breakpoint: '560px',
+      breakpoint: '768px',
       numVisible: 2,
       numScroll: 1
   }

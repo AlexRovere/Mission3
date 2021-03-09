@@ -40,6 +40,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { ModificationMdpComponent } from './detail-compte/modification-mdp/modification-mdp.component';
 import { FacturationComponent } from './detail-compte/facturation/facturation.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
 
 
 
@@ -87,7 +88,8 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserAnimationsModule,
     CarouselModule,
     BrowserAnimationsModule,
-    NgbCarouselModule, 
+    NgbCarouselModule,
+    NgDynamicBreadcrumbModule
     ],
   providers: [
     ComicsService,
