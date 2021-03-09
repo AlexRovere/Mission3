@@ -37,6 +37,10 @@ import { SlideMenuModule } from 'primeng/slidemenu';
 import { ButtonModule } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'primeng/carousel';
+import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
+import { AuthGuardService } from './services/auth-guard.service';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -69,7 +73,8 @@ import { CarouselModule } from 'primeng/carousel';
     PanierNotifComponent,
     ValidationAchatComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    FourOhFourComponent
   ],
   imports: [
     BrowserModule,
@@ -81,12 +86,14 @@ import { CarouselModule } from 'primeng/carousel';
     BrowserAnimationsModule,
     CarouselModule,
     BrowserAnimationsModule,
-  ],
+    NgbCarouselModule, 
+    ],
   providers: [
     ComicsService,
     MeteoService,
     AuthService, 
-    ComicsService, 
+    ComicsService,
+    AuthGuardService, 
   ],
   bootstrap: [AppComponent]
 })

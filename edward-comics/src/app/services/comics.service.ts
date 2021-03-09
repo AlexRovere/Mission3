@@ -11,7 +11,7 @@ export interface IComicsRequestOrder {
 
 export interface IcomicsFilterOrder {
   theme: string,
-  valeur: string
+  valeur: string | boolean
 }
 
 @Injectable({
@@ -46,6 +46,7 @@ export class ComicsService {
         .get()
         .then(
           (querySnapshot) => {
+
             querySnapshot.forEach((_doc) => {
               const doc = _doc.data() as any;
               if(doc){
@@ -53,10 +54,9 @@ export class ComicsService {
                   ...doc,
                   id: _doc.id
                 });
-
               }
             })
-            resolve(this.comics)
+            resolve(newComics)
           }
         )
         .catch(reject);

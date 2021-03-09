@@ -1,1 +1,12 @@
-<p>modal-validation works!</p>
+<div class="hiddenModal">
+    <div class="modalBackDrop" (click)='hideModal()'></div>
+        <div class="container">
+            <h2>Article ajouté</h2>
+            <div class="card">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam natus nesciunt quibusdam illum, ab qui, laborum ad quas sapiente, eius officiis! Atque, laborum? Voluptates maxime a dicta atque sequi repellendus.
+            </div>
+            <button class="btn btn-primary mt-5">Voir mon panier</button>
+            <button class="btn btn-primary mt-5" (click)='hideModal()'>Continuer vos achats</button>
+        </div>
+</div>
+<button (click)="showModal()">MODAL HERE</button>
