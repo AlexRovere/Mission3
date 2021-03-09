@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { IComics } from 'src/models/comic.model';
 import { ComicsService, IcomicsFilterOrder, IComicsRequestOrder } from '../services/comics.service';
+import { ModalService } from '../services/modal.service';
 
 @Component({
   selector: 'app-liste-article',
   templateUrl: './liste-article.component.html',
   styleUrls: ['./liste-article.component.css']
 })
+
 export class ListeArticleComponent implements OnInit {
 
   comics!: Array<IComics>;
 
 
-  constructor(private comicsService: ComicsService, private router: Router) { 
+  constructor(private comicsService: ComicsService, private router: Router, private modalService : ModalService) { 
    }
 
   ngOnInit(): void {
@@ -59,4 +61,12 @@ export class ListeArticleComponent implements OnInit {
   onViewComic(id: string) {
     this.router.navigate(['/liste', 'view', id]);
   }
+
+  enableModal(object: IComics) {
+    this.modalService.comic = object ;
+    this.modalService.showModal();
+    this.modalService.emitComic();
+  }
+
+
 }
