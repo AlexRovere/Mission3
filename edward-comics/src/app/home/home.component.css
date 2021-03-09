@@ -1,0 +1,8 @@
+.img-theme img {
+    width: 33.33%;
+}
+@media screen and (min-width: 1280px){
+    .img-theme img {
+        width: 16.66%;
+    }
+}

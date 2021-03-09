@@ -56,7 +56,7 @@ export class ComicsService {
                 });
               }
             })
-            resolve(newComics)
+            resolve(this.comics)
           }
         )
         .catch(reject);

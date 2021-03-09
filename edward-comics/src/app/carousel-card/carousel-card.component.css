@@ -1,16 +1,16 @@
-body {
-    box-sizing:border-box;
-    margin: 0px;
-    padding: 0px; 
-}
 
+h1{
+    text-align: center;
+    color:#BE2537;
+    padding-bottom: 2vh;
+    padding-top: 2vh;
+}
 :host ::ng-deep .p-carousel-indicators{
     display: none;
 }
 
 
 .product-item-content {
-    border: 1px solid;
     border-radius: 3px;
     text-align: center;
     height: 50vh;
@@ -105,22 +105,51 @@ h4 {
 
     h3 {
         font-size: 22px;
+        height: 10px;
     }
     .grid-container {
-        height: 19vh;
+        height: 20vh;
     }
+    .div-note, .div-prix, .div-panier{
+        transform: scale(2);
+        padding: 15px;
+    }
+
     .photo {
         height: 30vh;
         width: 80%;
+    }
+    .etat {
+        width: 35%;
+        display: flex;
+        justify-content: center;
+    }
+    .indisponible, .disponible, .precommande{
+        font-size: 25px;
+        width: 200px;     
+    }
+    .product-item-content {
+        border-radius: 3px;
+        text-align: center;
+        height: 50vh;        
+        margin:5%;
     }
 }
   
 @media screen and (min-width: 1280px) {
 
-
+    .indisponible, .disponible, .precommande{
+        font-size: 18px;
+        width: 130px;     
+    }
+    .div-note, .div-prix{
+        transform: scale(1);
+        padding: 10px;
+    }
     .etat {
         width: 30%;
-        margin: auto;
+        display: flex;
+        justify-content: center;
     }
     .photo {
         height: 30vh;
@@ -130,22 +159,25 @@ h4 {
     h3 {
         font-size: 22px;
         font-weight: bold;
-        height: 50px;
+        height: 40px;
+        padding: 10px;
     }
-   
+   .div-titre{
+       overflow: unset;
+       height: 10vh;
+   }
     .prix {
         color: #BE2537;
         font-weight: bold;
+        text-align: center;
         font-size: x-large;
     }
     
     
     .product-item-content {
-        border: 1px solid;
-        border-radius: 3px;
         text-align: center;
-        height: 50vh;
-        margin:5%;
+        height: 65vh;
+;
     }
      
     .note {
@@ -153,6 +185,7 @@ h4 {
     }
 
     .grid-container {
-        height: 19vh;
+        height: 15vh;
+        margin-bottom: 15vh;
     }
 }

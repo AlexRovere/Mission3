@@ -1,1 +1,16 @@
-<p>home works!</p>
+<app-carousel-image [config]="{ theme: 'nouveaute', valeur: true }"></app-carousel-image>
+<img src="assets/promo.png" width="100%"/>
+<app-carousel-image [config]="{ theme: 'selection', valeur: true }"></app-carousel-image>
+<div class="d-flex flex-wrap justify-content-center img-theme">
+    <img src="assets/batman.png"/>
+    <img src="assets/justiceleague.png"/>
+    <img src="assets/superman.png"/>
+    <img src="assets/spiderman.png"/>
+    <img src="assets/avengers.png"/>
+    <img src="assets/deadpool.png"/>
+</div>
+<app-carousel-card [config]="{ theme: 'univers', valeur: 'DC Comics' }"></app-carousel-card>
+<app-carousel-card [config]="{ theme: 'univers', valeur: 'Marvel' }"></app-carousel-card>
+<img src="assets/comicon.png" width="100%"/>
+<app-carousel-card [config]="{ theme: 'categorie', valeur: 'Super-héros' }"></app-carousel-card>
+<app-carousel-card [config]="{ theme: 'categorie', valeur: 'Super-vilains'}"></app-carousel-card>
