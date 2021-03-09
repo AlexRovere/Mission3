@@ -39,6 +39,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselModule } from 'primeng/carousel';
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -84,7 +86,8 @@ import { AuthGuardService } from './services/auth-guard.service';
     BrowserAnimationsModule,
     CarouselModule,
     BrowserAnimationsModule,
-  ],
+    NgbCarouselModule, 
+    ],
   providers: [
     ComicsService,
     MeteoService,

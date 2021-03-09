@@ -45,13 +45,13 @@ export class ComicsService {
         .get()
         .then(
           (querySnapshot) => {
-            querySnapshot.forEach((_doc) => {
-              const doc = _doc.data();
-              if(doc){
-                this.comics.push(doc as any);              
+            const newComics: Array<IComics> = [];
+            querySnapshot.forEach((_doc) => {              
+              if(_doc.data()){
+                newComics.push(_doc.data() as IComics);              
               }
             })
-            resolve(this.comics)
+            resolve(newComics)
           }
         )
         .catch(reject);
