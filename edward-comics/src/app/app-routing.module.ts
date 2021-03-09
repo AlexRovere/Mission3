@@ -4,6 +4,7 @@ import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { CarouselImageComponent } from './carousel-image/carousel-image.component';
 import { ContactComponent } from './contact/contact.component';
+import { DetailArticleComponent } from './detail-article/detail-article.component';
 import { DetailCompteComponent } from './detail-compte/detail-compte.component';
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { HomeComponent } from './home/home.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: "auth/signin", component: SigninComponent},
   {path: "auth/signup", component: SignupComponent},
   {path: "liste", component: ListeArticleComponent},
+  {path: "liste/view/:id", component: DetailArticleComponent},
   {path: "contact", component: ContactComponent},
   {path: "panier", component: PanierComponent},
   {path: "validation-achat", canActivate: [AuthGuardService], component: ValidationAchatComponent},

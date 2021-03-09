@@ -22,6 +22,7 @@ export class ComicsService {
   comics: IComics[] = [];
   comicsSubject = new Subject<any>();
   
+  
   constructor() { 
     this.getComics();
   }
@@ -45,10 +46,14 @@ export class ComicsService {
         .get()
         .then(
           (querySnapshot) => {
-            const newComics: Array<IComics> = [];
-            querySnapshot.forEach((_doc) => {              
-              if(_doc.data()){
-                newComics.push(_doc.data() as IComics);              
+
+            querySnapshot.forEach((_doc) => {
+              const doc = _doc.data() as any;
+              if(doc){
+                this.comics.push({
+                  ...doc,
+                  id: _doc.id
+                });
               }
             })
             resolve(newComics)
@@ -58,16 +63,24 @@ export class ComicsService {
       });
   }
 
-    
+  
 
- /*getSingleComic(id: string): Promise<Array<IComics>>{ 
+  getSingleComic(id: string): Promise<IComics>{
     const db = firebase.firestore()
-    const comicRef = db.collection("Comics").doc(id)
+    const comicRef = db.collection("Comics").doc(id)//.where('titre', '==', titre)
     return new Promise((resolve, reject) => {
       comicRef
-        .get
-        .then((
-          */
+        .get()
+        .then((_doc) => {
+          const doc = _doc.data() as any;
+          resolve({
+            ...doc,
+            id: _doc.id
+          })
+        })
+      .catch(reject)
+    })
+  }          
     
     
   getOrderedComics(orderInfo: IComicsRequestOrder): Promise<Array<IComics>> {
@@ -80,9 +93,13 @@ export class ComicsService {
       comicsRef.orderBy(orderCol, order)
         .get()
         .then((querySnapshot) => {
-          const newComics: Array<IComics> = [];
+          const newComics: Array<any> = [];          
           querySnapshot.forEach((_doc) => {
-            newComics.push(_doc.data() as IComics);
+            const doc = _doc.data() as any;
+            newComics.push({
+              ...doc,
+              id: _doc.id
+            });
           })
           resolve(newComics);
         })
@@ -104,7 +121,12 @@ export class ComicsService {
       .then((querySnapshot) => {
         const newComics: Array<IComics> = [];
         querySnapshot.forEach((_doc) => {
-          newComics.push(_doc.data() as IComics);
+          const doc = _doc.data() as any;
+          newComics.push({
+            ...doc,
+            id: _doc.id
+          }  
+          );
         })
         resolve(newComics);
       })

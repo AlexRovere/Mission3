@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IComics } from 'src/models/comic.model';
+import { ComicsService } from '../services/comics.service';
+
 
 @Component({
   selector: 'app-detail-article',
@@ -7,9 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailArticleComponent implements OnInit {
 
-  constructor() { }
+
+
+  comic!: IComics;
+
+  constructor(private route: ActivatedRoute, private router: Router, private comicsService: ComicsService) { }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.params['id'];
+    this.comicsService.getSingleComic(id).then(
+      (comic: IComics) => {
+        this.comic = comic
+        console.log(this.comic);
+      }
+    );
   }
 
 }

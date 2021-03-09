@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IComics } from 'src/models/comic.model';
 import { ComicsService, IcomicsFilterOrder, IComicsRequestOrder } from '../services/comics.service';
 
@@ -11,7 +12,8 @@ export class ListeArticleComponent implements OnInit {
 
   comics!: Array<IComics>;
 
-  constructor(private comicsService: ComicsService) { 
+
+  constructor(private comicsService: ComicsService, private router: Router) { 
    }
 
   ngOnInit(): void {
@@ -54,4 +56,7 @@ export class ListeArticleComponent implements OnInit {
       })
   }
 
+  onViewComic(id: string) {
+    this.router.navigate(['/liste', 'view', id]);
+  }
 }
