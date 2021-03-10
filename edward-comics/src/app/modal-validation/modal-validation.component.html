@@ -16,7 +16,7 @@
                 <h2>{{comic.prix}} €</h2>
             </div>
         </div>
-        <a routerLink="/panier" class="btn btn-primary mt-1">Voir mon panier</a>
+        <a routerLink="/panier" (click)="disableModal()" class="btn btn-primary mt-1">Voir mon panier</a>
         <button class="btn btn-primary mt-1" (click)='disableModal()'>Continuer vos achats</button>
     </div>
 </div>

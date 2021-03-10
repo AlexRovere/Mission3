@@ -3,6 +3,7 @@ import { Component, OnInit, Output } from '@angular/core';
 import { IComics } from 'src/models/comic.model';
 import { ComicsService, IcomicsFilterOrder, IComicsRequestOrder } from '../services/comics.service';
 import { ModalService } from '../services/modal.service';
+import { PanierService } from '../services/panier.service';
 
 @Component({
   selector: 'app-liste-article',
@@ -19,7 +20,7 @@ export class ListeArticleComponent implements OnInit {
   };
 
 
-  constructor(private route: ActivatedRoute, private comicsService: ComicsService, private router: Router, private modalService : ModalService) { 
+  constructor(private route: ActivatedRoute, private comicsService: ComicsService, private router: Router, private modalService : ModalService, private panierService: PanierService) { 
 
    }
 
@@ -92,6 +93,10 @@ export class ListeArticleComponent implements OnInit {
     this.modalService.comic = object ;
     this.modalService.showModal();
     this.modalService.emitComic();
+    this.addToCart(object);    
+  }
+  addToCart(comic: IComics){
+    this.panierService.addItemsToCart(comic)
   }
 
 
