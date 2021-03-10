@@ -16,13 +16,11 @@ import { SearchBarComponent } from './header/search-bar/search-bar.component';
 import { MenuComponent } from './header/menu/menu.component';
 import { MeteoComponent } from './footer/meteo/meteo.component';
 import { SingleItemComponent } from './panier/single-item/single-item.component';
-import { SingleCardComponent } from './liste-article/single-card/single-card.component';
 import { FiltreComponent } from './liste-article/filtre/filtre.component';
 import { TriComponent } from './liste-article/tri/tri.component';
 import { CarouselCardComponent } from './carousel-card/carousel-card.component';
 import { CarouselImageComponent } from './carousel-image/carousel-image.component';
 import { PaginatorComponent } from './liste-article/paginator/paginator.component';
-import { PanierNotifComponent } from './header/panier-notif/panier-notif.component';
 import { ValidationAchatComponent } from './validation-achat/validation-achat.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -61,13 +59,11 @@ import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
     MenuComponent,
     MeteoComponent,
     SingleItemComponent,
-    SingleCardComponent,
     FiltreComponent,
     TriComponent,
     CarouselCardComponent,
     CarouselImageComponent,
     PaginatorComponent,
-    PanierNotifComponent,
     ValidationAchatComponent,
     SigninComponent,
     SignupComponent,
