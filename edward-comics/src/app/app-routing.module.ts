@@ -79,7 +79,23 @@ const routes: Routes = [
   },
   {
     path: "liste/view/:id",
-    component: DetailArticleComponent
+    component: DetailArticleComponent,
+    data: {
+      breadcrumb: [
+        {
+          label: 'Accueil',
+          url: 'home'
+        },
+        {
+          label: 'Liste des comics',
+          url: 'liste'
+        },
+        {
+          label: 'Détail',
+          url: ''
+        }
+      ]
+    }
   },
   {
     path: "contact",
