@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IComics } from 'src/models/comic.model';
 import { ComicsService, IcomicsFilterOrder } from '../services/comics.service';
 
@@ -21,13 +22,12 @@ export class CarouselImageComponent implements OnInit {
 
   @Input() config!: IcomicsFilterOrder
 
-  constructor(private comicsService: ComicsService) { }
+  constructor(private comicsService: ComicsService, private router: Router) { }
 
   ngOnInit(): void {
     this.comicsService.getFilterComics(this.config)
       .then((newComics: Array<IComics>) => {
         this.comics = newComics;
-        console.log(this.config)
       })
 
   }
@@ -73,6 +73,9 @@ export class CarouselImageComponent implements OnInit {
 
 
     return itemClasses.join(' ');
+  }
+  onViewComic(id: string) {
+    this.router.navigate(['/liste', 'view', id]);
   }
 
 }

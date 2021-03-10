@@ -7,7 +7,14 @@
   display: flex;
   justify-content: flex-end;
 }
-
+.nbrItem{
+  color:#BE2537;
+  font-weight: bold;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .gridHeader {
   margin-top: 10px;
   display: grid;
@@ -69,6 +76,9 @@ display: none;
     display: block;
     width: 20%;
   }
+  .nbrItem{
+    font-size: 30px;
+  }
 
   .gridHeader {
     grid-template-rows: 1fr;
@@ -79,7 +89,7 @@ display: none;
   }
 
   .logoHeader {
-    width:150px;
+    width:25vw;
     display: block;
   }
   .logo{
@@ -110,5 +120,14 @@ display: none;
   .panierHeader {
     width: 40px;
     height: 30px;
+  }
+}
+@media screen and (min-width: 1280px) {
+
+  .logoHeader{
+    width: 20vw;
+  }
+  .nbrItem{
+    font-size: 20px;
   }
 }

@@ -3,7 +3,8 @@ import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { IComics } from 'src/models/comic.model';
 import { ComicsService, IcomicsFilterOrder, IComicsRequestOrder } from '../services/comics.service';
 import { ModalService } from '../services/modal.service';
-import { MatPaginator } from '@angular/material/paginator';
+import { PanierService } from '../services/panier.service';
+
 
 @Component({
   selector: 'app-liste-article',
@@ -22,7 +23,7 @@ export class ListeArticleComponent implements OnInit {
   
 p!: number;
 
-  constructor(private route: ActivatedRoute, private comicsService: ComicsService, private router: Router, private modalService : ModalService) { 
+  constructor(private route: ActivatedRoute, private comicsService: ComicsService, private router: Router, private modalService : ModalService, private panierService: PanierService) { 
 
    }
 
@@ -98,6 +99,10 @@ p!: number;
     this.modalService.comic = object ;
     this.modalService.showModal();
     this.modalService.emitComic();
+    this.addToCart(object);    
+  }
+  addToCart(comic: IComics){
+    this.panierService.addItemsToCart(comic)
   }
  pagination(){
    this.p = 1;
