@@ -52,7 +52,6 @@ p!: number;
     this.comicsService.getFilterComics(this.filter).then(
       (newComics: Array<IComics>) => {
         this.comics = newComics;
-        console.log(value)
       }
     )
   }
@@ -77,11 +76,51 @@ p!: number;
   }
   
   onOrderChanged(orderInfo: IComicsRequestOrder){
-    this.comicsService.getOrderedComics(orderInfo)
-      .then((newComics: Array<IComics>) => {
-        this.comics = newComics;
-      })
-  }
+    switch (orderInfo.colName) {
+      case 'titre' : 
+        if(orderInfo.order === 'asc') {
+          this.comics.sort(function compare(a, b) {
+            if (a.titre < b.titre) {
+              return -1;
+            }
+            if (a.titre > b.titre){
+                return 1;
+            }
+          return 0;
+          })
+        } else { 
+          this.comics.sort(function compare(a, b) {
+            if (a.titre > b.titre) {
+              return -1;
+            }
+            if (a.titre < b.titre){
+                return 1;
+            }
+          return 0;
+          })
+        };
+        break;
+      case 'prix':
+      if(orderInfo.order === 'asc') {
+        this.comics.sort((a, b) => a.prix - b.prix);
+      }else {
+        this.comics.sort((a, b) => b.prix - a.prix);
+      }
+      break;
+      case 'avis':
+      if(orderInfo.order === 'asc') {
+        this.comics.sort((a, b) => a.avis - b.avis);
+      }else {
+        this.comics.sort((a, b) => b.avis - a.avis);
+      }
+      break;  
+      }        
+    }       
+    // this.comicsService.getOrderedComics(orderInfo)
+    //   .then((newComics: Array<IComics>) => {
+    //     this.comics = newComics;
+    //   })
+  
   
   onFilterChanged(filterInfo: IcomicsFilterOrder){
     this.pagination();
@@ -101,6 +140,7 @@ p!: number;
     this.modalService.emitComic();
     this.addToCart(object);    
   }
+
   addToCart(comic: IComics){
     this.panierService.addItemsToCart(comic)
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IComics } from 'src/models/comic.model';
 import { ComicsService } from '../services/comics.service';
+import { ModalService } from '../services/modal.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class DetailArticleComponent implements OnInit {
 
   comic!: IComics;
 
-  constructor(private route: ActivatedRoute, private router: Router, private comicsService: ComicsService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private comicsService: ComicsService, private modalService : ModalService) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
@@ -26,9 +27,10 @@ export class DetailArticleComponent implements OnInit {
     );
   }
 
-  onBack() {
-    this.router.navigate(['/home']);
+  enableModal(object: IComics) {
+    this.modalService.comic = object ;
+    this.modalService.showModal();
+    this.modalService.emitComic();
   }
-
 }
 
