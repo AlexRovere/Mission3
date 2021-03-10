@@ -1,1 +1,48 @@
-<p>validation-achat works!</p>
+<div class="grid-container">
+    <div class="Panier">
+
+    </div>
+    <div class="Factu">
+        <div class="facturation">
+            <h2 class="text-center rouge">Récapitulatif de facturation</h2>
+            <hr class="rouge">
+            <div class="d-flex justify-content-between adresse form-group">
+                <div>{{ infoUser.prenom }} {{ infoUser.nom }}<br>{{ infoUser.adresse }}<br>{{
+                    infoUser.codePostal }} {{ infoUser.ville }}</div>
+                <button class="btn btn-primary mt-5" routerLink="facturation">Modifier ></button>
+            </div>
+        </div>
+    </div>
+    <div class="carte-bleu">
+        <div class="Paiement">
+            <h2 class="text-center rouge">Information bancaire</h2>
+            <hr class="rouge">
+            <form>
+                <div class="grid-container-2">
+                    <div class="nom">
+                        <label class="rouge">Nom du propriétaire</label>
+                        <input type="text" class="form-control" id="proprietaire" formControlName="proprietaire"
+                            value="{{ infoUser.proprietaireCarte }}">
+                    </div>
+                    <div class="numero">
+                        <label class="rouge">Numero de carte</label>
+                        <input type="text" class="form-control" id="nbCarte" formControlName="nbCarte"
+                            value="{{ infoUser.numeroCarte }}">
+                    </div>
+                    <div class="crypto-expi">
+                        <div class="expi">
+                            <label class="rouge">Date d'expiration</label>
+                            <input type="text" class="form-control" id="expiration" formControlName="expiration"
+                                value="{{ infoUser.dateCarte }}">
+                        </div>
+                        <div class="crypto">
+                            <label class="rouge">Cryptogramme</label>
+                            <input type="text" class="form-control" id="cryptogramme" formControlName="cryptogramme"
+                                value="{{ infoUser.cryptogramme }}">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -21,7 +21,6 @@ export class MeteoComponent implements OnInit {
     this.meteoDirectSubcription = this.meteoService.meteoDirectSubject.subscribe(
       (meteoDirect: IMeteoData) => {
         this.meteoDirect = meteoDirect;
-        console.log(this.meteoDirect);
       }
     );
     this.meteoService.emitMeteoDirectSubject();
