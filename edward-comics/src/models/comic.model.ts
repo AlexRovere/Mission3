@@ -10,11 +10,12 @@ export interface IComics {
     nbrPages: number,
     nouveaute: boolean,
     photo: string,
-    prix: string,
+    prix: number,
     promotion: boolean,
     resume: string,
     scenariste: string,
     selection: boolean,
     titre: string,
-    univers: string
+    univers: string,
+    quantite: number
 }
