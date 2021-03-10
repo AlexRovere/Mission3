@@ -79,46 +79,47 @@
   }
 
   @media screen and (min-width: 1280px) {
-    .grid-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr;
-      gap: 0px 0px;
-      grid-template-areas:
-        "gauche droite";
-    }
-    
-    .gauche {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: 1.5fr 0.5fr;
-      gap: 0px 0px;
-      grid-area: gauche;
-    }
-    
-    .image { grid-area: 1 / 1 / 3 / 2; }
-    
-    .avis { grid-area: 2 / 1 / 3 / 2; }
-    
-    .droite {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr 1fr 1fr 1fr;
-      gap: 0px 0px;
-      grid-template-areas:
-        "infos"
-        "bouton"
-        "resume"
-        "caracteristiques";
-      grid-area: droite;
-    }
-    
-    .infos { grid-area: infos; }
-    
-    .bouton { grid-area: bouton; }
-    
-    .resume { grid-area: resume; }
-    
-    .caracteristiques { grid-area: caracteristiques; }
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.5fr 0.1fr 0.4fr 0.4fr;
+    gap: 0px 25px;
+    grid-template-areas:
+      "image infos"
+      "image bouton"
+      "image resume"
+      "avis caracteristiques";
+    background-color: #c4c4c448;
+    width: 95%;
+    padding: 3%;
+    margin: auto;
+  }
+   
+ .avis {
+   place-self: center;
+ }
+
+ .caracteristiques {
+   align-self: center;
+ }
+
+ .infos {
+  align-self: center;
+ }
+
+ .resume {
+   align-self: center;
+ }
+
+ .titreprix {
+   font-size: 45px;
+   
+ }
+ .tailleBtn{
+   width: 100%;
+   height: 80%;
+   font-size: 25px;
+   font-weight: bold;
+ }
     
   }

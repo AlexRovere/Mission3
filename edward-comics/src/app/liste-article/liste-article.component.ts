@@ -46,7 +46,6 @@ export class ListeArticleComponent implements OnInit {
     this.comicsService.getFilterComics(this.filter).then(
       (newComics: Array<IComics>) => {
         this.comics = newComics;
-        console.log(value)
       }
     )
   }
@@ -71,11 +70,51 @@ export class ListeArticleComponent implements OnInit {
   }
   
   onOrderChanged(orderInfo: IComicsRequestOrder){
-    this.comicsService.getOrderedComics(orderInfo)
-      .then((newComics: Array<IComics>) => {
-        this.comics = newComics;
-      })
-  }
+    switch (orderInfo.colName) {
+      case 'titre' : 
+        if(orderInfo.order === 'asc') {
+          this.comics.sort(function compare(a, b) {
+            if (a.titre < b.titre) {
+              return -1;
+            }
+            if (a.titre > b.titre){
+                return 1;
+            }
+          return 0;
+          })
+        } else { 
+          this.comics.sort(function compare(a, b) {
+            if (a.titre > b.titre) {
+              return -1;
+            }
+            if (a.titre < b.titre){
+                return 1;
+            }
+          return 0;
+          })
+        };
+        break;
+      case 'prix':
+      if(orderInfo.order === 'asc') {
+        this.comics.sort((a, b) => a.prix - b.prix);
+      }else {
+        this.comics.sort((a, b) => b.prix - a.prix);
+      }
+      break;
+      case 'avis':
+      if(orderInfo.order === 'asc') {
+        this.comics.sort((a, b) => a.avis - b.avis);
+      }else {
+        this.comics.sort((a, b) => b.avis - a.avis);
+      }
+      break;  
+      }        
+    }       
+    // this.comicsService.getOrderedComics(orderInfo)
+    //   .then((newComics: Array<IComics>) => {
+    //     this.comics = newComics;
+    //   })
+  
   
   onFilterChanged(filterInfo: IcomicsFilterOrder){
     this.comicsService.getFilterComics(filterInfo)
@@ -93,6 +132,5 @@ export class ListeArticleComponent implements OnInit {
     this.modalService.showModal();
     this.modalService.emitComic();
   }
-
 
 }
