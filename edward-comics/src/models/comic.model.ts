@@ -16,5 +16,6 @@ export interface IComics {
     scenariste: string,
     selection: boolean,
     titre: string,
-    univers: string
+    univers: string,
+    quantite: number
 }

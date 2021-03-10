@@ -10,8 +10,9 @@
         <p class="note d-flex justify-content-center" *ngIf="comic.avis === 2">★★</p>
         <p class="note d-flex justify-content-center" *ngIf="comic.avis === 1">★</p>
     </div>
+
     <div class="infos">
-        <p class="titreprix"> {{ comic.titre }}</p> 
+        <p class="titreprix"> {{ comic.titre }}</p>
         <p>Par {{ comic.scenariste }} / {{ comic.dessinateur }}</p>
         <p>ISBN: {{ comic.isbn }}</p>
         <p *ngIf="comic.disponibilite == 1">Etat:<span class="card-text disponible"> Disponible</span></p>
@@ -62,3 +63,4 @@
         <p class="note d-flex justify-content-center" *ngIf="comic.avis === 1">★</p>
     </div>
 </div>   
+
