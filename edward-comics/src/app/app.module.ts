@@ -37,6 +37,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { FacturationComponent } from './detail-compte/facturation/facturation.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -81,7 +82,8 @@ import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
     CarouselModule,
     BrowserAnimationsModule,
     NgbCarouselModule, 
-    NgDynamicBreadcrumbModule
+    NgDynamicBreadcrumbModule,
+    NgxPaginationModule
     ],
   providers: [
     ComicsService,

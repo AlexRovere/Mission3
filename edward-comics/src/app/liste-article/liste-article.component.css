@@ -1,4 +1,10 @@
-
+.my-pagination /deep/ .ngx-pagination .current {
+    background: #BE2437;
+    border-radius: 5px;
+  }
+  .my-pagination /deep/ .ngx-pagination a {
+    text-decoration: none;
+  }
 .menu {
     display: flex;
     justify-content: space-around;

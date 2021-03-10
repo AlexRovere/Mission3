@@ -71,7 +71,7 @@ const routes: Routes = [
           url: 'home'
         },
         {
-          label: `Liste d'articles`,
+          label: `Liste des comics`,
           url: ''
         }
       ]
@@ -131,7 +131,7 @@ const routes: Routes = [
   },
   {
     path: "validation-achat",
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
     component: ValidationAchatComponent,
     data: {
       breadcrumb: [
@@ -183,26 +183,6 @@ const routes: Routes = [
         },
         {
           label: 'Facturation',
-          url: ''
-        }
-      ]
-    }
-  },
-  {
-    path: "liste/view/:id",
-    component: DetailArticleComponent,
-    data: {
-      breadcrumb: [
-        {
-          label: 'Accueil',
-          url: 'home'
-        },
-        {
-          label: `Liste d'article`,
-          url: 'liste'
-        },
-        {
-          label: 'Detail',
           url: ''
         }
       ]

@@ -1,9 +1,10 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { IComics } from 'src/models/comic.model';
 import { ComicsService, IcomicsFilterOrder, IComicsRequestOrder } from '../services/comics.service';
 import { ModalService } from '../services/modal.service';
 import { PanierService } from '../services/panier.service';
+
 
 @Component({
   selector: 'app-liste-article',
@@ -19,6 +20,8 @@ export class ListeArticleComponent implements OnInit {
     valeur: ""
   };
 
+  
+p!: number;
 
   constructor(private route: ActivatedRoute, private comicsService: ComicsService, private router: Router, private modalService : ModalService, private panierService: PanierService) { 
 
@@ -38,7 +41,9 @@ export class ListeArticleComponent implements OnInit {
       if(_theme != null && _valeur != null){
         this.updateFilter(_theme, _valeur);
       }
-    })
+    });
+    this.p = 1;
+
   }
 
   updateFilter(theme: string, value: string | boolean){
@@ -79,6 +84,7 @@ export class ListeArticleComponent implements OnInit {
   }
   
   onFilterChanged(filterInfo: IcomicsFilterOrder){
+    this.pagination();
     this.comicsService.getFilterComics(filterInfo)
       .then((newComics: Array<IComics>) => {
         this.comics = newComics;
@@ -98,6 +104,8 @@ export class ListeArticleComponent implements OnInit {
   addToCart(comic: IComics){
     this.panierService.addItemsToCart(comic)
   }
-
+ pagination(){
+   this.p = 1;
+ }
 
 }

@@ -106,6 +106,7 @@ export class MenuComponent implements OnInit{
         icon: "",
         command: (event) => {
           this.authService.user = null;
+          this.authService.emitUser();
           this.router.navigate(['home'])
         }
       },           

@@ -1,0 +1,49 @@
+.rouge {
+    color: #BE2537;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "Panier"
+      "Factu"
+      "carte-bleu";
+  }
+  
+  .Panier { grid-area: Panier; }
+  
+  .Factu { grid-area: Factu; }
+  
+  .carte-bleu { grid-area: carte-bleu; }
+  
+.grid-container-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "nom"
+      "numero"
+      "crypto-expi";
+  }
+  
+  .nom { grid-area: nom; }
+  
+  .numero { grid-area: numero; }
+  
+  .crypto-expi {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 5px;
+    grid-template-areas:
+      "expi crypto";
+    grid-area: crypto-expi;
+  }
+  
+  .expi { grid-area: expi; }
+  
+  .crypto { grid-area: crypto; }
+  
