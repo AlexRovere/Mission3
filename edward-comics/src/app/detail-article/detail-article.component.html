@@ -62,5 +62,8 @@
         <p class="note d-flex justify-content-center" *ngIf="comic.avis === 2">★★</p>
         <p class="note d-flex justify-content-center" *ngIf="comic.avis === 1">★</p>
     </div>
+</div>
+<div>
+    <app-carousel-card [config]="{ theme: 'univers', valeur: comic.univers  }"></app-carousel-card>
 </div>   
 

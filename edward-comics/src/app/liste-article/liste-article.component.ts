@@ -116,16 +116,14 @@ p!: number;
       break;  
       }        
     }       
-    // this.comicsService.getOrderedComics(orderInfo)
-    //   .then((newComics: Array<IComics>) => {
-    //     this.comics = newComics;
-    //   })
-  
   
   onFilterChanged(filterInfo: IcomicsFilterOrder){
+    const themeCol = filterInfo.theme;
+    const value = filterInfo.valeur;
     this.pagination();
     this.comicsService.getFilterComics(filterInfo)
       .then((newComics: Array<IComics>) => {
+        this.router.navigate(['/liste', themeCol, value]);
         this.comics = newComics;
       })
   }
