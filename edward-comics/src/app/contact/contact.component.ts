@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ComicsService, IcomicsFilterOrder } from '../services/comics.service';
 
 @Component({
@@ -12,9 +13,12 @@ import { ComicsService, IcomicsFilterOrder } from '../services/comics.service';
 export class ContactComponent implements OnInit {
 
 
-  constructor(private comicsService: ComicsService) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {  }
-
+  envoyer(){
+    alert('Votre message a bien été envoyer. Merci.');
+    this.router.navigate(['/home']);
+  }
 
 }
