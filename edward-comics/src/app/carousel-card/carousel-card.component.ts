@@ -14,7 +14,7 @@ export class CarouselCardComponent implements OnInit {
 
   comics!: Array<IComics>;
 
-  @Input() config!: IcomicsFilterOrder 
+  @Input() config!: IcomicsFilterOrder;
   
   constructor(private comicsService: ComicsService, private modalService: ModalService, private panierService: PanierService, private router: Router) {    
   }
