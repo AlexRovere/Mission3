@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IComics } from 'src/models/comic.model';
 import { ComicsService } from '../services/comics.service';
 import { ModalService } from '../services/modal.service';
+import { PanierService } from '../services/panier.service';
 
 
 @Component({
@@ -12,25 +13,38 @@ import { ModalService } from '../services/modal.service';
 })
 export class DetailArticleComponent implements OnInit {
 
-
-
   comic!: IComics;
 
-  constructor(private route: ActivatedRoute, private router: Router, private comicsService: ComicsService, private modalService : ModalService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private comicsService: ComicsService, private modalService : ModalService, private panierService: PanierService) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.params['id'];
+    this.route.paramMap.subscribe(params => {
+      const _id = params.get('id');
+      if(_id){
+        this.singleComic(_id);
+      }
+    });    
+}
+
+  singleComic(id: string) {
     this.comicsService.getSingleComic(id).then(
       (comic: IComics) => {
-        this.comic = comic
+        this.comic = comic;
       }
-    );
+    )
   }
+
+  
 
   enableModal(object: IComics) {
     this.modalService.comic = object ;
     this.modalService.showModal();
     this.modalService.emitComic();
+    this.addToCart(object); 
+  }
+
+  addToCart(comic: IComics){
+    this.panierService.addItemsToCart(comic)
   }
 }
 

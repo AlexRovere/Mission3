@@ -82,7 +82,7 @@
   .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 0.5fr 0.1fr 0.4fr 0.4fr;
+    grid-template-rows: 450px 50px 300px 300px;
     gap: 0px 25px;
     grid-template-areas:
       "image infos"
@@ -120,6 +120,7 @@
    height: 80%;
    font-size: 25px;
    font-weight: bold;
+
  }
     
   }
