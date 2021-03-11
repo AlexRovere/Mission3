@@ -1,3 +1,6 @@
+textarea {
+    resize: none;
+ }
 .info-perso {
     grid-area: info-perso;
 }

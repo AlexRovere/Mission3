@@ -73,7 +73,7 @@ const routes: Routes = [
         },
         {
           label: `Liste des comics`,
-          url: 'liste'
+          url: ''
 
         }
       ]
@@ -227,7 +227,7 @@ const routes: Routes = [
         },
         {
           label: `Liste des comics`,
-          url: 'Liste'
+          url: ''
         }
       ]
     }
