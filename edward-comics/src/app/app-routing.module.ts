@@ -73,23 +73,7 @@ const routes: Routes = [
         },
         {
           label: `Liste des comics`,
-          url: ''
-        }
-      ]
-    }
-  },
-  {
-    path: "liste/:themeCol/:value",
-    component: ListeArticleComponent,
-    data: {
-      breadcrumb: [
-        {
-          label: 'Accueil',
-          url: 'home'
-        },
-        {
-          label: `Liste des comics`,
-          url: 'Liste'
+          url: 'liste'
         }
       ]
     }
@@ -114,6 +98,7 @@ const routes: Routes = [
       ]
     }
   },
+
   {
     path: "contact",
     component: ContactComponent,
