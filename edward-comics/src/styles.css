@@ -1,3 +1,15 @@
+
+  @font-face {
+    font-family: "lumios";
+    src:  url("/assets/Fonts/lumios-marker/LumiosMarker.otf");
+  }
+  
+  @font-face {  
+    font-family: "radio";
+    src:  url("/assets/Fonts/road-radio/RoadRadio-Black.eot"),
+          url("/assets/Fonts/road-radio/RoadRadio-Black.ttf"); 
+  }
+
 .btn-primary {
     color: #fff !important;
     background-color: #BE2537 !important;
@@ -31,7 +43,7 @@
 * {
     box-sizing: border-box;
     margin: 0;
-  }
+  }  
 
 @media screen and(min-width: 1280px) {
     body{

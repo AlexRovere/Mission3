@@ -4,6 +4,8 @@ h1{
     color:#BE2537;
     padding-bottom: 2vh;
     padding-top: 2vh;
+    font-family: "lumios";
+    text-transform: capitalize;
 }
 :host ::ng-deep .p-carousel-indicators{
     display: none;

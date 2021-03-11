@@ -2,6 +2,8 @@ h1{
     text-align: center;
     color:#BE2537;
     padding-bottom: 2vh;
+    font-family: "radio";
+    text-transform: capitalize;
 }
 .arrow {
     width: 5vh;
