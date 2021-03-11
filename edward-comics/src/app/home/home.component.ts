@@ -15,11 +15,11 @@ export class HomeComponent implements OnInit {
   }
 
   onFilterComic(theme: string, valeur: boolean, valeurType: string) {
-    this.router.navigate(['/liste'], { queryParams: {theme: theme, valeur: valeur, valueType: valeurType}});
+    this.router.navigate(['/liste', { theme: theme, valeur: valeur, valueType: valeurType }]);
   }
 
   onFilterComicPerso(theme: string, valeur: string) {
-    this.router.navigate(['/liste'], { queryParams: {theme: theme, valeur: valeur}});
+    this.router.navigate(['/liste', { theme: theme, valeur: valeur }]);
   }
 
 }

@@ -23,7 +23,6 @@ export class PanierService {
     }
     this.nbrItem ++;
     this.nbrItemSubject.next(this.nbrItem);
-    console.log(this.cart)
   }
 
   emitCart() {

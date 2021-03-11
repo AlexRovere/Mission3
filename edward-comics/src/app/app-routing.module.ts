@@ -73,7 +73,8 @@ const routes: Routes = [
         },
         {
           label: `Liste des comics`,
-          url: ''
+          url: 'liste'
+
         }
       ]
     }
@@ -98,6 +99,7 @@ const routes: Routes = [
       ]
     }
   },
+
   {
     path: "contact",
     component: ContactComponent,

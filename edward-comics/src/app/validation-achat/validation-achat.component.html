@@ -1,5 +1,7 @@
 <div class="grid-container">
     <div class="Panier">
+        <h2 class="text-center rouge">Récapitulatif du panier</h2>
+        <hr class="rouge">
         <div class="panier d-flex flex-column align-items-center">
             <div class="cardContainer" *ngFor="let comic of cart; let i = index">
                 <div>
@@ -30,7 +32,7 @@
                 <div class="d-flex justify-content-between adresse form-group">
                     <div>{{ infoUser.prenom }} {{ infoUser.nom }}<br>{{ infoUser.adresse }}<br>{{
                         infoUser.codePostal }} {{ infoUser.ville }}</div>
-                    <button class="btn btn-primary mt-5" routerLink="facturation">Modifier ></button>
+                    <button class="btn btn-primary mt-5" routerLink="/detail-compte/facturation">Modifier ></button>
                 </div>
             </div>
         </div>

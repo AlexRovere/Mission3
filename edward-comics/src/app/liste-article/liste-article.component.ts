@@ -40,6 +40,9 @@ p!: number;
       }
       if(_theme != null && _valeur != null){
         this.updateFilter(_theme, _valeur);
+      }else {
+        this.comicsService.getComics();
+        this.comics = this.comicsService.comics;
       }
     });
     this.p = 1;
@@ -123,7 +126,7 @@ p!: number;
     this.pagination();
     this.comicsService.getFilterComics(filterInfo)
       .then((newComics: Array<IComics>) => {
-        this.router.navigate(['/liste', themeCol, value]);
+        this.router.navigate(['/liste', { theme: themeCol, valeur: value }]);
         this.comics = newComics;
       })
   }

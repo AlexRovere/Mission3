@@ -12,7 +12,7 @@
                 *ngFor="let comic of comics | paginate: { itemsPerPage: 9, currentPage: p }; let i = index">
                 <img class="card-img-top" src="{{ comic.photo }}" />
                 <div class="description" id="{{i}}">
-                    <div (click)="onViewComic(comic.id)">
+                    <div class="click" (click)="onViewComic(comic.id)">
                         <p class="card-title">{{ comic.titre }}</p>
                         <div class="etat">
                             <p class="card-text disponible" *ngIf="comic.disponibilite == 1">Disponible</p>
@@ -28,7 +28,7 @@
                     </div>
                     <a (click)="enableModal(comic)" class="d-flex align-items-center"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="4vh" height="4vh" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="#BE2537" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></g></svg></a>
                 </div>
-                <div class="card-body text-center">
+                <div class="card-body text-center click"  (click)="onViewComic(comic.id)">
                     <p class="card-title">{{ comic.titre }}</p>
                     <p class="card-text disponible" *ngIf="comic.disponibilite == 1">Disponible</p>
                     <p class="card-text indisponible" *ngIf="comic.disponibilite == 2">Indisponible</p>
