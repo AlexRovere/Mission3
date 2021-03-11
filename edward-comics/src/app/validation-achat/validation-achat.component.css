@@ -132,7 +132,7 @@ h2 {
   text-align: center;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) { /* Tablette */
   h2 {
     font-size: 35px;
   }
@@ -161,13 +161,15 @@ h2 {
   }
   .carte-bleu{
     width: 70%;
+    margin: auto;
   }
   .Factu{
     width: 70%;
+    margin: auto;
   }
 }
 
-@media screen and (min-width:1280px) {
+@media screen and (min-width:1280px) { /* ordinateur */
   h2 {
     font-size: 25px;
   }

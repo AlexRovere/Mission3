@@ -11,7 +11,7 @@ export class FooterComponent implements OnInit {
   constructor(private meteoService: MeteoService) { }
 
   ngOnInit(): void {
-    this.meteoService.fetchWeather();
+    // this.meteoService.fetchWeather();
   }
 
 }
