@@ -52,6 +52,7 @@ h4 {
 .etat {
     width: 65%;
     margin: auto;
+    cursor: pointer;
 }
 
 .disponible {
@@ -87,6 +88,20 @@ h4 {
 .div-titre {
     cursor: pointer;
 }
+
+.blocPhoto {
+    cursor: pointer;
+}
+
+.div-prix {
+    cursor: pointer;
+}
+
+.div-panier {
+    cursor: pointer;
+}
+
+
 
 @media screen and (min-width: 768px) {
 
