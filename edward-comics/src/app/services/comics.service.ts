@@ -67,7 +67,7 @@ export class ComicsService {
 
   getSingleComic(id: string): Promise<IComics>{
     const db = firebase.firestore()
-    const comicRef = db.collection("Comics").doc(id)//.where('titre', '==', titre)
+    const comicRef = db.collection("Comics").doc(id)
     return new Promise((resolve, reject) => {
       comicRef
         .get()
