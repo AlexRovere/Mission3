@@ -74,6 +74,7 @@ const routes: Routes = [
         {
           label: `Liste des comics`,
           url: 'liste'
+
         }
       ]
     }
@@ -216,6 +217,22 @@ const routes: Routes = [
     }
   },
   {
+    path: "liste/:themeCol/:value",
+    component: ListeArticleComponent,
+    data: {
+      breadcrumb: [
+        {
+          label: 'Accueil',
+          url: 'home'
+        },
+        {
+          label: `Liste des comics`,
+          url: 'Liste'
+        }
+      ]
+    }
+  },
+  {
     path: "not-found",
     component: FourOhFourComponent,
     data: {
@@ -249,7 +266,6 @@ const routes: Routes = [
     path: "**",
     redirectTo: 'not-found'
   }
-
 ];
 
 @NgModule({
