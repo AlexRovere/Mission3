@@ -36,6 +36,12 @@ h3 {
     font-size: 15px;
 
 }
+.prix{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 15vh;
+}
 h5{
     font-size: 13px;
 }

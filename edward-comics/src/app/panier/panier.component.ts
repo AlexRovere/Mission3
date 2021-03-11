@@ -37,7 +37,8 @@ export class PanierComponent implements OnInit {
     const item = this.cart.indexOf(obj);
     if (item > -1){
       this.cart.splice(item, 1);
-      this.nbrItem --;
+      this.panierService.nbrItem -= obj.quantite;
+      this.total -= (obj.prix)*(obj.quantite)
     }
     this.panierService.emitCart();
   }
