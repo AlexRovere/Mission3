@@ -10,6 +10,7 @@ import { FacturationComponent } from './detail-compte/facturation/facturation.co
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { HomeComponent } from './home/home.component';
 import { ListeArticleComponent } from './liste-article/liste-article.component';
+import { PaiementComponent } from './paiement/paiement.component';
 import { PanierComponent } from './panier/panier.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { ValidationAchatComponent } from './validation-achat/validation-achat.component';
@@ -78,6 +79,22 @@ const routes: Routes = [
     }
   },
   {
+    path: "liste/:themeCol/:value",
+    component: ListeArticleComponent,
+    data: {
+      breadcrumb: [
+        {
+          label: 'Accueil',
+          url: 'home'
+        },
+        {
+          label: `Liste des comics`,
+          url: 'Liste'
+        }
+      ]
+    }
+  },
+  {
     path: "liste/view/:id",
     component: DetailArticleComponent,
     data: {
@@ -131,7 +148,7 @@ const routes: Routes = [
   },
   {
     path: "validation-achat",
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     component: ValidationAchatComponent,
     data: {
       breadcrumb: [
@@ -162,6 +179,31 @@ const routes: Routes = [
         },
         {
           label: 'Mon compte',
+          url: ''
+        }
+      ]
+    }
+  },
+  {
+    path: "paiement",
+    canActivate: [AuthGuardService],
+    component: PaiementComponent,
+    data: {
+      breadcrumb: [
+        {
+          label: 'Accueil',
+          url: 'home'
+        },
+        {
+          label: 'Mon panier',
+          url: 'panier'
+        },
+        {
+          label: 'Validation',
+          url: 'validation-achat'
+        },
+        {
+          label: 'Paiement',
           url: ''
         }
       ]

@@ -3,11 +3,11 @@
     <ng-template let-comic pTemplate="item">
         <div class="product-item">
             <div class="product-item-content">
-                <div class="blocPhoto" (click)= "onViewComic(comic.id)">
-                    <img class="photo" src="{{comic.photo}}">
-                </div>
-               
-                <div class="grid-container">
+                <div class="card" >
+                    <div class="blocPhoto" (click)= "onViewComic(comic.id)">
+                        <img class="photo" src="{{comic.photo}}">
+                    </div>
+                
                     <div class="div-titre" (click)= "onViewComic(comic.id)">
                         <h3>{{comic.titre}}</h3>
                     </div>
