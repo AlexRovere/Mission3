@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 0.3fr 0.07fr 0.45fr 0.3fr 0.07fr;
-    gap: 25px 0px;
+    gap: 5px 0px;
     grid-template-areas:
       "image"
       "infos"
@@ -19,6 +19,7 @@
   .image { 
       grid-area: image; 
       width: 100%;
+      display: flex;
     }
 
   img {
@@ -78,11 +79,22 @@
     font-size: 34px;
   }
 
-  @media screen and (min-width: 1280px) {
+  .textResume {
+    line-height: normal;
+    font-size: 0.8rem;
+  }
+
+  tbody {
+    font-size: 0.8rem;
+  }
+ 
+
+
+  @media screen and (min-width: 768px) {
   .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 450px 50px 300px 300px;
+    grid-template-rows: 250px 40px 250px 150px;
     gap: 0px 25px;
     grid-template-areas:
       "image infos"
@@ -103,15 +115,15 @@
    align-self: center;
  }
 
- .infos {
-  align-self: center;
+ .infos p {
+   margin-bottom: 0;
  }
 
- .resume {
-   align-self: center;
- }
 
- .titreprix {
+
+
+ 
+ /* .titreprix {
    font-size: 45px;
    
  }
@@ -121,6 +133,6 @@
    font-size: 25px;
    font-weight: bold;
 
- }
+ } */
     
   }
