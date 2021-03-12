@@ -1,4 +1,4 @@
-<div class="grid-container" *ngIf="comic != null">
+<div class="grid-container" *ngIf="comic != null"> <!-- le ngIf permet d'activer l'affichage dès qu'il a l'info de la requête -->
     <div class="image">
         <img src="{{ comic.photo }}" />
     </div>
@@ -63,7 +63,7 @@
         <p class="note d-flex justify-content-center" *ngIf="comic.avis === 1">★</p>
     </div>
 </div>
-<div *ngIf="comic != null">
+<div *ngIf="comic != null"> <!-- le ngIf permet d'activer l'affichage dès qu'il a l'info de la requête -->
     <app-carousel-card [config]="{ theme: 'univers', valeur: comic.univers  }"></app-carousel-card>
 </div>   
 

@@ -32,6 +32,7 @@ export class FacturationComponent implements OnInit {
 
   db = firebase.firestore();
 
+  //permet d'afficher les infos d'un user connecte
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
     this.db.collection("Users").where("email", "==", this.authService.user)
       .get()
@@ -50,7 +51,7 @@ export class FacturationComponent implements OnInit {
     this.initForm();
   }
 
-
+//méthode de vérification des pattern lors de la saisie
   initForm() {
     this.updateFormFactu = this.formBuilder.group({
       nom: ['', [Validators.pattern(/[a-zA-Z]/)]],
@@ -64,12 +65,16 @@ export class FacturationComponent implements OnInit {
       cryptogramme: ['', [Validators.pattern(/[0-9]/)]]
     });
   }
+
   civiliteMr(){
     this.infoFacturationUser.civilite = "mr";
   }
+
   civiliteMme(){
     this.infoFacturationUser.civilite = "mme";
   }
+
+//modifier les informations du user dans firebase après saisie
   updateUser() {
 
     let nom = this.updateFormFactu.get('nom')?.value;

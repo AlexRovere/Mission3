@@ -27,11 +27,13 @@ p!: number;
 
    }
 
+  //  A l'initialisation on recupère les informations theme et valeur de la route pour l'affichage filtré de la liste. 
+  //  Si pas d'info, la liste complète est affichée
   ngOnInit(): void {  
     this.route.paramMap.subscribe(params => {
       const _theme = params.get('theme');
       let _valeur: string | boolean | null = params.get('valeur');
-      if(params.get('valueType') === 'boolean'){
+      if(params.get('valueType') === 'boolean'){  //si ValueType = boolean, alors la valeur de 'valeur' qui est recuperé en string est passé en boolean
         if(_valeur === "true"){
           _valeur = true;
         }else{
@@ -48,8 +50,8 @@ p!: number;
     this.p = 1;
 
   }
-
-  updateFilter(theme: string, value: string | boolean){
+//affichage de la liste filter grâce à la méthode getFilercomics dans comicService
+  updateFilter(theme: string, value: string | boolean){ 
     this.filter.theme = theme;
     this.filter.valeur = value;
     this.comicsService.getFilterComics(this.filter).then(
@@ -59,6 +61,7 @@ p!: number;
     )
   }
 
+//méthode permettant d'afficher sur l'image des infos du comic au passage de la souris - écran ordinateur
   showDescription(i:number){
     const md = window.matchMedia("(min-width: 1280px)")
     if(md.matches){
@@ -68,6 +71,8 @@ p!: number;
       return
     }
   }
+
+//méthode permettant d'enlever de l'image les infos du comic lorsque la souris n'est plus sur le comic - ecran d'ordinateur
   hideDescription(i:number){
     const md = window.matchMedia("(min-width: 1280px)")
     if(md.matches){
@@ -78,6 +83,7 @@ p!: number;
     }
   }
   
+//méthode de tri sur le tableau filtré. Les infos de tri sont récupéré du component tri
   onOrderChanged(orderInfo: IComicsRequestOrder){
     switch (orderInfo.colName) {
       case 'titre' : 
@@ -120,6 +126,7 @@ p!: number;
       }        
     }       
   
+//méthode pour les boutons filtres, l'adresse url sera modifié suivant les infos.
   onFilterChanged(filterInfo: IcomicsFilterOrder){
     const themeCol = filterInfo.theme;
     const value = filterInfo.valeur;
@@ -131,10 +138,12 @@ p!: number;
       })
   }
 
+//méthode pour envoyer l'id à détail-article via la route
   onViewComic(id: string) {
     this.router.navigate(['/liste', 'view', id]);
   }
 
+// methode permettant d'affiche le modal et d'activer le methode addCart au clique du bouton
   enableModal(object: IComics) {
     this.modalService.comic = object ;
     this.modalService.showModal();
@@ -142,11 +151,14 @@ p!: number;
     this.addToCart(object);    
   }
 
+// methode permetant d'envoyer les informations du comic au panier
   addToCart(comic: IComics){
     this.panierService.addItemsToCart(comic)
   }
- pagination(){
-   this.p = 1;
+
+//méthode permettant la pagination
+  pagination(){
+    this.p = 1;
  }
 
 }

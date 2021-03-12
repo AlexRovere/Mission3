@@ -7,7 +7,7 @@ import { IcomicsFilterOrder } from 'src/app/services/comics.service';
   styleUrls: ['./filtre.component.css']
 })
 export class FiltreComponent {
-
+// recuperation des informations du click qui seront envoyé au parent 'liste-article'
   @Output()
   public onChange: EventEmitter<IcomicsFilterOrder> = new EventEmitter<IcomicsFilterOrder>();
   
