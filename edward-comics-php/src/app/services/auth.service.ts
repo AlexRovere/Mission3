@@ -1,6 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import firebase from 'firebase';
 import { Subject } from 'rxjs';
+import { IUser } from 'src/models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,26 +13,28 @@ export class AuthService {
   public user!: any;
   userSubject = new Subject<any>();
 
-  constructor() { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   emitUser(){
     this.userSubject.next(this.user);
   }
 
-  createNewUser(email: string, password: string) {
-    return new Promise(
-      (resolve, reject) => {
-        firebase.auth().createUserWithEmailAndPassword(email, password).then(
-          () => {
-            resolve(true);
-          },
-          (error) => {
-            reject(error);
-          }
-        );
+  createNewUser(user: IUser){
+    let userData = JSON.stringify(user);
+    this.http.post('https://edward-comics.000webhostapp.com/inscription.php', userData).subscribe(
+    (response) => { 
+      console.log(response);
+      if(response){
+        this.router.navigate(['/auth/signin']);
+      }else{
+        alert('Error !');
       }
-    );
+    },
+    (error) => console.log(error)
+  )
+    
   }
+  
   signInUser(email: string, password: string) {
     return new Promise(
       (resolve, reject) => {

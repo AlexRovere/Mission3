@@ -19,3 +19,30 @@ export interface IAppInfoFacturationUser {
   cryptogramme: number,
   civilite: string
 }
+export interface IUser {
+  nom: string,
+  prenom: string,
+  email: string,
+  telephone: string,
+  password: string,
+  passwordConfirm: string,
+  adresse: string,
+  codePostal: number,
+  ville: string,
+}
+
+export interface IUserFactu {
+  nom: string,
+  prenom: string,
+  email: string,
+  telephone: string,
+  password: string,
+  adresse: string,
+  codePostal: number,
+  ville: string,
+  cbProprietaitre: string,
+  cbNumero: string,
+  cbDate: Date,
+  cbCryptogramme: number,
+  civilite: string
+}
