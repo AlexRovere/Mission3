@@ -38,6 +38,7 @@ import { FacturationComponent } from './detail-compte/facturation/facturation.co
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 
@@ -83,7 +84,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BrowserAnimationsModule,
     NgbCarouselModule, 
     NgDynamicBreadcrumbModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    HttpClientModule
     ],
   providers: [
     ComicsService,
