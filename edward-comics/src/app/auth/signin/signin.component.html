@@ -15,7 +15,7 @@
                 <input type="password" id="password" class="form-control" formControlName="password">
             </div>
             <div class="d-flex justify-content-end">
-                <button class="btn btn-primary mt-2" type="submit" [disabled]="signinForm.invalid">Connexion ></button>
+                <button class="btn btn-primary mt-2" type="submit" [disabled]="signinForm.invalid">Connexion ></button> <!--bouton desactivé tant que le regex des infos n'est pas bon-->
             </div>
         </form>
         <p class="text-danger">{{ errorMessage }}</p>
@@ -27,7 +27,7 @@
             <p>Inscrivez-vous !</p>
         </div>
         <div class="d-flex justify-content-center">
-            <a class="btn btn-primary mt-5 compte d-flex align-items-center justify-content-center" routerLink="/auth/signup">Crée un compte</a>
+            <a class="btn btn-primary mt-5 compte d-flex align-items-center justify-content-center" routerLink="/auth/signup">Créer un compte</a>
         </div>
     </div>
 </div>

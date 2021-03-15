@@ -21,6 +21,7 @@ export class SignupComponent implements OnInit {
     this.initForm();
   }
 
+  //méthode de vérification des pattern lors de la saisie
   initForm() {
     this.signupForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -34,6 +35,7 @@ export class SignupComponent implements OnInit {
     });
   }
 
+//recupération des infos saisie pour créer un nouveau client
   onSubmit() {
     const email = this.signupForm.get('email')?.value;
     const password = this.signupForm.get('password')?.value;
@@ -43,7 +45,6 @@ export class SignupComponent implements OnInit {
     const adresse = this.signupForm.get('adresse')?.value;
     const codePostal = this.signupForm.get('codePostal')?.value;
     const ville = this.signupForm.get('ville')?.value;
-
 
     this.authService.createNewUser(email, password).then(
       () => {
@@ -55,6 +56,8 @@ export class SignupComponent implements OnInit {
       }
     );
   }
+
+  //création de l'objet infoUser
   infoUser(email: string, nom: string, prenom: string, telephone: number, adresse: string, codePostal: number, ville: string){
     let user = {
       email: email,

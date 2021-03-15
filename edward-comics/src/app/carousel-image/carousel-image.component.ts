@@ -14,16 +14,17 @@ export enum State {
   styleUrls: ['./carousel-image.component.css']
 })
 export class CarouselImageComponent implements OnInit {
-
+//caroussel permettant d'afficher des comics filtrés suivant l'information envoyé par le parent
   comics!: Array<IComics>;
   State = State;
 
   statut!: State;
 
-  @Input() config!: IcomicsFilterOrder
+  @Input() config!: IcomicsFilterOrder //infos venant du parent
 
   constructor(private comicsService: ComicsService, private router: Router) { }
 
+// à l'initialisation la fonction filtre de comicservice est utilisé avec les infos du parent
   ngOnInit(): void {
     this.comicsService.getFilterComics(this.config)
       .then((newComics: Array<IComics>) => {
@@ -33,12 +34,13 @@ export class CarouselImageComponent implements OnInit {
   }
   firstItemIdx = 0;
 
-
+//positionnement des comics à gauche
   shiftLeft() {
     this.firstItemIdx = (this.firstItemIdx - 1) % this.comics.length;
     return this.statut = State.left;
   }
 
+//positionnement des comics à droite
   shiftRight() {
     this.firstItemIdx = (this.firstItemIdx + 1) % this.comics.length;
     return this.statut = State.right;
@@ -74,6 +76,8 @@ export class CarouselImageComponent implements OnInit {
 
     return itemClasses.join(' ');
   }
+
+  //méthode pour envoyer l'id à détail-article via la route
   onViewComic(id: string) {
     this.router.navigate(['/liste', 'view', id]);
   }

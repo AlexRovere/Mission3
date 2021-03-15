@@ -18,6 +18,8 @@ export class DetailArticleComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private comicsService: ComicsService, private modalService : ModalService, private panierService: PanierService) { }
 
   ngOnInit(): void {
+    // recupération de l'ID grâce à l'adresse URL fais à l'initialisation du component. 
+    // L'ID sera transmis à singleComic
     this.route.paramMap.subscribe(params => {
       const _id = params.get('id');
       if(_id){
@@ -25,7 +27,7 @@ export class DetailArticleComponent implements OnInit {
       }
     });    
 }
-
+  // méthode permettant d'affiche le comic correspondant à l'Id en appelant une méthode du service comic
   singleComic(id: string) {
     this.comicsService.getSingleComic(id).then(
       (comic: IComics) => {
@@ -35,7 +37,7 @@ export class DetailArticleComponent implements OnInit {
   }
 
   
-
+// methode permettant d'affiche le modal et d'activer le methode addCart au clique du bouton
   enableModal(object: IComics) {
     this.modalService.comic = object ;
     this.modalService.showModal();
@@ -43,6 +45,7 @@ export class DetailArticleComponent implements OnInit {
     this.addToCart(object); 
   }
 
+// methode permetant d'envoyer les informations du comic au panier
   addToCart(comic: IComics){
     this.panierService.addItemsToCart(comic)
   }
