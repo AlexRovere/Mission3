@@ -22,18 +22,19 @@ export class DetailArticleComponent implements OnInit {
     // L'ID sera transmis à singleComic
     this.route.paramMap.subscribe(params => {
       const _id = params.get('id');
-      if(_id){
-        this.singleComic(_id);
+      const idN = parseInt(_id as string, 10);
+      if(idN){
+        this.singleComic(idN);
       }
     });    
 }
   // méthode permettant d'affiche le comic correspondant à l'Id en appelant une méthode du service comic
-  singleComic(id: string) {
-    this.comicsService.getSingleComic(id).then(
-      (comic: IComics) => {
-        this.comic = comic;
-      }
-    )
+  singleComic(id: number) {
+    this.comicsService.getSingleComic(id).subscribe((book: IComics) => {
+      this.comic = book;
+      console.log(this.comic);
+    });
+      
   }
 
   
@@ -48,6 +49,7 @@ export class DetailArticleComponent implements OnInit {
 // methode permetant d'envoyer les informations du comic au panier
   addToCart(comic: IComics){
     this.panierService.addItemsToCart(comic)
+   
   }
 }
 
