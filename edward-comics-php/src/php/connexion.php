@@ -2,6 +2,7 @@
 
 require 'connect.php';
 
+
 function regex_data($param)
 {
     $param = trim($param);
@@ -24,13 +25,11 @@ if (isset($postdata) && !empty($postdata)) {
 if ($resultat) {
     $passwordCorrect = password_verify($password, $resultat['mdp']);
     if ($passwordCorrect) {
-        session_start();
-        $_SESSION['id'] = $resultat['id'];
-        $_SESSION['authGuard'] = true;
         
-        echo json_encode(
-            true
-        );
+        echo json_encode([
+            'success' => true,
+            'id' => $resultat['id']
+        ]);
        
     } else { //MOT DE PASSE INCORECCT
         echo json_encode([
