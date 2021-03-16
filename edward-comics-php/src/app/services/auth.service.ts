@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import firebase from 'firebase';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { IUser } from 'src/models/user.model';
 
 @Injectable({
@@ -12,8 +11,10 @@ export class AuthService {
 
   public user!: any;
   userSubject = new Subject<any>();
+  sessionValue: any = null;
 
   constructor(private http: HttpClient, private router: Router) { }
+
 
   emitUser() {
     this.userSubject.next(this.user);
@@ -37,9 +38,8 @@ export class AuthService {
     let userData = JSON.stringify(object);
     this.http.post('https://edward-comics.000webhostapp.com/connexion.php', userData).subscribe(
       (response : any) => {
-        if (response) {
-          this.user = response['id'];
-          this.emitUser();
+        if (response['success']) {
+          this.sessionValue = sessionStorage.setItem('id', response['id']);
           this.router.navigate(['/detail-compte']);
         } else {
           alert('Error !');
@@ -48,9 +48,7 @@ export class AuthService {
       (error) => console.log(error)
     )
   }
-  
   signOutUser() {
-    firebase.auth().signOut();
   }
 
 
