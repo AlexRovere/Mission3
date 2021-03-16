@@ -73,5 +73,8 @@ export class ComicsService {
     return this.httpClient.get<IComics[]>(`${this.PHP_API_SERVER}/filtre.php/?theme=${themeCol}&valeur=${value}`);   
   }
 
+  getSearchComics(searchText: string): Observable<IComics[]> {
+    return this.httpClient.get<IComics[]>(`${this.PHP_API_SERVER}/search.php/?searchText=${searchText}`);
+  }
 }
 

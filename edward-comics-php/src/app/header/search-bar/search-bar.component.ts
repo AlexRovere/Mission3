@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ComicsService } from 'src/app/services/comics.service';
 import { IComics } from 'src/models/comic.model';
-import firebase from 'firebase';
 import { Subscription } from 'rxjs';
 
 
@@ -17,30 +16,32 @@ export class SearchBarComponent implements OnInit {
   comics: IComics[] = [];
   icomicsSubscription!: Subscription;
   searchForm!: FormGroup;
-  db = firebase.firestore();
+
   
 
   constructor(private formBuilder: FormBuilder, private comicsService: ComicsService, private router: Router) { }
 
   ngOnInit() {
-  //   // this.initForm();
+     this.initForm();
   //   // this.icomicsSubscription = this.comicsService.comicsSubject.subscribe(
   //   //   (comics: IComics[]) => {
   //   //     this.comics = comics;
   //   //   }
   //   // );
   //   // this.comicsService.emitComics();
-  // }
+ }
 
-  // initForm() {
-  //   this.searchForm = this.formBuilder.group({
-  //     searchText: ''
-  //   });
-  // }
+  initForm() {
+    this.searchForm = this.formBuilder.group({
+    searchText: ''
+   });
+ }
 
-  // onSubmitForm() {
-  //   var comicsRef = this.db.collection("Comics");
-  //   const searchValue = this.searchForm.value.searchText;
+  onSubmitForm() {
+    const searchValue = this.searchForm.value.searchText;
+    this.comicsService.getSearchComics(searchValue).subscribe((book: IComics[]) => {
+      this.router.navigate(['/liste', { searchText: searchValue}]);
+      this.comics = book;})
   //   comicsRef.where("titre", '==', searchValue)
   //     .get()
   //     .then((querySnapshot) => {
@@ -57,7 +58,6 @@ export class SearchBarComponent implements OnInit {
   //     })
     
   //   console.log(searchValue);
-  
     } 
 }
  
