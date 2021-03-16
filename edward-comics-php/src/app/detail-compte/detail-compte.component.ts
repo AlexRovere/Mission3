@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -15,15 +16,7 @@ export class DetailCompteComponent implements OnInit {
   updateForm!: FormGroup;
   errorMessage!: String;
 
-  infoUser: IAppInfoUser = {
-    adresse: "",
-    codePostal: 0,
-    email: "",
-    nom: "",
-    prenom: "",
-    telephone: 0,
-    ville: ""
-  }
+  infoUser: any = [];
 
   id!: string;
 
@@ -31,7 +24,7 @@ export class DetailCompteComponent implements OnInit {
   db = firebase.firestore();
   auth = firebase.auth();
 
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
+  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private http : HttpClient) {
     this.db.collection("Users").where("email", "==", this.authService.user)
       .get()
       .then((querySnapshot) => {
@@ -49,7 +42,30 @@ export class DetailCompteComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.getUserInfo(this.authService.user);
     this.initForm();
+  }
+
+
+
+  getUserInfo(id: number) {
+    let user = JSON.stringify(id);
+    this.http.post('https://edward-comics.000webhostapp.com/info_user.php', user).subscribe(
+      (response) => {
+        if (response) {
+          ////////////////////////////////////////////////
+          this.http.get('https://edward-comics.000webhostapp.com/info_user.php').subscribe((data) => {
+          this.infoUser.push(data);
+        },
+          (error) => console.error(error));
+           }
+          ///////////////////////////////////////////////
+         else {
+          alert('Error !');
+        }
+      },
+      (error) => console.log(error)
+    );
   }
 
 

@@ -15,39 +15,40 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  emitUser(){
+  emitUser() {
     this.userSubject.next(this.user);
   }
 
-  createNewUser(user: IUser){
+  createNewUser(user: IUser) {
     let userData = JSON.stringify(user);
     this.http.post('https://edward-comics.000webhostapp.com/inscription.php', userData).subscribe(
-    (response) => { 
-      console.log(response);
-      if(response){
-        this.router.navigate(['/auth/signin']);
-      }else{
-        alert('Error !');
-      }
-    },
-    (error) => console.log(error)
-  ) 
+      (response) => {
+        if (response) {
+          this.router.navigate(['/auth/signin']);
+        } else {
+          alert('Error !');
+        }
+      },
+      (error) => console.log(error)
+    );
+  }
+
+  signInUser(object: object) {
+    let userData = JSON.stringify(object);
+    this.http.post('https://edward-comics.000webhostapp.com/connexion.php', userData).subscribe(
+      (response : any) => {
+        if (response) {
+          this.user = response['id'];
+          this.emitUser();
+          this.router.navigate(['/detail-compte']);
+        } else {
+          alert('Error !');
+        }
+      },
+      (error) => console.log(error)
+    )
   }
   
-  signInUser(object : object) {
-    let userData = JSON.stringify(object);
-    this.http.post('https://edward-comics.000webhostapp.com/inscription.php', userData).subscribe(
-    (response) => { 
-      console.log(response);
-      if(response){
-        this.router.navigate(['/detail-compte']);
-      }else{
-        alert('Error !');
-      }
-    },
-    (error) => console.log(error)
-  ) 
-
   signOutUser() {
     firebase.auth().signOut();
   }

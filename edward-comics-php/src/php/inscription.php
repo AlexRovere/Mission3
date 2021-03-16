@@ -48,7 +48,7 @@ if (isset($postdata) && !empty($postdata)) {
                                 if ($passwordlength <= 1500) {
                                     if ($password === $passwordconfirm) {
                                         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-                                        $req = $bdd->prepare("INSERT INTO users(`nom`, `prenom`, `email`, `telephone`, `password`, `adresse`, `code_postal`, `ville`) VALUES (:nom, :prenom, :email, :telephone, :mdp, :adresse, :code_postal, :ville)");
+                                        $req = $bdd->prepare("INSERT INTO users(`nom`, `prenom`, `email`, `telephone`, `mdp`, `adresse`, `code_postal`, `ville`) VALUES (:nom, :prenom, :email, :telephone, :mdp, :adresse, :code_postal, :ville)");
                                         $req->bindParam(':nom', $nom);
                                         $req->bindParam(':prenom', $prenom);
                                         $req->bindParam(':telephone', $telephone);

@@ -12,47 +12,50 @@ function regex_data($param)
 
 $postdata = file_get_contents('php://input');
 if (isset($postdata) && !empty($postdata)) {
-    $email = regex_data($postdata['email']);
-    $password = regex_data($postdata['password']);
+    $data = json_decode($postdata, true);
+    $email = regex_data($data['email']);
+    $password = regex_data($data['password']);
 
-    $req = $bdd->prepare("SELECT * INTO users WHERE email = :email");
-    $req->bindParam(':email', $email);
-    $resultat = $req->execute();
-
-}
-
-    if ($resultat) {
-        $passwordCorrect = password_verify($password, $resultat['password']);
-            if($passwordCorrect) {
-                echo json_encode([
-                    "success" => true
-                ]);
-                session_start();
-                $_SESSION['nom'] = $resultat['nom'];
-                $_SESSION['prenom'] = $resultat['prenom'];
-                $_SESSION['telephone'] = $resultat['telephone'];
-                $_SESSION['email'] = $resultat['email'];
-                $_SESSION['adresse'] = $resultat['adresse'];
-                $_SESSION['codePostal'] = $resultat['code_postal'];
-                $_SESSION['ville'] = $resultat['ville'];
-            }
-            else { //MOT DE PASSE INCORECCT
-                echo json_encode([
-                    "success" => false,
-                    "errors" => ["
-                    Mauvais identifiant ou mot de passe !" 
-                    ]
-                ]);
-            }
-        }    
-    else { //IDENTIFIANT INCORRECT
+    $req = $bdd->prepare("SELECT * FROM users WHERE email = :email");
+    $req->execute(array(
+        'email' => $email));
+    $resultat = $req->fetch();    
+    
+if ($resultat) {
+    $passwordCorrect = password_verify($password, $resultat['mdp']);
+    if ($passwordCorrect) {
+        session_start();
+        $_SESSION['id'] = $resultat['id'];
+        $_SESSION['authGuard'] = true;
+        
+        echo json_encode(
+            true
+        );
+       
+    } else { //MOT DE PASSE INCORECCT
         echo json_encode([
             "success" => false,
-            "errors" => ["
-                    Mauvais identifiant ou mot de passe !"
-                    ]
-                ]);
-        }
-    
-       
-?>
+            "errors" => [
+                "Mauvais mot de passe !",
+                $resultat['mdp'],
+                $password
+            ]
+        ]);
+    }
+} else { //IDENTIFIANT INCORRECT
+    echo json_encode([
+        "success" => false,
+        "errors" => [
+            "
+                    Mauvais identifiant !"
+        ]
+    ]);
+}
+} else {
+    echo json_encode([
+        "success" => false,
+        "errors" => [
+            "Problème de connexion à la bdd"
+        ]
+    ]);
+}
