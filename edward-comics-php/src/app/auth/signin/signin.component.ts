@@ -31,15 +31,7 @@ export class SigninComponent implements OnInit {
   onSubmit(){
     const email = this.signinForm.get('email')?.value;
     const password = this.signinForm.get('password')?.value;
-
-    this.authService.signInUser(email, password).then(
-      () => {
-        this.router.navigate(['/detail-compte']);
-      },
-      (error) => {
-        console.log('Erreur : ' + error);
-      }
-    );
-  }
-
+    let loginInfo = {email : email, password : password}
+    this.authService.signInUser(loginInfo);
+}
 }

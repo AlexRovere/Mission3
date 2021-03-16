@@ -1,13 +1,6 @@
 <?php
 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-
-try {
-    $bdd = new PDO('mysql:host=localhost;dbname=id16357062_edward_comics;', 'id16357062_sarox', 'Azertyuiop-123456789');
-} catch (Exception $e) {
-    die('Erreur : ' . $e->getMessage());
-}
+require 'connect.php';
 
 function regex_data($param)
 {
@@ -55,7 +48,7 @@ if (isset($postdata) && !empty($postdata)) {
                                 if ($passwordlength <= 1500) {
                                     if ($password === $passwordconfirm) {
                                         $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-                                        $req = $bdd->prepare("INSERT INTO users(`nom`, `prenom`, `email`, `telephone`, `password`, `adresse`, `code_postal`, `ville`) VALUES (:nom, :prenom, :email, :telephone, :mdp, :adresse, :code_postal, :ville)");
+                                        $req = $bdd->prepare("INSERT INTO users(`nom`, `prenom`, `email`, `telephone`, `mdp`, `adresse`, `code_postal`, `ville`) VALUES (:nom, :prenom, :email, :telephone, :mdp, :adresse, :code_postal, :ville)");
                                         $req->bindParam(':nom', $nom);
                                         $req->bindParam(':prenom', $prenom);
                                         $req->bindParam(':telephone', $telephone);

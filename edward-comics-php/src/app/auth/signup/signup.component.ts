@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import firebase from 'firebase';
 import { AuthService } from 'src/app/services/auth.service';
 import { IUser } from 'src/models/user.model';
 
@@ -60,6 +59,8 @@ export class SignupComponent implements OnInit {
       codePostal: codePostal,
       ville: ville
     }
+    this.authService.createNewUser(user);
+  }
 
     // let formData: any = new FormData();
     // formData.append("nom", this.signupForm.get('nom')?.value);
@@ -70,37 +71,4 @@ export class SignupComponent implements OnInit {
     // formData.append("adresse", this.signupForm.get('adresse')?.value);
     // formData.append("code_postal", this.signupForm.get('codePostal')?.value);
     // formData.append("ville", this.signupForm.get('ville')?.value);
-
-    this.authService.createNewUser(user);
-
-    // this.authService.createNewUser(email, password).then(
-    //   () => {
-    //     this.infoUser(email, nom, prenom, telephone, adresse, codePostal, ville);
-    //     this.router.navigate(['/home']);
-    //   },
-    //   (error) => {
-    //     this.errorMessage = error;
-    //   }
-    // );
-  }
-
-  //création de l'objet infoUser
-  // infoUser(email: string, nom: string, prenom: string, telephone: string, adresse: string, codePostal: number, ville: string, password: string){
-
-  //   console.log(user);
-  //   let db = firebase.firestore();
-  //   let usersRef = db.collection('Users').doc();
-
-  //   usersRef.set({
-  //     email: user.email,
-  //     nom: user.nom,
-  //     prenom: user.prenom,
-  //     telephone: user.telephone,
-  //     adresse: user.adresse,
-  //     codePostal: user.codePostal,
-  //     ville: user.ville
-  //   },
-  //   { merge: true });
-
-  // }
 }
