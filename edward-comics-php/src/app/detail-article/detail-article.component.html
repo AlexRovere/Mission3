@@ -2,15 +2,6 @@
     <div class="image">
         <img src="{{ comic.photo }}" />
     </div>
-    <div class="avis">
-        <h4>Avis</h4>
-        <p class="note d-flex justify-content-center" *ngIf="comic.avis === 5">★★★★★</p>
-        <p class="note d-flex justify-content-center" *ngIf="comic.avis === 4">★★★★</p>
-        <p class="note d-flex justify-content-center" *ngIf="comic.avis === 3">★★★</p>
-        <p class="note d-flex justify-content-center" *ngIf="comic.avis === 2">★★</p>
-        <p class="note d-flex justify-content-center" *ngIf="comic.avis === 1">★</p>
-    </div>
-
     <div class="infos">
         <p class="titreprix"> {{ comic.titre }}</p>
         <p>Par {{ comic.scenariste }} / {{ comic.dessinateur }}</p>
@@ -21,7 +12,7 @@
         <p class="titreprix mt-1"> {{ comic.prix }} €TTC</p>
     </div>
     <div class="bouton">
-        <button class="btn btn-primary tailleBtn" (click)="enableModal(comic)">Ajouter au panier</button>
+        <button class="btn btn-primary tailleBtn" (click)="enableModal(comic)" >Ajouter au panier</button>
     </div>
     <div class="resume">
         <h4>Résumé</h4>
@@ -56,14 +47,14 @@
     </div>
     <div class="avis">
         <h4>Avis</h4>
-        <p class="note d-flex justify-content-center" *ngIf="comic.avis === 5">★★★★★</p>
-        <p class="note d-flex justify-content-center" *ngIf="comic.avis === 4">★★★★</p>
-        <p class="note d-flex justify-content-center" *ngIf="comic.avis === 3">★★★</p>
-        <p class="note d-flex justify-content-center" *ngIf="comic.avis === 2">★★</p>
-        <p class="note d-flex justify-content-center" *ngIf="comic.avis === 1">★</p>
+        <p class="note d-flex justify-content-center" *ngIf="comic.avis == 5">★★★★★</p>
+        <p class="note d-flex justify-content-center" *ngIf="comic.avis == 4">★★★★</p>
+        <p class="note d-flex justify-content-center" *ngIf="comic.avis == 3">★★★</p>
+        <p class="note d-flex justify-content-center" *ngIf="comic.avis == 2">★★</p>
+        <p class="note d-flex justify-content-center" *ngIf="comic.avis == 1">★</p>
     </div>
 </div>
-<div *ngIf="comic != null"> <!-- le ngIf permet d'activer l'affichage dès qu'il a l'info de la requête -->
+ <div *ngIf="comic != null"> <!--  le ngIf permet d'activer l'affichage dès qu'il a l'info de la requête  -->
     <app-carousel-card [config]="{ theme: 'univers', valeur: comic.univers  }"></app-carousel-card>
-</div>   
+</div> 
 

@@ -34,9 +34,8 @@ export class CarouselCardComponent implements OnInit {
 // à l'initialisation la fonction filtre de comicservice est utilisé avec les infos du parent
   ngOnInit(): void {
     this.comicsService.getFilterComics(this.config)
-    .then((newComics: Array<IComics>) => {
-      this.comics = newComics;
-    })
+    .subscribe((book: IComics[]) => {
+      this.comics = book;})
   }
 
   // methode permettant d'affiche le modal et d'activer le methode addCart au clique du bouton
@@ -53,7 +52,7 @@ export class CarouselCardComponent implements OnInit {
   }
 
   //méthode pour envoyer l'id à détail-article via la route
-  onViewComic(id: string) {
+  onViewComic(id: number) {
     this.router.navigate(['/liste', 'view', id]);
   }
 

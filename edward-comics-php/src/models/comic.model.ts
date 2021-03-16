@@ -1,5 +1,5 @@
 export interface IComics {
-    id: string,
+    id: number,
     avis: number,
     categorie: string,
     date: string,

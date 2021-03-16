@@ -18,12 +18,15 @@ export class ModalService {
   }
 
   showModal() {
+
    return this.active = true
+
   }     
   
   emitComic() {
     this.comicSubject.next(this.comic);
     this.activeSubject.next(this.active);
+    console.log(this.active);
   }
 
 

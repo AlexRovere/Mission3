@@ -30,17 +30,17 @@ export class MenuComponent implements OnInit{
       {
          label:'Promo',
          icon:'pi pi-euro',
-         routerLink: ["liste", {theme:"promotion", valeur: true, valueType: "boolean" }]
+         routerLink: ["liste", {theme:"promotion", valeur: 1}]
       },
       {
         label:'Sélection du moment',
         icon:'pi pi-heart',
-        routerLink: ["liste", {theme:"selection", valeur: true, valueType: "boolean" }]
+        routerLink: ["liste", {theme:"selection", valeur: 1}]
       },
       {
       label:'Nouveautés',
       icon:'pi pi-bell',
-      routerLink: ["liste", {theme:"nouveaute", valeur: true, valueType: "boolean" }]
+      routerLink: ["liste", {theme:"nouveaute", valeur: 1}]
       },
 
       {

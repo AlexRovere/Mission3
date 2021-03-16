@@ -33,18 +33,11 @@ p!: number;
     this.route.paramMap.subscribe(params => {
       const _theme = params.get('theme');
       let _valeur: string | boolean | null = params.get('valeur');
-      if(params.get('valueType') === 'boolean'){  //si ValueType = boolean, alors la valeur de 'valeur' qui est recuperé en string est passé en boolean
-        if(_valeur === "true"){
-          _valeur = true;
-        }else{
-          _valeur = false;
-        }
-      }
       if(_theme != null && _valeur != null){
         this.updateFilter(_theme, _valeur);
       }else {
-        this.comicsService.getComics();
-        this.comics = this.comicsService.comics;
+        this.comicsService.getAllComics().subscribe((book: IComics[]) => {
+        this.comics = book;})
       }
     });
     this.p = 1;
@@ -54,11 +47,8 @@ p!: number;
   updateFilter(theme: string, value: string | boolean){ 
     this.filter.theme = theme;
     this.filter.valeur = value;
-    this.comicsService.getFilterComics(this.filter).then(
-      (newComics: Array<IComics>) => {
-        this.comics = newComics;
-      }
-    )
+    this.comicsService.getFilterComics(this.filter).subscribe((book: IComics[]) => {
+      this.comics = book;})
   }
 
 //méthode permettant d'afficher sur l'image des infos du comic au passage de la souris - écran ordinateur
@@ -131,15 +121,13 @@ p!: number;
     const themeCol = filterInfo.theme;
     const value = filterInfo.valeur;
     this.pagination();
-    this.comicsService.getFilterComics(filterInfo)
-      .then((newComics: Array<IComics>) => {
-        this.router.navigate(['/liste', { theme: themeCol, valeur: value }]);
-        this.comics = newComics;
-      })
+    this.comicsService.getFilterComics(this.filter).subscribe((book: IComics[]) => {
+      this.router.navigate(['/liste', { theme: themeCol, valeur: value }]);
+      this.comics = book;})
   }
 
 //méthode pour envoyer l'id à détail-article via la route
-  onViewComic(id: string) {
+  onViewComic(id: number) {
     this.router.navigate(['/liste', 'view', id]);
   }
 
