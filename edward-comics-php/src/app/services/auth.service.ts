@@ -31,26 +31,23 @@ export class AuthService {
       }
     },
     (error) => console.log(error)
-  )
-    
+  ) 
   }
   
-  signInUser(email: string, password: string) {
-    return new Promise(
-      (resolve, reject) => {
-        firebase.auth().signInWithEmailAndPassword(email, password).then(
-          (data) => {
-            this.user = data.user?.email;
-            this.emitUser();
-            resolve(true);
-          },
-          (error) => {
-            reject(error);
-          }
-        );
+  signInUser(object : object) {
+    let userData = JSON.stringify(object);
+    this.http.post('https://edward-comics.000webhostapp.com/inscription.php', userData).subscribe(
+    (response) => { 
+      console.log(response);
+      if(response){
+        this.router.navigate(['/detail-compte']);
+      }else{
+        alert('Error !');
       }
-    );
-  }
+    },
+    (error) => console.log(error)
+  ) 
+
   signOutUser() {
     firebase.auth().signOut();
   }
