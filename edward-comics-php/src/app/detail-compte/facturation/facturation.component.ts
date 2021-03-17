@@ -1,9 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import firebase from 'firebase';
-import { AuthService } from 'src/app/services/auth.service';
-import { IAppInfoFacturationUser } from 'src/models/user.model';
 
 @Component({
   selector: 'app-facturation',
@@ -14,55 +12,48 @@ export class FacturationComponent implements OnInit {
 
   updateFormFactu!: FormGroup;
   errorMessage!: String;
+  updateProfil: any = {};
 
-  infoFacturationUser: IAppInfoFacturationUser = {
-    nom: "",
-    prenom: "",
-    adresse: "",
-    codePostal: 0,
-    ville: "",
-    proprietaireCarte: "",
-    numeroCarte: 0,
-    dateCarte: "",
-    cryptogramme: 0,
-    civilite: "mr"
-  }
+  infoFacturationUser: any = []
 
-  id!: string;
-
-  db = firebase.firestore();
 
   //permet d'afficher les infos d'un user connecte
-  constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
-    // this.db.collection("Users").where("email", "==", this.authService.user)
-    //   .get()
-    //   .then((querySnapshot) => {
-    //     querySnapshot.forEach((doc) => {
-    //       this.infoFacturationUser = doc.data() as IAppInfoFacturationUser;
-    //       this.id = doc.id;
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error getting documents: ", error);
-    //   });
+  constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient) {
+    
    }
 
    ngOnInit(): void {
+    this.getUserInfo(sessionStorage.getItem('id'));
     this.initForm();
+  }
+
+  getUserInfo(id: any) {
+    let user = JSON.stringify(id);
+    this.http.post('http://test-mission3/info_user.php', user).subscribe(
+      (response: any) => {
+        if (response['success']) {
+          this.infoFacturationUser = response['user'];
+        }
+         else {
+          alert('Error !');
+        }
+      },
+      (error) => console.log(error)
+    );
   }
 
 //méthode de vérification des pattern lors de la saisie
   initForm() {
     this.updateFormFactu = this.formBuilder.group({
-      nom: ['', [Validators.pattern(/[a-zA-Z]/)]],
-      prenom: ['', [Validators.pattern(/[a-zA-Z]/)]],
-      adresse: ['', [Validators.pattern(/[0-9a-zA-Z]/)]],
-      codePostal: ['', [Validators.pattern(/[0-9]/)]],
-      ville: ['', [Validators.pattern(/[a-zA-Z]/)]],
-      proprietaire: ['', [Validators.pattern(/[a-zA-Z]/)]],
-      nbCarte: ['', [Validators.pattern(/[0-9]/)]],
-      expiration: ['', [Validators.pattern(/[0-9]/)]],
-      cryptogramme: ['', [Validators.pattern(/[0-9]/)]]
+      nom: ['', [Validators.pattern(/^[a-zA-Z ]+$/), Validators.maxLength(255)]],
+      prenom: ['', [Validators.pattern(/^[a-zA-Z ]+$/), Validators.maxLength(255)]],
+      adresse: ['', [Validators.pattern(/^[0-9a-zA-Z ]+$/), Validators.maxLength(255)]],
+      codePostal: ['', [Validators.pattern(/^[0-9]+$/), Validators.maxLength(5)]],
+      ville: ['', [Validators.pattern(/^[a-zA-Z ]+$/), Validators.maxLength(255)]],
+      proprietaire: ['', [Validators.pattern(/^[a-zA-Z ]+$/), Validators.maxLength(255)]],
+      nbCarte: ['', [Validators.pattern(/^[0-9]+$/), Validators.maxLength(16)]],
+      expiration: ['', [Validators.pattern(/(0[1-9]|1[012]).[0-9]{4}/), Validators.maxLength(10)]],
+      cryptogramme: ['', [Validators.pattern(/^[0-9]+$/), Validators.maxLength(3)]]
     });
   }
 
@@ -108,7 +99,7 @@ export class FacturationComponent implements OnInit {
     if(codePostal != ""){
       codePostal = this.updateFormFactu.get('codePostal')?.value;
     }else {
-      codePostal = this.infoFacturationUser.codePostal;
+      codePostal = this.infoFacturationUser.code_postal;
     }
     if(ville != ""){
       ville = this.updateFormFactu.get('ville')?.value;
@@ -118,46 +109,50 @@ export class FacturationComponent implements OnInit {
     if(proprietaireCarte != ""){
       proprietaireCarte = this.updateFormFactu.get('proprietaire')?.value;
     }else {
-      proprietaireCarte = this.infoFacturationUser.proprietaireCarte;
+      proprietaireCarte = this.infoFacturationUser.cb_proprietaire;
     }
     if(numeroCarte != ""){
       numeroCarte = this.updateFormFactu.get('nbCarte')?.value;
     }else {
-      numeroCarte = this.infoFacturationUser.numeroCarte;
+      numeroCarte = this.infoFacturationUser.cb_numero;
     }
     if(dateCarte != ""){
       dateCarte = this.updateFormFactu.get('expiration')?.value;
     }else {
-      dateCarte = this.infoFacturationUser.dateCarte;
+      dateCarte = this.infoFacturationUser.cb_date;
     }
     if(cryptogramme != ""){
       cryptogramme = this.updateFormFactu.get('cryptogramme')?.value;
     }else {
-      cryptogramme = this.infoFacturationUser.cryptogramme;
+      cryptogramme = this.infoFacturationUser.cb_cryptogramme;
     }
 
-    // this.db.collection("Users").doc(this.id).update({
-    //   nom: nom,
-    //   prenom: prenom,
-    //   adresse: adresse,
-    //   codePostal: codePostal,
-    //   ville: ville,
-    //   proprietaireCarte: proprietaireCarte,
-    //   numeroCarte: numeroCarte,
-    //   dateCarte: dateCarte,
-    //   cryptogramme: cryptogramme,
-    //   civilite: civilite
-    // }).then(
-    //   () => {
-    //     console.log('Modification réussie !');
-    //     alert('Modification réussie !');
-    //   }
-    // ).catch(
-    //   (error) => {
-    //     console.log("Il y à une erreur : " + error);
-    //     alert("Il y à une erreur : " + error);
-    //   }
-    // );
+    this.updateProfil = {
+      id: sessionStorage.getItem('id'),
+      nom: nom,
+      prenom: prenom,
+      adresse: adresse,
+      codePostal: codePostal,
+      ville: ville,
+      proprietaireCarte: proprietaireCarte,
+      numeroCarte: numeroCarte,
+      dateCarte: dateCarte,
+      cryptogramme: cryptogramme,
+      civilite: civilite
+    }
+    this.updateProfil = JSON.stringify(this.updateProfil);
+    this.http.post('http://test-mission3/update_facturation.php', this.updateProfil).subscribe(
+      (response: any) => {
+        if (response['success']) {
+          alert('Votre profil de facturation a bien été mis à jour')
+        }
+         else {
+          alert('Error !');
+        }
+      },
+      (error) => console.log(error)
+    );
+    
   }
 
 
