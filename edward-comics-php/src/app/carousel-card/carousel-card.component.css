@@ -24,6 +24,7 @@ h1{
 .logo {
     height: 30px;
     width: 30px;
+    cursor: url('/assets/cursor.cur'), pointer;
 }
 
 .photo {
@@ -62,6 +63,7 @@ h4 {
     padding-left: 5px;
     padding-right: 5px;
     font-size: x-small;
+    cursor: url('/assets/cursor.cur'), pointer;
 }
 .indisponible {
     color: white;
@@ -70,6 +72,7 @@ h4 {
     padding-left: 5px;
     padding-right: 5px;
     font-size: x-small;
+    cursor: url('/assets/cursor.cur'), pointer;
 }
 .precommande {
     color: white;
@@ -78,6 +81,7 @@ h4 {
     padding-left: 5px;
     padding-right: 5px;
     font-size: x-small;
+    cursor: url('/assets/cursor.cur'), pointer;
 }
 .prix {
     color: #BE2537;
@@ -86,19 +90,19 @@ h4 {
 }
 
 .div-titre {
-    cursor: pointer;
+    cursor: url('/assets/cursor.cur'), pointer;
 }
 
 .blocPhoto {
-    cursor: pointer;
+    cursor: url('/assets/cursor.cur'), pointer;
 }
 
 .div-prix {
-    cursor: pointer;
+    cursor: url('/assets/cursor.cur'), pointer;
 }
 
 .div-panier {
-    cursor: pointer;
+    cursor: url('/assets/cursor.cur'), pointer;
 }
 
 

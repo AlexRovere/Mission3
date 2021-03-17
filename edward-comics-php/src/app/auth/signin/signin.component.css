@@ -12,6 +12,7 @@
 .rouge{
     color: #BE2537;
 }
+
 @media only screen and (min-device-width : 768px) { /* tablette */
     .formulaire{
         margin-left: 30%;

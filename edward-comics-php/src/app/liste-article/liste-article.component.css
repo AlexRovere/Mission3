@@ -4,6 +4,7 @@
   }
   .my-pagination /deep/ .ngx-pagination a {
     text-decoration: none;
+    cursor: url('/assets/cursor.cur'), pointer !important;
   }
 .menu {
     display: flex;
@@ -13,7 +14,6 @@
     margin-bottom: 5vh;
 
 }
-
 @keyframes SlideIn {
     from {
         transform: translateX(-100%);
@@ -91,7 +91,7 @@
 }
 
 .click{
-    cursor: pointer;
+    cursor: url('/assets/cursor.cur'), pointer;
 }
 @media only screen and (min-width : 768px) {
     .card{
