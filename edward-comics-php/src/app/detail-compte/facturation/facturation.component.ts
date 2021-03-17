@@ -34,17 +34,17 @@ export class FacturationComponent implements OnInit {
 
   //permet d'afficher les infos d'un user connecte
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
-    this.db.collection("Users").where("email", "==", this.authService.user)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          this.infoFacturationUser = doc.data() as IAppInfoFacturationUser;
-          this.id = doc.id;
-        });
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
+    // this.db.collection("Users").where("email", "==", this.authService.user)
+    //   .get()
+    //   .then((querySnapshot) => {
+    //     querySnapshot.forEach((doc) => {
+    //       this.infoFacturationUser = doc.data() as IAppInfoFacturationUser;
+    //       this.id = doc.id;
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error getting documents: ", error);
+    //   });
    }
 
    ngOnInit(): void {
@@ -136,28 +136,28 @@ export class FacturationComponent implements OnInit {
       cryptogramme = this.infoFacturationUser.cryptogramme;
     }
 
-    this.db.collection("Users").doc(this.id).update({
-      nom: nom,
-      prenom: prenom,
-      adresse: adresse,
-      codePostal: codePostal,
-      ville: ville,
-      proprietaireCarte: proprietaireCarte,
-      numeroCarte: numeroCarte,
-      dateCarte: dateCarte,
-      cryptogramme: cryptogramme,
-      civilite: civilite
-    }).then(
-      () => {
-        console.log('Modification réussie !');
-        alert('Modification réussie !');
-      }
-    ).catch(
-      (error) => {
-        console.log("Il y à une erreur : " + error);
-        alert("Il y à une erreur : " + error);
-      }
-    );
+    // this.db.collection("Users").doc(this.id).update({
+    //   nom: nom,
+    //   prenom: prenom,
+    //   adresse: adresse,
+    //   codePostal: codePostal,
+    //   ville: ville,
+    //   proprietaireCarte: proprietaireCarte,
+    //   numeroCarte: numeroCarte,
+    //   dateCarte: dateCarte,
+    //   cryptogramme: cryptogramme,
+    //   civilite: civilite
+    // }).then(
+    //   () => {
+    //     console.log('Modification réussie !');
+    //     alert('Modification réussie !');
+    //   }
+    // ).catch(
+    //   (error) => {
+    //     console.log("Il y à une erreur : " + error);
+    //     alert("Il y à une erreur : " + error);
+    //   }
+    // );
   }
 
 
