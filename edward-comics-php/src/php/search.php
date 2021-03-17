@@ -18,5 +18,7 @@ if (count($results) > 0) {
   foreach ($results as $donnees) {
     $policies[] =  $donnees;      
   }
-  echo json_encode($policies);
+}else{  
+  $policies[] = 'aucun resultat';
 }
+echo json_encode($policies);

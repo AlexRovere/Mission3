@@ -18,7 +18,9 @@
 }
 
 :host ::ng-deep .p-menuitem-link:hover {
-    background-color: #DCDCDC !important; 
+    background-color: #DCDCDC !important;
+    cursor: url('/assets/cursor.cur'), pointer; 
+    
 }
 :host ::ng-deep .p-menuitem-link {
     height: 50px;
@@ -32,12 +34,15 @@
 :host ::ng-deep .p-menuitem {
     width: 250px !important;
  } 
+
  
  :host ::ng-deep .p-slidemenu-overlay {
     width: 250px !important;
  } 
 
-
+ :host ::ng-deep .p-button {
+   cursor: url('/assets/cursor.cur'), pointer;
+}
 @media screen and (min-width: 768px) {
     
     :host ::ng-deep .p-button {

@@ -4,6 +4,7 @@ import { IComics } from 'src/models/comic.model';
 import { ComicsService, IcomicsFilterOrder, IComicsRequestOrder } from '../services/comics.service';
 import { ModalService } from '../services/modal.service';
 import { PanierService } from '../services/panier.service';
+import { ViewportScroller } from '@angular/common';
 
 
 @Component({
@@ -20,133 +21,148 @@ export class ListeArticleComponent implements OnInit {
     valeur: ""
   };
 
-  
-p!: number;
 
-  constructor(private route: ActivatedRoute, private comicsService: ComicsService, private router: Router, private modalService : ModalService, private panierService: PanierService) { 
+  p!: number;
 
-   }
+  constructor(private route: ActivatedRoute, private comicsService: ComicsService, private router: Router, private modalService: ModalService, private panierService: PanierService, private viewPortScroll: ViewportScroller) {
+
+  }
 
   //  A l'initialisation on recupère les informations theme et valeur de la route pour l'affichage filtré de la liste. 
   //  Si pas d'info, la liste complète est affichée
-  ngOnInit(): void {  
+  ngOnInit(): void {
+
+
     this.route.paramMap.subscribe(params => {
-      const _theme = params.get('theme');
-      let _valeur: string | boolean | null = params.get('valeur');
-      if(_theme != null && _valeur != null){
+      if (params.get('searchText') != null) {
+        const _searchText = params.get('searchText') as string;
+        this.comicsService.getSearchComics(_searchText).subscribe((book: IComics[]) => {
+          this.comics = book;})
+      }
+      else if (params.get('theme') != null && params.get('valeur') != null) {
+        const _theme= params.get('theme') as string;
+        const _valeur= params.get('valeur') as string;
         this.updateFilter(_theme, _valeur);
-      }else {
+      }
+      else {
         this.comicsService.getAllComics().subscribe((book: IComics[]) => {
-        this.comics = book;})
+          this.comics = book;
+        })
       }
     });
     this.p = 1;
-
   }
-//affichage de la liste filter grâce à la méthode getFilercomics dans comicService
-  updateFilter(theme: string, value: string | boolean){ 
+  //affichage de la liste filter grâce à la méthode getFilercomics dans comicService
+  updateFilter(theme: string, value: string | boolean) {
     this.filter.theme = theme;
     this.filter.valeur = value;
     this.comicsService.getFilterComics(this.filter).subscribe((book: IComics[]) => {
-      this.comics = book;})
+      this.comics = book;
+    })
   }
 
-//méthode permettant d'afficher sur l'image des infos du comic au passage de la souris - écran ordinateur
-  showDescription(i:number){
+  //méthode permettant d'afficher sur l'image des infos du comic au passage de la souris - écran ordinateur
+  showDescription(i: number) {
     const md = window.matchMedia("(min-width: 1280px)")
-    if(md.matches){
+    if (md.matches) {
       document.getElementById(`${i}`)?.classList.replace('description', 'description-hover')
     }
-    else{
+    else {
       return
     }
   }
 
-//méthode permettant d'enlever de l'image les infos du comic lorsque la souris n'est plus sur le comic - ecran d'ordinateur
-  hideDescription(i:number){
+  //méthode permettant d'enlever de l'image les infos du comic lorsque la souris n'est plus sur le comic - ecran d'ordinateur
+  hideDescription(i: number) {
     const md = window.matchMedia("(min-width: 1280px)")
-    if(md.matches){
+    if (md.matches) {
       document.getElementById(`${i}`)?.classList.replace('description-hover', 'description')
     }
-    else{
+    else {
       return
     }
   }
-  
-//méthode de tri sur le tableau filtré. Les infos de tri sont récupéré du component tri
-  onOrderChanged(orderInfo: IComicsRequestOrder){
+
+  //méthode de tri sur le tableau filtré. Les infos de tri sont récupéré du component tri
+  onOrderChanged(orderInfo: IComicsRequestOrder) {
     switch (orderInfo.colName) {
-      case 'titre' : 
-        if(orderInfo.order === 'asc') {
+      case 'titre':
+        if (orderInfo.order === 'asc') {
           this.comics.sort(function compare(a, b) {
             if (a.titre < b.titre) {
               return -1;
             }
-            if (a.titre > b.titre){
-                return 1;
+            if (a.titre > b.titre) {
+              return 1;
             }
-          return 0;
+            return 0;
           })
-        } else { 
+        } else {
           this.comics.sort(function compare(a, b) {
             if (a.titre > b.titre) {
               return -1;
             }
-            if (a.titre < b.titre){
-                return 1;
+            if (a.titre < b.titre) {
+              return 1;
             }
-          return 0;
+            return 0;
           })
         };
         break;
       case 'prix':
-      if(orderInfo.order === 'asc') {
-        this.comics.sort((a, b) => a.prix - b.prix);
-      }else {
-        this.comics.sort((a, b) => b.prix - a.prix);
-      }
-      break;
+        if (orderInfo.order === 'asc') {
+          this.comics.sort((a, b) => a.prix - b.prix);
+        } else {
+          this.comics.sort((a, b) => b.prix - a.prix);
+        }
+        break;
       case 'avis':
-      if(orderInfo.order === 'asc') {
-        this.comics.sort((a, b) => a.avis - b.avis);
-      }else {
-        this.comics.sort((a, b) => b.avis - a.avis);
-      }
-      break;  
-      }        
-    }       
-  
-//méthode pour les boutons filtres, l'adresse url sera modifié suivant les infos.
-  onFilterChanged(filterInfo: IcomicsFilterOrder){
+        if (orderInfo.order === 'asc') {
+          this.comics.sort((a, b) => a.avis - b.avis);
+        } else {
+          this.comics.sort((a, b) => b.avis - a.avis);
+        }
+        break;
+    }
+  }
+
+  //méthode pour les boutons filtres, l'adresse url sera modifié suivant les infos.
+  onFilterChanged(filterInfo: IcomicsFilterOrder) {
     const themeCol = filterInfo.theme;
     const value = filterInfo.valeur;
     this.pagination();
     this.comicsService.getFilterComics(this.filter).subscribe((book: IComics[]) => {
       this.router.navigate(['/liste', { theme: themeCol, valeur: value }]);
-      this.comics = book;})
+      this.comics = book;
+    })
   }
 
-//méthode pour envoyer l'id à détail-article via la route
+  //méthode pour envoyer l'id à détail-article via la route
   onViewComic(id: number) {
     this.router.navigate(['/liste', 'view', id]);
   }
 
-// methode permettant d'affiche le modal et d'activer le methode addCart au clique du bouton
-  enableModal(object: IComics) {
-    this.modalService.comic = object ;
-    this.modalService.showModal();
-    this.modalService.emitComic();
-    this.addToCart(object);    
+  onPageChange(numPage: number) {
+    this.p = numPage;
+    this.viewPortScroll.scrollToPosition([0, 0]);
   }
 
-// methode permetant d'envoyer les informations du comic au panier
-  addToCart(comic: IComics){
+  // methode permettant d'affiche le modal et d'activer le methode addCart au clique du bouton
+  enableModal(object: IComics) {
+    this.modalService.comic = object;
+    this.modalService.showModal();
+    this.modalService.emitComic();
+    this.addToCart(object);
+  }
+
+  // methode permetant d'envoyer les informations du comic au panier
+  addToCart(comic: IComics) {
     this.panierService.addItemsToCart(comic)
   }
 
-//méthode permettant la pagination
-  pagination(){
+  //méthode permettant la pagination
+  pagination() {
     this.p = 1;
- }
+  }
 
 }
