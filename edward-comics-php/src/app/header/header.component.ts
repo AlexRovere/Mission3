@@ -23,12 +23,12 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.userSubscription = this.authService.userSubject.subscribe(
-      (user: any) => {
-        this.user = user;
-      }
-    );
-    this.authService.emitUser();
+    // this.userSubscription = this.authService.userSubject.subscribe(
+    //   (user: any) => {
+    //     this.user = user;
+    //   }
+    // );
+    // this.authService.emitUser();
 
     this.nbrItemSubscription = this.panierService.nbrItemSubject.subscribe(
       (nbrItem: number) => {

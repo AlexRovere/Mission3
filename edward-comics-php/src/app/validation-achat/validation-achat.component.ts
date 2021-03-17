@@ -41,17 +41,17 @@ export class ValidationAchatComponent implements OnInit {
   db = firebase.firestore();
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private panierService: PanierService) {
-    this.db.collection("Users").where("email", "==", this.authService.user)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          this.infoUser = doc.data() as IAppInfoFacturationUser;
-          this.id = doc.id;
-        });
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
+    // this.db.collection("Users").where("email", "==", this.authService.user)
+    //   .get()
+    //   .then((querySnapshot) => {
+    //     querySnapshot.forEach((doc) => {
+    //       this.infoUser = doc.data() as IAppInfoFacturationUser;
+    //       this.id = doc.id;
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error getting documents: ", error);
+    //   });
   }
 
   ngOnInit(): void {
@@ -107,22 +107,22 @@ export class ValidationAchatComponent implements OnInit {
       cryptogramme = this.infoUser.cryptogramme;
     }
 
-    this.db.collection("Users").doc(this.id).update({
-      proprietaireCarte: proprietaireCarte,
-      numeroCarte: numeroCarte,
-      dateCarte: dateCarte,
-      cryptogramme: cryptogramme
-    }).then(
-      () => {
-        console.log('Modification réussie !');
-        alert('Modification réussie !');
-      }
-    ).catch(
-      (error) => {
-        console.log("Il y à une erreur : " + error);
-        alert("Il y à une erreur : " + error);
-      }
-    );
+    // this.db.collection("Users").doc(this.id).update({
+    //   proprietaireCarte: proprietaireCarte,
+    //   numeroCarte: numeroCarte,
+    //   dateCarte: dateCarte,
+    //   cryptogramme: cryptogramme
+    // }).then(
+    //   () => {
+    //     console.log('Modification réussie !');
+    //     alert('Modification réussie !');
+    //   }
+    // ).catch(
+    //   (error) => {
+    //     console.log("Il y à une erreur : " + error);
+    //     alert("Il y à une erreur : " + error);
+    //   }
+    // );
   }
 
   getTotal(){
