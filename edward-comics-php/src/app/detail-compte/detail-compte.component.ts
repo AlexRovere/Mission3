@@ -64,12 +64,11 @@ export class DetailCompteComponent implements OnInit {
 
   initForm() {
     this.updateForm = this.formBuilder.group({
-      telephone: ['', [Validators.pattern(/[0-9]/)]],
-      nom: ['', [Validators.pattern(/[a-zA-Z]/)]],
-      prenom: ['', [Validators.pattern(/[a-zA-Z]/)]]
+      telephone: ['', [Validators.pattern(/^[0-9]+$/), Validators.maxLength(30)]],
+      nom: ['', [Validators.pattern(/^[a-zA-Z ]+$/), Validators.maxLength(255)]],
+      prenom: ['', [Validators.pattern(/^[a-zA-Z ]+$/), Validators.maxLength(255)]]
     });
   }
-
   updateUser() {
     let id = sessionStorage.getItem('id');
     let nom = this.updateForm.get('nom')?.value;
