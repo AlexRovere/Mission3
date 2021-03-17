@@ -13,9 +13,13 @@ export class AuthService {
   // userSubject = new Subject<any>();
   sessionValue: any = null;
   userGuard: any = sessionStorage.getItem('id');
+  userGuardSubject = new Subject<any>();
 
   constructor(private http: HttpClient, private router: Router) { }
 
+  emituserGuard(){
+    this.userGuardSubject.next(this.userGuard);
+  }
 
   // emitUser() {
   //   this.userSubject.next(this.user);
@@ -42,6 +46,7 @@ export class AuthService {
         if (response['success']) {          
           sessionStorage.setItem('id', response['id']);
           this.userGuard = sessionStorage.getItem('id');
+          this.emituserGuard();
           this.router.navigate(['/detail-compte']);
           
         } else {
@@ -53,7 +58,8 @@ export class AuthService {
   }
   signOutUser() {
     sessionStorage.removeItem('id');
-    this.userGuard = sessionStorage.getItem('id');
+    this.userGuard = null;
+    this.emituserGuard();
   }
 
 
