@@ -14,7 +14,7 @@ export class PanierComponent implements OnInit {
   cartSubscription!: Subscription;
   nbrItemSubscription!: Subscription;
   cart: IComics[] = []
-  total = 0;
+  total: number = 0;
   nbrItem = 0;
   constructor(private panierService: PanierService) { }
 
@@ -45,7 +45,8 @@ export class PanierComponent implements OnInit {
   quantityPlus(obj: IComics){
     obj.quantite ++;
     this.panierService.nbrItem ++;
-    this.total += obj.prix;
+    this.total = Number(obj.prix) + Number(this.total);
+    console.log(this.total)
     this.panierService.emitCart();
   }
   quantityMinus(obj: IComics){
@@ -60,7 +61,8 @@ export class PanierComponent implements OnInit {
         this.total += (item.prix)*(item.quantite);
       }
       else{
-        this.total += item.prix;
+        this.total += Number(item.prix);
+       
       }
     }
   }
