@@ -9,16 +9,17 @@ import { IUser } from 'src/models/user.model';
 })
 export class AuthService {
 
-  public user!: any;
-  userSubject = new Subject<any>();
+  // user!: any;
+  // userSubject = new Subject<any>();
   sessionValue: any = null;
+  userGuard: any = sessionStorage.getItem('id');
 
   constructor(private http: HttpClient, private router: Router) { }
 
 
-  emitUser() {
-    this.userSubject.next(this.user);
-  }
+  // emitUser() {
+  //   this.userSubject.next(this.user);
+  // }
 
   createNewUser(user: IUser) {
     let userData = JSON.stringify(user);
@@ -38,9 +39,11 @@ export class AuthService {
     let userData = JSON.stringify(object);
     this.http.post('https://edward-comics.000webhostapp.com/connexion.php', userData).subscribe(
       (response : any) => {
-        if (response['success']) {
-          this.sessionValue = sessionStorage.setItem('id', response['id']);
+        if (response['success']) {          
+          sessionStorage.setItem('id', response['id']);
+          this.userGuard = sessionStorage.getItem('id');
           this.router.navigate(['/detail-compte']);
+          
         } else {
           alert('Error !');
         }
@@ -49,6 +52,8 @@ export class AuthService {
     )
   }
   signOutUser() {
+    sessionStorage.removeItem('id');
+    this.userGuard = sessionStorage.getItem('id');
   }
 
 

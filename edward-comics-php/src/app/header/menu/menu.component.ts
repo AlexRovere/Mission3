@@ -105,8 +105,7 @@ export class MenuComponent implements OnInit{
         label: 'Déconnexion',
         icon: "",
         command: (event) => {
-          this.authService.user = null;
-          this.authService.emitUser();
+          this.authService.signOutUser();
           this.router.navigate(['home'])
         }
       },           
