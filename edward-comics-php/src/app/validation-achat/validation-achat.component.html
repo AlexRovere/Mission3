@@ -44,23 +44,23 @@
                     <div class="grid-container-2">
                         <div class="nom">
                             <label class="rouge">Nom du propriétaire</label>
-                            <input type="text" class="form-control" id="proprietaire" formControlName="proprietaire"
+                            <input maxlength ="256" type="text" class="form-control" id="proprietaire" formControlName="proprietaire"
                                 value="{{ infoUser.proprietaireCarte }}">
                         </div>
                         <div class="numero">
                             <label class="rouge">Numero de carte</label>
-                            <input type="text" class="form-control" id="nbCarte" formControlName="nbCarte"
+                            <input maxlength ="17" type="text" class="form-control" id="nbCarte" formControlName="nbCarte"
                                 value="{{ infoUser.numeroCarte }}">
                         </div>
                         <div class="crypto-expi">
                             <div class="expi">
                                 <label class="rouge">Date d'expiration</label>
-                                <input type="text" class="form-control" id="expiration" formControlName="expiration"
+                                <input maxlength ="12" type="text" class="form-control" id="expiration" formControlName="expiration"
                                     value="{{ infoUser.dateCarte }}">
                             </div>
                             <div class="crypto">
                                 <label class="rouge">Cryptogramme</label>
-                                <input type="text" class="form-control" id="cryptogramme" formControlName="cryptogramme"
+                                <input  maxlength ="4" type="text" class="form-control" id="cryptogramme" formControlName="cryptogramme"
                                     value="{{ infoUser.cryptogramme }}">
                             </div>
                         </div>
@@ -71,5 +71,5 @@
     </div>
 </div>
 <div class="d-flex justify-content-center">
-    <button class="btn btn-primary mb-3 bouton-pay" routerLink="/paiement">Payer</button>
+    <button type="submit" class="btn btn-primary mb-3 bouton-pay" routerLink="/paiement">Payer</button>
 </div>
