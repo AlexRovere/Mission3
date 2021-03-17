@@ -16,6 +16,16 @@ export class FacturationComponent implements OnInit {
 
   infoFacturationUser: any = []
 
+  /**
+   * Dictonnaire listant les noms de colonnes associées à chaque nom de champ du formulaire.
+   * En clefs: noms des champs
+   * En valerurs: noms des colonnes
+   */
+  static FORM_COLUMN_MAP: { [x: string]: string } = {
+    nom: "nom",
+    prenom: "prenom",
+    email: "email"
+  };
 
   //permet d'afficher les infos d'un user connecte
   constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient) {
@@ -33,6 +43,7 @@ export class FacturationComponent implements OnInit {
       (response: any) => {
         if (response['success']) {
           this.infoFacturationUser = response['user'];
+          this.hydrateForm();
         }
          else {
           alert('Error !');
@@ -55,6 +66,17 @@ export class FacturationComponent implements OnInit {
       expiration: ['', [Validators.pattern(/(0[1-9]|1[012]).[0-9]{4}/), Validators.maxLength(10)]],
       cryptogramme: ['', [Validators.pattern(/^[0-9]+$/), Validators.maxLength(3)]]
     });
+  }
+
+  hydrateForm(){
+    Object.keys(FacturationComponent.FORM_COLUMN_MAP)
+      .forEach(formControlName => {
+        const columnName = FacturationComponent.FORM_COLUMN_MAP[formControlName];
+        const newValue = this.infoFacturationUser[columnName];
+        if(newValue != null){
+          this.updateFormFactu.get(formControlName)?.patchValue(newValue);
+        }
+      });
   }
 
   civiliteMr(){
@@ -81,51 +103,51 @@ export class FacturationComponent implements OnInit {
     
     
 
-    if(nom != ""){
-      nom = this.updateFormFactu.get('nom')?.value;
-    } else {
-      nom = this.infoFacturationUser.nom;
-    }
-    if(prenom != ""){
-      prenom = this.updateFormFactu.get('prenom')?.value;
-    }else {
-      prenom = this.infoFacturationUser.prenom;
-    }
-    if(adresse != ""){
-      adresse = this.updateFormFactu.get('adresse')?.value;
-    }else {
-      adresse = this.infoFacturationUser.adresse;
-    }
-    if(codePostal != ""){
-      codePostal = this.updateFormFactu.get('codePostal')?.value;
-    }else {
-      codePostal = this.infoFacturationUser.code_postal;
-    }
-    if(ville != ""){
-      ville = this.updateFormFactu.get('ville')?.value;
-    }else {
-      ville = this.infoFacturationUser.ville;
-    }
-    if(proprietaireCarte != ""){
-      proprietaireCarte = this.updateFormFactu.get('proprietaire')?.value;
-    }else {
-      proprietaireCarte = this.infoFacturationUser.cb_proprietaire;
-    }
-    if(numeroCarte != ""){
-      numeroCarte = this.updateFormFactu.get('nbCarte')?.value;
-    }else {
-      numeroCarte = this.infoFacturationUser.cb_numero;
-    }
-    if(dateCarte != ""){
-      dateCarte = this.updateFormFactu.get('expiration')?.value;
-    }else {
-      dateCarte = this.infoFacturationUser.cb_date;
-    }
-    if(cryptogramme != ""){
-      cryptogramme = this.updateFormFactu.get('cryptogramme')?.value;
-    }else {
-      cryptogramme = this.infoFacturationUser.cb_cryptogramme;
-    }
+    // if(nom != ""){
+    //   nom = this.updateFormFactu.get('nom')?.value;
+    // } else {
+    //   nom = this.infoFacturationUser.nom;
+    // }
+    // if(prenom != ""){
+    //   prenom = this.updateFormFactu.get('prenom')?.value;
+    // }else {
+    //   prenom = this.infoFacturationUser.prenom;
+    // }
+    // if(adresse != ""){
+    //   adresse = this.updateFormFactu.get('adresse')?.value;
+    // }else {
+    //   adresse = this.infoFacturationUser.adresse;
+    // }
+    // if(codePostal != ""){
+    //   codePostal = this.updateFormFactu.get('codePostal')?.value;
+    // }else {
+    //   codePostal = this.infoFacturationUser.code_postal;
+    // }
+    // if(ville != ""){
+    //   ville = this.updateFormFactu.get('ville')?.value;
+    // }else {
+    //   ville = this.infoFacturationUser.ville;
+    // }
+    // if(proprietaireCarte != ""){
+    //   proprietaireCarte = this.updateFormFactu.get('proprietaire')?.value;
+    // }else {
+    //   proprietaireCarte = this.infoFacturationUser.cb_proprietaire;
+    // }
+    // if(numeroCarte != ""){
+    //   numeroCarte = this.updateFormFactu.get('nbCarte')?.value;
+    // }else {
+    //   numeroCarte = this.infoFacturationUser.cb_numero;
+    // }
+    // if(dateCarte != ""){
+    //   dateCarte = this.updateFormFactu.get('expiration')?.value;
+    // }else {
+    //   dateCarte = this.infoFacturationUser.cb_date;
+    // }
+    // if(cryptogramme != ""){
+    //   cryptogramme = this.updateFormFactu.get('cryptogramme')?.value;
+    // }else {
+    //   cryptogramme = this.infoFacturationUser.cb_cryptogramme;
+    // }
 
     this.updateProfil = {
       id: sessionStorage.getItem('id'),
@@ -140,6 +162,7 @@ export class FacturationComponent implements OnInit {
       cryptogramme: cryptogramme,
       civilite: civilite
     }
+    console.log(this.updateProfil);
     this.updateProfil = JSON.stringify(this.updateProfil);
     this.http.post('http://test-mission3/update_facturation.php', this.updateProfil).subscribe(
       (response: any) => {
@@ -153,6 +176,20 @@ export class FacturationComponent implements OnInit {
       (error) => console.log(error)
     );
     
+  }
+
+  verificationValeurForm(champForm : any, champBdd : any = champForm){
+
+    if(champForm != ""){
+      champForm = this.updateFormFactu.get(`${champForm}`)?.value;
+
+    } else if (this.infoFacturationUser.champForm !="") {
+      champForm = this.infoFacturationUser[champBdd];
+   
+    } else {
+      champForm = "";
+    }
+
   }
 
 

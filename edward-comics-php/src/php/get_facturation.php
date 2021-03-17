@@ -46,7 +46,7 @@ if (isset($postdata) && !empty($postdata)) {
                         if ($numero_cartelength <= 16) {
                             if ($date_cartelength <= 255) {
                                 if ($cryptogrammelength <= 3) {
-                                    $req = $bdd->prepare("SELECT * FROM users WHERE id = :id");
+                                    $req = $bdd->prepare("SELECT nom FROM users WHERE id = :id");
                                     $req->execute(array(
                                         'id' => $id
                                     ));
