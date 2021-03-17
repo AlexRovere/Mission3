@@ -8,7 +8,7 @@ $valeur = $_GET['valeur'];
 $policies = [];
 $sql = $bdd->prepare("SELECT * FROM comics WHERE $theme = '$valeur'");
 $sql -> execute();
-$results = $sql->fetchAll();
+$results = $sql->fetchAll(PDO::FETCH_ASSOC);
 if (count($results) > 0) {
   
   foreach ($results as $donnees) {
