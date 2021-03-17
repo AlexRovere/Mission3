@@ -15,13 +15,36 @@
                 <div class="nom-prenom form-group">
                     <div class="nom">
                         <label class="rouge">Nom</label>
-                        <input type="text" class="form-control" id="nom" value="{{ infoUser.nom }}"
+                        <input type="text" maxlength="256" class="form-control" id="nom" value="{{ infoUser.nom }}"
                             formControlName="nom">
+                        <!-- /////////////////////////////////////// -->
+                        <div *ngIf="updateForm.controls['nom'].invalid && (updateForm.controls['nom'].dirty || updateForm.controls['nom'].touched)"
+                            class="alert alert-danger">
+                            <div *ngIf="updateForm.controls['nom'].errors?.maxlength">
+                                255 caracteres maximum.
+                            </div>
+                            <div *ngIf="updateForm.controls['nom'].errors?.pattern">
+                                Lettre uniquement.
+                            </div>
+                        </div>
+                        <!-- /////////////////////////////////////// -->
+
                     </div>
                     <div class="prenom">
                         <label class="rouge">Prénom</label>
-                        <input type="text" class="form-control" id="prenom" value="{{ infoUser.prenom }}"
-                            formControlName="prenom">
+                        <input type="text" maxlength="256" class="form-control" id="prenom"
+                            value="{{ infoUser.prenom }}" formControlName="prenom">
+                            <!-- /////////////////////////////////////// -->
+                        <div *ngIf="updateForm.controls['prenom'].invalid && (updateForm.controls['prenom'].dirty || updateForm.controls['prenom'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="updateForm.controls['prenom'].errors?.maxlength">
+                            255 caracteres maximum.
+                        </div>
+                        <div *ngIf="updateForm.controls['prenom'].errors?.pattern">
+                            Lettre uniquement.
+                        </div>
+                    </div>
+                    <!-- /////////////////////////////////////// -->
                     </div>
                 </div>
                 <div class="mail-tel form-group">
@@ -31,8 +54,19 @@
                     </div>
                     <div class="tel">
                         <label class="rouge">Téléphone</label>
-                        <input type="text" class="form-control" id="telephone" value="{{ infoUser.telephone }}"
-                            formControlName="telephone">
+                        <input type="text" maxlength="31" class="form-control" id="telephone"
+                            value="{{ infoUser.telephone }}" formControlName="telephone">
+                            <!-- /////////////////////////////////////// -->
+                        <div *ngIf="updateForm.controls['telephone'].invalid && (updateForm.controls['telephone'].dirty || updateForm.controls['telephone'].touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="updateForm.controls['telephone'].errors?.maxlength">
+                            30 caracteres maximum.
+                        </div>
+                        <div *ngIf="updateForm.controls['telephone'].errors?.pattern">
+                            Chiffre uniquement.
+                        </div>
+                    </div>
+                    <!-- /////////////////////////////////////// -->
                     </div>
                 </div>
                 <div class="info-factu form-group">
@@ -47,7 +81,8 @@
             </div>
         </div>
         <div class="milieu">
-            <button type="submit" class="btn btn-primary mb-3 mt-2 maj" [disabled]="updateForm.invalid">Mettre à jour</button>
+            <button type="submit" class="btn btn-primary mb-3 mt-2 maj" [disabled]="updateForm.invalid">Mettre à
+                jour</button>
         </div>
     </form>
     <p class="text-danger">{{ errorMessage }}</p>
