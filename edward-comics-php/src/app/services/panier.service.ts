@@ -30,5 +30,11 @@ export class PanierService {
     this.nbrItemSubject.next(this.nbrItem);
   }
 
+  cleanPanier() {
+    this.nbrItem = 0;
+    this.cart = [];
+    this.emitCart();
+  }
+
   
 }

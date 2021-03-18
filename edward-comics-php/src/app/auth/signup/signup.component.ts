@@ -24,17 +24,37 @@ export class SignupComponent implements OnInit {
   //méthode de vérification des pattern lors de la saisie
   initForm() {
     this.signupForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]],
-      passwordConfirm: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]],
-      telephone: ['', [Validators.required, Validators.pattern(/[0-9]/)]],
-      nom: ['', [Validators.required, Validators.pattern(/[a-zA-Z]/)]],
-      prenom: ['', [Validators.required, Validators.pattern(/[a-zA-Z]/)]],
-      adresse: ['', [Validators.pattern(/[0-9a-zA-Z]/)]],
-      codePostal: ['', [Validators.pattern(/[0-9]/)]],
-      ville: ['', [Validators.pattern(/[a-zA-Z]/)]]
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
+      password: ['', [Validators.required, Validators.pattern(/^[0-9a-zA-Z]+$/), Validators.maxLength(255)]],
+      passwordConfirm: ['', [Validators.required, Validators.pattern(/^[0-9a-zA-Z]+$/), Validators.maxLength(255)]],
+      telephone: ['', [Validators.required, Validators.pattern(/^[0-9]+$/), Validators.maxLength(30)]],
+      nom: ['', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/), Validators.maxLength(255)]],
+      prenom: ['', [Validators.required, Validators.pattern(/^[a-zA-Z ]+$/), Validators.maxLength(255)]],
+      adresse: ['', [Validators.pattern(/^[0-9a-zA-Z ]+$/), Validators.maxLength(255)]],
+      codePostal: ['', [Validators.pattern(/^[0-9]+$/), Validators.maxLength(5)]],
+      ville: ['', [Validators.pattern(/^[a-zA-Z ]+$/), Validators.maxLength(255)]]
+    }, {
+      validator: this.mustMatch('password', 'passwordConfirm')
     });
   }
+  mustMatch(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+        const control = formGroup.controls[controlName];
+        const matchingControl = formGroup.controls[matchingControlName];
+
+        if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+            // retourne si un autre validateur a déjà trouvé une erreur sur le validator
+            return;
+        }
+
+        // définir une erreur sur validator si la validation échoue
+        if (control.value !== matchingControl.value) {
+            matchingControl.setErrors({ mustMatch: true });
+        } else {
+            matchingControl.setErrors(null);
+        }
+    }
+}
 
   //recupération des infos saisie pour créer un nouveau client
   onSubmit() {
@@ -61,14 +81,6 @@ export class SignupComponent implements OnInit {
     }
     this.authService.createNewUser(user);
   }
-
-    // let formData: any = new FormData();
-    // formData.append("nom", this.signupForm.get('nom')?.value);
-    // formData.append("prenom", this.signupForm.get('prenom')?.value);
-    // formData.append("email", this.signupForm.get('email')?.value);
-    // formData.append("telephone", this.signupForm.get('telephone')?.value);
-    // formData.append("password", this.signupForm.get('password')?.value);
-    // formData.append("adresse", this.signupForm.get('adresse')?.value);
-    // formData.append("code_postal", this.signupForm.get('codePostal')?.value);
-    // formData.append("ville", this.signupForm.get('ville')?.value);
 }
+
+
