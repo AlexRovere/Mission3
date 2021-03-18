@@ -19,7 +19,8 @@ export interface IcomicsFilterOrder {
   providedIn: 'root'
 })
 export class ComicsService {
-  PHP_API_SERVER = "https://edward-comics.000webhostapp.com";
+  // https://edward-comics.go.yj.fr/php
+  PHP_API_SERVER = "http://edward";
   comics: IComics[] = [];
   comicsSubject = new Subject<any>();
   
@@ -40,31 +41,6 @@ export class ComicsService {
    return this.httpClient.get<IComics>(`${this.PHP_API_SERVER}/singleComic.php/?id=${id}`);
   }          
     
-    
-  // getOrderedComics(orderInfo: IComicsRequestOrder): Promise<Array<IComics>> {
-  //   const orderCol = orderInfo.colName || "titre";
-  //   const order = orderInfo.order || "asc";
-  //   const db = firebase.firestore();
-  //   var comicsRef = db.collection("Comics");
-
-  //   return new Promise((resolve, reject) => {
-  //     comicsRef.orderBy(orderCol, order)
-  //       .get()
-  //       .then((querySnapshot) => {
-  //         const newComics: Array<any> = [];          
-  //         querySnapshot.forEach((_doc) => {
-  //           const doc = _doc.data() as any;
-  //           newComics.push({
-  //             ...doc,
-  //             id: _doc.id
-  //           });
-  //         })
-  //         resolve(newComics);
-  //       })
-  //       .catch(reject);
-  //   })
-    
-  // }
   
   
   getFilterComics(filterInfo: IcomicsFilterOrder): Observable<IComics[]> {

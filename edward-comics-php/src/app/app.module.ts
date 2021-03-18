@@ -15,12 +15,10 @@ import { ContactComponent } from './contact/contact.component';
 import { SearchBarComponent } from './header/search-bar/search-bar.component';
 import { MenuComponent } from './header/menu/menu.component';
 import { MeteoComponent } from './footer/meteo/meteo.component';
-import { SingleItemComponent } from './panier/single-item/single-item.component';
 import { FiltreComponent } from './liste-article/filtre/filtre.component';
 import { TriComponent } from './liste-article/tri/tri.component';
 import { CarouselCardComponent } from './carousel-card/carousel-card.component';
 import { CarouselImageComponent } from './carousel-image/carousel-image.component';
-import { PaginatorComponent } from './liste-article/paginator/paginator.component';
 import { ValidationAchatComponent } from './validation-achat/validation-achat.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -38,7 +36,7 @@ import { FacturationComponent } from './detail-compte/facturation/facturation.co
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -60,12 +58,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     SearchBarComponent,
     MenuComponent,
     MeteoComponent,
-    SingleItemComponent,
     FiltreComponent,
     TriComponent,
     CarouselCardComponent,
     CarouselImageComponent,
-    PaginatorComponent,
     ValidationAchatComponent,
     SigninComponent,
     SignupComponent,

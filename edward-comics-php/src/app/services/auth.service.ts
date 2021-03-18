@@ -27,7 +27,8 @@ export class AuthService {
 
   createNewUser(user: IUser) {
     let userData = JSON.stringify(user);
-    this.http.post('https://edward-comics.000webhostapp.com/inscription.php', userData).subscribe(
+    // https://edward-comics.go.yj.fr/php/inscription.php
+    this.http.post('http://edward/inscription.php', userData).subscribe(
       (response) => {
         if (response) {
           this.router.navigate(['/auth/signin']);
@@ -41,7 +42,8 @@ export class AuthService {
 
   signInUser(object: object) {
     let userData = JSON.stringify(object);
-    this.http.post('https://edward-comics.000webhostapp.com/connexion.php', userData).subscribe(
+    // https://edward-comics.go.yj.fr/php/connexion.php
+    this.http.post('http://edward/connexion.php', userData).subscribe(
       (response : any) => {
         if (response['success']) {          
           sessionStorage.setItem('id', response['id']);

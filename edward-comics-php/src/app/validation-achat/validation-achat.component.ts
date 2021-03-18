@@ -104,6 +104,7 @@ export class ValidationAchatComponent implements OnInit {
     }
     // https://edward-comics.000webhostapp.com/update_carte.php
     let data = JSON.stringify(userCarteInfo);
+    // https://edward-comics.go.yj.fr/php/update_carte.php
     this.http.post('http://edward/update_carte.php', data).subscribe(
       (response: any) => {
         if (response['success']) {
@@ -131,6 +132,7 @@ export class ValidationAchatComponent implements OnInit {
   getFacturationInfo(id: any) {
     // https://edward-comics.000webhostapp.com/get_facturation.php
     let user = JSON.stringify(id);
+    // https://edward-comics.go.yj.fr/php/get_facturation.php
     this.http.post('http://edward/get_facturation.php', user).subscribe(
       (response: any) => {
         if (response['success']) {
