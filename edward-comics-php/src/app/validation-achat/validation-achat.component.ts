@@ -114,7 +114,7 @@ export class ValidationAchatComponent implements OnInit {
         this.total += (item.prix)*(item.quantite);
       }
       else{
-        this.total += item.prix;
+        this.total += Number(item.prix);
       }
     }
   }
