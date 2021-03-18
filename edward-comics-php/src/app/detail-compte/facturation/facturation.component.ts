@@ -122,7 +122,7 @@ export class FacturationComponent implements OnInit {
     console.log(this.updateProfil);
     this.updateProfil = JSON.stringify(this.updateProfil);
 
-    this.http.post('https://edward-comics.go.yj.fr/php/update_facturation', this.updateProfil).subscribe(
+    this.http.post('https://edward-comics.go.yj.fr/php/update_facturation.php', this.updateProfil).subscribe(
       (response: any) => {
         if (response['success']) {
           alert('Votre profil de facturation a bien été mis à jour');

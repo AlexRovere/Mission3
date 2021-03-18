@@ -118,21 +118,11 @@
  .infos p {
    margin-bottom: 0;
  }
-
-
-
-
- 
- /* .titreprix {
-   font-size: 45px;
-   
- }
- .tailleBtn{
-   width: 100%;
-   height: 80%;
-   font-size: 25px;
-   font-weight: bold;
-
- } */
     
+  }
+
+  @media screen and (min-width: 1280px) {
+    .image{
+      width: 70%;
+    }
   }

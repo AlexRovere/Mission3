@@ -44,7 +44,7 @@ export class PanierComponent implements OnInit {
   quantityPlus(obj: IComics){
     obj.quantite ++;
     this.panierService.nbrItem ++;
-    this.total += obj.prix;
+    this.total += Number(obj.prix);
     console.log(this.total)
     this.panierService.emitCart();
   }
@@ -60,7 +60,7 @@ export class PanierComponent implements OnInit {
         this.total += (item.prix)*(item.quantite);
       }
       else{
-        this.total += item.prix;
+        this.total += Number(item.prix);
        
       }
     }
