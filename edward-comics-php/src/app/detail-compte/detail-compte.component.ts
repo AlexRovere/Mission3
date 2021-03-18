@@ -17,6 +17,13 @@ export class DetailCompteComponent implements OnInit {
   infoUser: any = [];
   updateProfil: any = {};
 
+  static FORM_COLUMN_MAP: { [x: string]: string } = {
+    nom: "nom",
+    prenom: "prenom",
+    telephone: "telephone",
+    email: "email"
+  };
+
 
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private http : HttpClient) {   
@@ -38,6 +45,7 @@ export class DetailCompteComponent implements OnInit {
       (response: any) => {
         if (response['success']) {
           this.infoUser = response['user'];
+          this.hydrateForm();
         }
          else {
           alert('Error !');
@@ -55,27 +63,23 @@ export class DetailCompteComponent implements OnInit {
       prenom: ['', [Validators.pattern(/^[a-zA-Z ]+$/), Validators.maxLength(255)]]
     });
   }
+
+  hydrateForm(){
+    Object.keys(DetailCompteComponent.FORM_COLUMN_MAP)
+      .forEach(formControlName => {
+        const columnName = DetailCompteComponent.FORM_COLUMN_MAP[formControlName];
+        const newValue = this.infoUser[columnName];
+        if(newValue != null){
+          this.updateForm.get(formControlName)?.patchValue(newValue);
+        }
+      });
+  }
+
   updateUser() {
     let id = sessionStorage.getItem('id');
     let nom = this.updateForm.get('nom')?.value;
     let prenom = this.updateForm.get('prenom')?.value;
     let telephone = this.updateForm.get('telephone')?.value;
-
-    if(nom != ""){
-      nom = this.updateForm.get('nom')?.value;
-    } else {
-      nom = this.infoUser.nom;
-    }
-    if(prenom != ""){
-      prenom = this.updateForm.get('prenom')?.value;
-    }else {
-      prenom = this.infoUser.prenom;
-    }
-    if(telephone != 0){
-      telephone = this.updateForm.get('telephone')?.value;
-    }else {
-      telephone = this.infoUser.telephone;
-    }
 
     this.updateProfil = {
       nom : nom,

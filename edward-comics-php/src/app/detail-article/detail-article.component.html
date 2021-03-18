@@ -12,7 +12,7 @@
         <p class="titreprix mt-1"> {{ comic.prix }} €TTC</p>
     </div>
     <div class="bouton">
-        <button class="btn btn-primary tailleBtn" (click)="enableModal(comic)" >Ajouter au panier</button>
+        <button class="btn btn-primary tailleBtn" [disabled]= "comic.disponibilite == 2"  (click)="enableModal(comic)" >Ajouter au panier</button>
     </div>
     <div class="resume">
         <h4>Résumé</h4>

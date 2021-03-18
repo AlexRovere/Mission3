@@ -186,7 +186,7 @@ const routes: Routes = [
         },
         {
           label: 'Validation',
-          url: 'validation-achat'
+          url: ''
         },
         {
           label: 'Paiement',

@@ -10,6 +10,11 @@
           url("/assets/Fonts/road-radio/RoadRadio-Black.ttf"); 
   }
 
+
+.alert{
+  padding: 0 !important;
+}
+
 .btn-primary {
     color: #fff !important;
     background-color: #BE2537 !important;

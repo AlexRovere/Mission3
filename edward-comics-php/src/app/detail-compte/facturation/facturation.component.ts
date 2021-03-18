@@ -11,9 +11,7 @@ import { Router } from '@angular/router';
 export class FacturationComponent implements OnInit {
 
   updateFormFactu!: FormGroup;
-  errorMessage!: String;
   updateProfil: any = {};
-
   infoFacturationUser: any = []
 
   /**
@@ -27,8 +25,10 @@ export class FacturationComponent implements OnInit {
     adresse: "adresse",
     codePostal: "code_postal",
     ville: "ville",
-    proprietaire: "proprietaire",
-
+    proprietaire: "cb_proprietaire",
+    nbCarte: "cb_numero",
+    expiration: "cb_date",
+    cryptogramme: "cb_cryptogramme"
   };
 
   //permet d'afficher les infos d'un user connecte
@@ -125,7 +125,8 @@ export class FacturationComponent implements OnInit {
     this.http.post('http://edward/update_facturation', this.updateProfil).subscribe(
       (response: any) => {
         if (response['success']) {
-          alert('Votre profil de facturation a bien été mis à jour')
+          alert('Votre profil de facturation a bien été mis à jour');
+          this.router.navigate(['/detail-compte']);
         }
          else {
           alert('Error !');
@@ -135,20 +136,5 @@ export class FacturationComponent implements OnInit {
     );
     
   }
-
-  verificationValeurForm(champForm : any, champBdd : any = champForm){
-
-    if(champForm != ""){
-      champForm = this.updateFormFactu.get(`${champForm}`)?.value;
-
-    } else if (this.infoFacturationUser.champForm !="") {
-      champForm = this.infoFacturationUser[champBdd];
-   
-    } else {
-      champForm = "";
-    }
-
-  }
-
 
 }
