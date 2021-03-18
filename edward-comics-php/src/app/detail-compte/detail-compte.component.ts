@@ -39,9 +39,8 @@ export class DetailCompteComponent implements OnInit {
 
 
   getUserInfo(id: any) {
-    // https://edward-comics.go.yj.fr/php/info_user.php
     let user = JSON.stringify(id);
-    this.http.post('http://edward/info_user.php', user).subscribe(
+    this.http.post(' https://edward-comics.go.yj.fr/php/info_user.php', user).subscribe(
       (response: any) => {
         if (response['success']) {
           this.infoUser = response['user'];
@@ -87,10 +86,9 @@ export class DetailCompteComponent implements OnInit {
       id : id,
       telephone : telephone
     }
-    // https://edward-comics.go.yj.fr/php/update_user.php
-    
+ 
     this.updateProfil = JSON.stringify(this.updateProfil);
-    this.http.post('http://edward/update_user.php', this.updateProfil).subscribe(
+    this.http.post('https://edward-comics.go.yj.fr/php/update_user.php', this.updateProfil).subscribe(
       (response: any) => {
         if (response['success']) {
           alert('Votre profil a bien été mis à jour')

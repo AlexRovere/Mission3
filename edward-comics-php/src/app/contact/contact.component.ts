@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ComicsService, IcomicsFilterOrder } from '../services/comics.service';
 
 @Component({
   selector: 'app-contact',

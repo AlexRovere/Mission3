@@ -95,8 +95,7 @@ export class ValidationAchatComponent implements OnInit {
     }
 
     let data = JSON.stringify(userCarteInfo);
-    // https://edward-comics.go.yj.fr/php/update_carte.php
-    this.http.post('http://edward/update_carte.php', data).subscribe(
+    this.http.post('https://edward-comics.go.yj.fr/php/update_carte.php', data).subscribe(
       (response: any) => {
         if (response['success']) {
           alert('Information de CB correctement modifié')
@@ -122,8 +121,7 @@ export class ValidationAchatComponent implements OnInit {
 
   getFacturationInfo(id: any) {
     let user = JSON.stringify(id);
-    // https://edward-comics.go.yj.fr/php/info_user.php
-    this.http.post('http://edward/info_user.php', user).subscribe(
+    this.http.post('https://edward-comics.go.yj.fr/php/info_user.php', user).subscribe(
       (response: any) => {
         if (response['success']) {
           this.infoUser = response['user'];

@@ -43,7 +43,7 @@ export class FacturationComponent implements OnInit {
 
   getUserInfo(id: any) {
     let user = JSON.stringify(id);
-    this.http.post('http://test-mission3/info_user.php', user).subscribe(
+    this.http.post('https://edward-comics.go.yj.fr/php/info_user.php', user).subscribe(
       (response: any) => {
         if (response['success']) {
           this.infoFacturationUser = response['user'];
@@ -121,8 +121,8 @@ export class FacturationComponent implements OnInit {
     }
     console.log(this.updateProfil);
     this.updateProfil = JSON.stringify(this.updateProfil);
-    // https://edward-comics.go.yj.fr/php/update_facturation'
-    this.http.post('http://edward/update_facturation', this.updateProfil).subscribe(
+
+    this.http.post('https://edward-comics.go.yj.fr/php/update_facturation', this.updateProfil).subscribe(
       (response: any) => {
         if (response['success']) {
           alert('Votre profil de facturation a bien été mis à jour');

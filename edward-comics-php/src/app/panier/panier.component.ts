@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IComics } from 'src/models/comic.model';
-import { ComicsService } from '../services/comics.service';
 import { PanierService } from '../services/panier.service';
 
 @Component({
