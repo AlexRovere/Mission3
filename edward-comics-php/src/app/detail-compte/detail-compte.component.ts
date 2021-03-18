@@ -17,6 +17,13 @@ export class DetailCompteComponent implements OnInit {
   infoUser: any = [];
   updateProfil: any = {};
 
+  static FORM_COLUMN_MAP: { [x: string]: string } = {
+    nom: "nom",
+    prenom: "prenom",
+    telephone: "telephone",
+    email: "email"
+  };
+
 
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router, private http : HttpClient) {   
@@ -32,12 +39,12 @@ export class DetailCompteComponent implements OnInit {
 
 
   getUserInfo(id: any) {
-    // https://edward-comics.go.yj.fr/php/info_user.php
     let user = JSON.stringify(id);
-    this.http.post('http://edward/info_user.php', user).subscribe(
+    this.http.post(' https://edward-comics.go.yj.fr/php/info_user.php', user).subscribe(
       (response: any) => {
         if (response['success']) {
           this.infoUser = response['user'];
+          this.hydrateForm();
         }
          else {
           alert('Error !');
@@ -55,27 +62,23 @@ export class DetailCompteComponent implements OnInit {
       prenom: ['', [Validators.pattern(/^[a-zA-Z ]+$/), Validators.maxLength(255)]]
     });
   }
+
+  hydrateForm(){
+    Object.keys(DetailCompteComponent.FORM_COLUMN_MAP)
+      .forEach(formControlName => {
+        const columnName = DetailCompteComponent.FORM_COLUMN_MAP[formControlName];
+        const newValue = this.infoUser[columnName];
+        if(newValue != null){
+          this.updateForm.get(formControlName)?.patchValue(newValue);
+        }
+      });
+  }
+
   updateUser() {
     let id = sessionStorage.getItem('id');
     let nom = this.updateForm.get('nom')?.value;
     let prenom = this.updateForm.get('prenom')?.value;
     let telephone = this.updateForm.get('telephone')?.value;
-
-    if(nom != ""){
-      nom = this.updateForm.get('nom')?.value;
-    } else {
-      nom = this.infoUser.nom;
-    }
-    if(prenom != ""){
-      prenom = this.updateForm.get('prenom')?.value;
-    }else {
-      prenom = this.infoUser.prenom;
-    }
-    if(telephone != 0){
-      telephone = this.updateForm.get('telephone')?.value;
-    }else {
-      telephone = this.infoUser.telephone;
-    }
 
     this.updateProfil = {
       nom : nom,
@@ -83,10 +86,9 @@ export class DetailCompteComponent implements OnInit {
       id : id,
       telephone : telephone
     }
-    // https://edward-comics.go.yj.fr/php/update_user.php
-    
+ 
     this.updateProfil = JSON.stringify(this.updateProfil);
-    this.http.post('http://edward/update_user.php', this.updateProfil).subscribe(
+    this.http.post('https://edward-comics.go.yj.fr/php/update_user.php', this.updateProfil).subscribe(
       (response: any) => {
         if (response['success']) {
           alert('Votre profil a bien été mis à jour')

@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IComics } from 'src/models/comic.model';
 import { ComicsService, IcomicsFilterOrder, IComicsRequestOrder } from '../services/comics.service';
 import { ModalService } from '../services/modal.service';

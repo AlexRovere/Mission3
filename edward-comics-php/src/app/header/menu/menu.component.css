@@ -30,15 +30,18 @@
     height: 400px !important;
  } 
 
+:host ::ng-deep .p-slidemenu{
+   width: 250px!important;
+}
 
-:host ::ng-deep .p-menuitem {
+/* :host ::ng-deep .p-menuitem {
     width: 250px !important;
  } 
 
  
  :host ::ng-deep .p-slidemenu-overlay {
     width: 250px !important;
- } 
+ }  */
 
  :host ::ng-deep .p-button {
    cursor: url('/assets/cursor.cur'), pointer;
@@ -65,7 +68,7 @@
      :host ::ng-deep .p-slidemenu-content {
         height: 450px !important;
      } 
-
+/* 
      :host ::ng-deep .p-menuitem {
         width: 300px !important;
      } 
@@ -73,6 +76,6 @@
      :host ::ng-deep .p-slidemenu-overlay {
         width: 300px !important;
      } 
-
+ */
 
 }

@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, RequiredValidator, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IComics } from 'src/models/comic.model';
-import { IAppInfoFacturationUser } from 'src/models/user.model';
+
 import { PanierService } from '../services/panier.service';
 
 @Component({
@@ -22,18 +22,18 @@ export class ValidationAchatComponent implements OnInit {
   total = 0;
   nbrItem = 0;
 
-  infoUser: IAppInfoFacturationUser = {
-    nom: '',
-    prenom: '',
-    adresse: '',
-    codePostal: 0,
-    ville: '',
-    proprietaireCarte: '',
-    numeroCarte: 0,
-    dateCarte: '',
-    cryptogramme: 0,
-    civilite: ''
-  }
+  infoUser: any = [];
+    
+  static FORM_COLUMN_MAP: { [x: string]: string } = {
+    nom: "nom",
+    prenom: "prenom",
+    adresse: "adresse",
+    ville: "ville",
+    proprietaire: "cb_proprietaire",
+    nbCarte: "cb_numero",
+    expiration: "cb_date",
+    cryptogramme: "cb_cryptogramme"
+  };
 
   
 
@@ -59,12 +59,24 @@ export class ValidationAchatComponent implements OnInit {
 
   initForm() {
     this.formCarte = this.formBuilder.group({
-      proprietaire: ['', [Validators.pattern(/[a-zA-Z]/), Validators.required, Validators.maxLength(255)]],
-      nbCarte: ['', [Validators.pattern(/[0-9]/), Validators.required, Validators.maxLength(16)]],
-      expiration: ['', [Validators.pattern(/[0-9]/), Validators.required, Validators.maxLength(255)]],
-      cryptogramme: ['', [Validators.pattern(/[0-9]/), Validators.required, Validators.maxLength(3)]]
+      proprietaire: ['', [Validators.pattern(/^[a-zA-Z]+$/), Validators.required, Validators.maxLength(255)]],
+      nbCarte: ['', [Validators.pattern(/^[0-9]+$/), Validators.required, Validators.maxLength(16)]],
+      expiration: ['', [Validators.pattern(/^[0-9]+$/), Validators.required, Validators.maxLength(255)]],
+      cryptogramme: ['', [Validators.pattern(/^[0-9]+$/), Validators.required, Validators.maxLength(3)]]
     });
   }
+
+  hydrateForm(){
+    Object.keys(ValidationAchatComponent.FORM_COLUMN_MAP)
+      .forEach(formControlName => {
+        const columnName = ValidationAchatComponent.FORM_COLUMN_MAP[formControlName];
+        const newValue = this.infoUser[columnName];
+        if(newValue != null){
+          this.formCarte.get(formControlName)?.patchValue(newValue);
+        }
+      });
+  }
+
 
   updateCarte() {
     let proprietaireCarte = this.formCarte.get('proprietaire')?.value;
@@ -73,27 +85,6 @@ export class ValidationAchatComponent implements OnInit {
     let cryptogramme = this.formCarte.get('cryptogramme')?.value;
     let id = sessionStorage.getItem('id');
 
-    
-    if(proprietaireCarte != ""){
-      proprietaireCarte = this.formCarte.get('proprietaire')?.value;
-    }else {
-      proprietaireCarte = this.infoUser.proprietaireCarte;
-    }
-    if(numeroCarte != ""){
-      numeroCarte = this.formCarte.get('nbCarte')?.value;
-    }else {
-      numeroCarte = this.infoUser.numeroCarte;
-    }
-    if(dateCarte != ""){
-      dateCarte = this.formCarte.get('expiration')?.value;
-    }else {
-      dateCarte = this.infoUser.dateCarte;
-    }
-    if(cryptogramme != ""){
-      cryptogramme = this.formCarte.get('cryptogramme')?.value;
-    }else {
-      cryptogramme = this.infoUser.cryptogramme;
-    }
 
     let userCarteInfo = {
       proprietaireCarte : proprietaireCarte,
@@ -102,10 +93,9 @@ export class ValidationAchatComponent implements OnInit {
       cryptogramme : cryptogramme,
       id : id
     }
-    // https://edward-comics.000webhostapp.com/update_carte.php
+
     let data = JSON.stringify(userCarteInfo);
-    // https://edward-comics.go.yj.fr/php/update_carte.php
-    this.http.post('http://edward/update_carte.php', data).subscribe(
+    this.http.post('https://edward-comics.go.yj.fr/php/update_carte.php', data).subscribe(
       (response: any) => {
         if (response['success']) {
           alert('Information de CB correctement modifié')
@@ -130,13 +120,13 @@ export class ValidationAchatComponent implements OnInit {
   }
 
   getFacturationInfo(id: any) {
-    // https://edward-comics.000webhostapp.com/get_facturation.php
     let user = JSON.stringify(id);
-    // https://edward-comics.go.yj.fr/php/get_facturation.php
-    this.http.post('http://edward/get_facturation.php', user).subscribe(
+    this.http.post('https://edward-comics.go.yj.fr/php/info_user.php', user).subscribe(
       (response: any) => {
         if (response['success']) {
           this.infoUser = response['user'];
+          this.hydrateForm();
+          console.log(this.infoUser);
         }
          else {
           alert('Error !');
@@ -144,6 +134,10 @@ export class ValidationAchatComponent implements OnInit {
       },
       (error) => console.log(error)
     );
+  }
+
+  resetPanier() {
+    this.panierService.cleanPanier();
   }
 
 

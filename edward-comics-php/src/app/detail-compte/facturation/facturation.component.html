@@ -38,7 +38,7 @@
                                 255 caracteres maximum.
                             </div>
                             <div *ngIf="updateFormFactu.controls['nom'].errors?.pattern">
-                                Lettre uniquement.
+                                Lettres uniquement.
                             </div>
                         </div>
                         <!-- /////////////////////////////////////// -->
@@ -54,7 +54,7 @@
                                 255 caracteres maximum.
                             </div>
                             <div *ngIf="updateFormFactu.controls['prenom'].errors?.pattern">
-                                Lettre uniquement.
+                                Lettres uniquement.
                             </div>
                         </div>
                         <!-- /////////////////////////////////////// -->
@@ -71,7 +71,7 @@
                             255 caracteres maximum.
                         </div>
                         <div *ngIf="updateFormFactu.controls['adresse'].errors?.pattern">
-                            Lettre et chiffre uniquement.
+                            Lettres et chiffres uniquement.
                         </div>
                     </div>
                     <!-- /////////////////////////////////////// -->
@@ -79,7 +79,7 @@
                 <div class="zip-ville form-group">
                     <div class="zip">
                         <label class="rouge">Code postal</label>
-                        <input type="text" class="form-control" id="codePostal" formControlName="codePostal"
+                        <input  maxlength= "6" type="text" class="form-control" id="codePostal" formControlName="codePostal"
                             value="{{ infoFacturationUser.code_postal }}">
                         <!-- /////////////////////////////////////// -->
                         <div *ngIf="updateFormFactu.controls['codePostal'].invalid && (updateFormFactu.controls['codePostal'].dirty || updateFormFactu.controls['codePostal'].touched)"
@@ -88,7 +88,7 @@
                                 5 caracteres maximum.
                             </div>
                             <div *ngIf="updateFormFactu.controls['codePostal'].errors?.pattern">
-                                Chiffre uniquement.
+                                Chiffres uniquement.
                             </div>
                         </div>
                         <!-- /////////////////////////////////////// -->
@@ -104,7 +104,7 @@
                                 255 caracteres maximum.
                             </div>
                             <div *ngIf="updateFormFactu.controls['ville'].errors?.pattern">
-                                Lettre uniquement.
+                                Lettres uniquement.
                             </div>
                         </div>
                         <!-- /////////////////////////////////////// -->
@@ -122,7 +122,7 @@
                             255 caracteres maximum.
                         </div>
                         <div *ngIf="updateFormFactu.controls['proprietaire'].errors?.pattern">
-                            Lettre uniquement.
+                            Lettres uniquement.
                         </div>
                     </div>
                     <!-- /////////////////////////////////////// -->
@@ -138,7 +138,7 @@
                             16 caracteres maximum.
                         </div>
                         <div *ngIf="updateFormFactu.controls['nbCarte'].errors?.pattern">
-                            Chiffre uniquement.
+                            Chiffres uniquement.
                         </div>
                     </div>
                     <!-- /////////////////////////////////////// -->
@@ -152,7 +152,7 @@
                         <div *ngIf="updateFormFactu.controls['expiration'].invalid && (updateFormFactu.controls['expiration'].dirty || updateFormFactu.controls['expiration'].touched)"
                             class="alert alert-danger">
                             <div *ngIf="updateFormFactu.controls['expiration'].errors?.maxlength">
-                                255 caracteres maximum.
+                                7 caracteres maximum.
                             </div>
                             <div *ngIf="updateFormFactu.controls['expiration'].errors?.pattern">
                                 Mauvais format (MM/YYY).
@@ -162,16 +162,16 @@
                     </div>
                     <div class="cryptogramme">
                         <label class="rouge">Cryptogramme</label>
-                        <input type="number" class="form-control" id="cryptogramme" formControlName="cryptogramme"
+                        <input maxlength= "4" type="text" class="form-control" id="cryptogramme" formControlName="cryptogramme"
                             value="{{ infoFacturationUser.cb_cryptogramme }}">
                         <!-- /////////////////////////////////////// -->
                         <div *ngIf="updateFormFactu.controls['cryptogramme'].invalid && (updateFormFactu.controls['cryptogramme'].dirty || updateFormFactu.controls['cryptogramme'].touched)"
                             class="alert alert-danger">
                             <div *ngIf="updateFormFactu.controls['cryptogramme'].errors?.maxlength">
-                                255 caracteres maximum.
+                                3 caracteres maximum.
                             </div>
                             <div *ngIf="updateFormFactu.controls['cryptogramme'].errors?.pattern">
-                                Lettre uniquement.
+                                Chiffres uniquement.
                             </div>
                         </div>
                         <!-- /////////////////////////////////////// -->
@@ -182,7 +182,6 @@
                         ></button>
                 </div>
             </form>
-            <p class="text-danger">{{ errorMessage }}</p>
         </div>
     </div>
 </div>

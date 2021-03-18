@@ -14,6 +14,5 @@ if (count($results) > 0) {
   }
 
   $json = json_encode($policies, JSON_THROW_ON_ERROR);
-  // var_dump($json);
   echo $json;
 }

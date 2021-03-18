@@ -22,8 +22,8 @@ export class SigninComponent implements OnInit {
 //méthode de vérification regex du formulaire. formbuilder permet de verifier lors de la saisie
   iniForm(){
     this.signinForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]]
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(255)]],
+      password: ['', [Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/), Validators.maxLength(255)]]
     });
   }
 

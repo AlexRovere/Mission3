@@ -11,9 +11,7 @@ import { Router } from '@angular/router';
 export class FacturationComponent implements OnInit {
 
   updateFormFactu!: FormGroup;
-  errorMessage!: String;
   updateProfil: any = {};
-
   infoFacturationUser: any = []
 
   /**
@@ -27,8 +25,10 @@ export class FacturationComponent implements OnInit {
     adresse: "adresse",
     codePostal: "code_postal",
     ville: "ville",
-    proprietaire: "proprietaire",
-
+    proprietaire: "cb_proprietaire",
+    nbCarte: "cb_numero",
+    expiration: "cb_date",
+    cryptogramme: "cb_cryptogramme"
   };
 
   //permet d'afficher les infos d'un user connecte
@@ -43,7 +43,7 @@ export class FacturationComponent implements OnInit {
 
   getUserInfo(id: any) {
     let user = JSON.stringify(id);
-    this.http.post('http://test-mission3/info_user.php', user).subscribe(
+    this.http.post('https://edward-comics.go.yj.fr/php/info_user.php', user).subscribe(
       (response: any) => {
         if (response['success']) {
           this.infoFacturationUser = response['user'];
@@ -121,11 +121,12 @@ export class FacturationComponent implements OnInit {
     }
     console.log(this.updateProfil);
     this.updateProfil = JSON.stringify(this.updateProfil);
-    // https://edward-comics.go.yj.fr/php/update_facturation'
-    this.http.post('http://edward/update_facturation', this.updateProfil).subscribe(
+
+    this.http.post('https://edward-comics.go.yj.fr/php/update_facturation', this.updateProfil).subscribe(
       (response: any) => {
         if (response['success']) {
-          alert('Votre profil de facturation a bien été mis à jour')
+          alert('Votre profil de facturation a bien été mis à jour');
+          this.router.navigate(['/detail-compte']);
         }
          else {
           alert('Error !');
@@ -135,20 +136,5 @@ export class FacturationComponent implements OnInit {
     );
     
   }
-
-  verificationValeurForm(champForm : any, champBdd : any = champForm){
-
-    if(champForm != ""){
-      champForm = this.updateFormFactu.get(`${champForm}`)?.value;
-
-    } else if (this.infoFacturationUser.champForm !="") {
-      champForm = this.infoFacturationUser[champBdd];
-   
-    } else {
-      champForm = "";
-    }
-
-  }
-
 
 }

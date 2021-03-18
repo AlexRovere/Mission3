@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { IUser } from 'src/models/user.model';
 
 @Injectable({
@@ -21,14 +21,9 @@ export class AuthService {
     this.userGuardSubject.next(this.userGuard);
   }
 
-  // emitUser() {
-  //   this.userSubject.next(this.user);
-  // }
-
   createNewUser(user: IUser) {
     let userData = JSON.stringify(user);
-    // https://edward-comics.go.yj.fr/php/inscription.php
-    this.http.post('http://edward/inscription.php', userData).subscribe(
+    this.http.post('https://edward-comics.go.yj.fr/php/inscription.php', userData).subscribe(
       (response) => {
         if (response) {
           this.router.navigate(['/auth/signin']);
@@ -42,8 +37,7 @@ export class AuthService {
 
   signInUser(object: object) {
     let userData = JSON.stringify(object);
-    // https://edward-comics.go.yj.fr/php/connexion.php
-    this.http.post('http://edward/connexion.php', userData).subscribe(
+    this.http.post('https://edward-comics.go.yj.fr/php/connexion.php', userData).subscribe(
       (response : any) => {
         if (response['success']) {          
           sessionStorage.setItem('id', response['id']);
