@@ -24,7 +24,11 @@ export class FacturationComponent implements OnInit {
   static FORM_COLUMN_MAP: { [x: string]: string } = {
     nom: "nom",
     prenom: "prenom",
-    email: "email"
+    adresse: "adresse",
+    codePostal: "code_postal",
+    ville: "ville",
+    proprietaire: "proprietaire",
+
   };
 
   //permet d'afficher les infos d'un user connecte
@@ -101,53 +105,6 @@ export class FacturationComponent implements OnInit {
     let cryptogramme = this.updateFormFactu.get('cryptogramme')?.value;
     let civilite = this.infoFacturationUser.civilite;
     
-    
-
-    // if(nom != ""){
-    //   nom = this.updateFormFactu.get('nom')?.value;
-    // } else {
-    //   nom = this.infoFacturationUser.nom;
-    // }
-    // if(prenom != ""){
-    //   prenom = this.updateFormFactu.get('prenom')?.value;
-    // }else {
-    //   prenom = this.infoFacturationUser.prenom;
-    // }
-    // if(adresse != ""){
-    //   adresse = this.updateFormFactu.get('adresse')?.value;
-    // }else {
-    //   adresse = this.infoFacturationUser.adresse;
-    // }
-    // if(codePostal != ""){
-    //   codePostal = this.updateFormFactu.get('codePostal')?.value;
-    // }else {
-    //   codePostal = this.infoFacturationUser.code_postal;
-    // }
-    // if(ville != ""){
-    //   ville = this.updateFormFactu.get('ville')?.value;
-    // }else {
-    //   ville = this.infoFacturationUser.ville;
-    // }
-    // if(proprietaireCarte != ""){
-    //   proprietaireCarte = this.updateFormFactu.get('proprietaire')?.value;
-    // }else {
-    //   proprietaireCarte = this.infoFacturationUser.cb_proprietaire;
-    // }
-    // if(numeroCarte != ""){
-    //   numeroCarte = this.updateFormFactu.get('nbCarte')?.value;
-    // }else {
-    //   numeroCarte = this.infoFacturationUser.cb_numero;
-    // }
-    // if(dateCarte != ""){
-    //   dateCarte = this.updateFormFactu.get('expiration')?.value;
-    // }else {
-    //   dateCarte = this.infoFacturationUser.cb_date;
-    // }
-    // if(cryptogramme != ""){
-    //   cryptogramme = this.updateFormFactu.get('cryptogramme')?.value;
-    // }else {
-    //   cryptogramme = this.infoFacturationUser.cb_cryptogramme;
-    // }
 
     this.updateProfil = {
       id: sessionStorage.getItem('id'),
@@ -164,7 +121,8 @@ export class FacturationComponent implements OnInit {
     }
     console.log(this.updateProfil);
     this.updateProfil = JSON.stringify(this.updateProfil);
-    this.http.post('http://test-mission3/update_facturation.php', this.updateProfil).subscribe(
+    // https://edward-comics.go.yj.fr/php/update_facturation'
+    this.http.post('http://edward/update_facturation', this.updateProfil).subscribe(
       (response: any) => {
         if (response['success']) {
           alert('Votre profil de facturation a bien été mis à jour')
