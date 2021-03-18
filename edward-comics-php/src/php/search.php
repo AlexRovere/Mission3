@@ -16,9 +16,7 @@ $sql -> execute(["%".$searchText."%", "%".$searchText."%", "%".$searchText."%"])
 $results = $sql->fetchAll();
 if (count($results) > 0) {
   foreach ($results as $donnees) {
-    $policies[] =  $donnees;      
-  }
-}else{  
-  $policies[] = 'aucun resultat';
+       $policies[] =  $donnees;    
+     }
+     echo json_encode($policies);
 }
-echo json_encode($policies);
