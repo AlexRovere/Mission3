@@ -10,6 +10,7 @@ import { FacturationComponent } from './detail-compte/facturation/facturation.co
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { HomeComponent } from './home/home.component';
 import { ListeArticleComponent } from './liste-article/liste-article.component';
+import { NoResultsComponent } from './no-results/no-results.component';
 import { PaiementComponent } from './paiement/paiement.component';
 import { PanierComponent } from './panier/panier.component';
 import { AuthGuardService } from './services/auth-guard.service';
@@ -20,6 +21,18 @@ const routes: Routes = [
   {
     path: "home",
     component: HomeComponent,
+    data: {
+      breadcrumb: [
+        {
+          label: 'Accueil',
+          url: ''
+        }
+      ]
+    }
+  },
+  {
+    path: "no-results",
+    component: NoResultsComponent,
     data: {
       breadcrumb: [
         {

@@ -14,6 +14,15 @@
     margin-bottom: 5vh;
 
 }
+.disabled{
+    display: none;
+}
+.enabled{
+    text-align: center;
+    font-size: '42px';
+    font-weight: bold;
+    display: block;
+}
 @keyframes SlideIn {
     from {
         transform: translateX(-100%);

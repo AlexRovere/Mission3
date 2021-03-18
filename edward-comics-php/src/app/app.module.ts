@@ -37,6 +37,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgDynamicBreadcrumbModule } from 'ng-dynamic-breadcrumb';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClientModule } from '@angular/common/http';
+import { NoResultsComponent } from './no-results/no-results.component';
 
 
 
@@ -67,6 +68,7 @@ import { HttpClientModule } from '@angular/common/http';
     SignupComponent,
     FourOhFourComponent,
     FacturationComponent,
+    NoResultsComponent,
   ],
   imports: [
     BrowserModule,

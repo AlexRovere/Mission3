@@ -20,7 +20,7 @@ export interface IcomicsFilterOrder {
 })
 export class ComicsService {
   // https://edward-comics.go.yj.fr/php
-  PHP_API_SERVER = "http://edward";
+  PHP_API_SERVER = "http://edward/php";
   comics: IComics[] = [];
   comicsSubject = new Subject<any>();
   

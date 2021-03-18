@@ -37,7 +37,13 @@ export class ListeArticleComponent implements OnInit {
       if (params.get('searchText') != null) {
         const _searchText = params.get('searchText') as string;
         this.comicsService.getSearchComics(_searchText).subscribe((book: IComics[]) => {
-          this.comics = book;})
+          if(book != null){
+            this.comics = book;
+          }
+          else{
+            this.router.navigate(['/no-results'])
+          }
+          })
       }
       else if (params.get('theme') != null && params.get('valeur') != null) {
         const _theme= params.get('theme') as string;
@@ -164,5 +170,4 @@ export class ListeArticleComponent implements OnInit {
   pagination() {
     this.p = 1;
   }
-
 }

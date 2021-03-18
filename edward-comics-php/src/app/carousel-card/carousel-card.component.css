@@ -13,7 +13,12 @@ h1{
 :host ::ng-deep .p-carousel-content {
     border: none;
 }
-
+:host ::ng-deep .p-carousel-next {
+    cursor: url('/assets/cursor.cur'), pointer;
+}
+:host ::ng-deep .p-carousel-prev {
+    cursor: url('/assets/cursor.cur'), pointer;
+}
 .product-item-content {
     border-radius: 3px;
     text-align: center;
