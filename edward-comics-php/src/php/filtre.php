@@ -2,8 +2,8 @@
 
 require 'connect.php';
 
-$theme = $_GET['theme'];
-$valeur = $_GET['valeur'];
+$theme = htmlspecialchars($_GET['theme']);
+$valeur = htmlspecialchars($_GET['valeur']);
 
 $policies = [];
 $sql = $bdd->prepare("SELECT * FROM comics WHERE $theme = '$valeur'");
