@@ -53,6 +53,7 @@ export class ListeArticleComponent implements OnInit {
       else {
         this.comicsService.getAllComics().subscribe((book: IComics[]) => {
           this.comics = book;
+          console.log(this.comics)
         })
       }
     });
@@ -169,5 +170,35 @@ export class ListeArticleComponent implements OnInit {
   //méthode permettant la pagination
   pagination() {
     this.p = 1;
+  }
+
+  convertSingleComic(book:any, comics: IComics){
+    let nouveaute = 0
+    let selection = 0 
+    let promotion = 0
+
+    const getAttributeValuesString = (book: any, attributeName: string) => {
+      for(let attr of book.attributes){
+        if(attr.name == attributeName){
+          const values = attr.options;
+          return values.join(', ');
+        }
+      }
+      return '';
+    }
+
+    const hasCategory = (book: any, categoryName: string) => {
+      for(let cat of book.categories){
+        if(cat.name === categoryName){
+          return true;
+        }
+      }
+      return false
+    }
+
+    const isNew = (book: any) => {
+      return hasCategory(book, "Nouveauté");
+    }
+
   }
 }

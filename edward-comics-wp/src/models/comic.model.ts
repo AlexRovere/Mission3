@@ -19,3 +19,6 @@ export interface IComics {
     univers: string,
     quantite: number
 }
+export interface IMeta {
+    value: any
+}
