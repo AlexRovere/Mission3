@@ -9,8 +9,6 @@ import { IUser } from 'src/models/user.model';
 })
 export class AuthService {
 
-  // user!: any;
-  // userSubject = new Subject<any>();
   sessionValue: any = null;
   userGuard: any = sessionStorage.getItem('id');
   userGuardSubject = new Subject<any>();
