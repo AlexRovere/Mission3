@@ -36,6 +36,7 @@
   
   .resume { 
       grid-area: resume; 
+      overflow-wrap: anywhere;
     }
   
   .caracteristiques { 
@@ -124,5 +125,8 @@
   @media screen and (min-width: 1280px) {
     .image{
       width: 70%;
+    }
+    .textResume{
+      width: 30vw;
     }
   }

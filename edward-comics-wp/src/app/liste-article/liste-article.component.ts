@@ -51,8 +51,8 @@ export class ListeArticleComponent implements OnInit {
         this.updateFilter(_theme, _valeur);
       }
       else {
-        this.comicsService.getAllComics().subscribe((book: IComics[]) => {
-          this.comics = book;
+        this.comicsService.getAllComics().subscribe((book: Array<Object>) => {
+          this.comics = this.comicsService.convertArrayIComics(book);
           console.log(this.comics)
         })
       }
