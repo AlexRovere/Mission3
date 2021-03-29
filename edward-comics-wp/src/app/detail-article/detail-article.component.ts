@@ -30,9 +30,9 @@ export class DetailArticleComponent implements OnInit {
 }
   // méthode permettant d'affiche le comic correspondant à l'Id en appelant une méthode du service comic
   singleComic(id: number) {
-    this.comicsService.getSingleComic(id).subscribe((book: IComics) => {
-      this.comic = book;
-      console.log(this.comic);
+    this.comicsService.getSingleComic(id).subscribe((book: Object) => {
+      this.comic = this.comicsService.convertIComics(book);
+      console.log(this.comic)
     });
       
   }

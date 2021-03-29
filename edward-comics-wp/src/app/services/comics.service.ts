@@ -20,9 +20,9 @@ export interface IcomicsFilterOrder {
 })
 export class ComicsService {
 
-  PHP_API_SERVER = "https://edward-comics.go.yj.fr/php";
+  PHP_API_SERVER = "http://edward-wp-php";
 
-  comics: IComics[] = [];
+  comics!: IComics;
   comicsSubject = new Subject<any>();
   results: {} | any = {};
   comicsArray = [] as any;
@@ -57,21 +57,20 @@ export class ComicsService {
     return this.httpClient.get<IComics[]>(`${this.PHP_API_SERVER}/search.php/?searchText=${searchText}`);
   }
 
-  convertGroup(url:string) {
-    this.httpClient.get(url).subscribe(
-      (data) => {
-        this.comicsArray = data;
-        if (this.comicsArray != null) {
-          for (let comic of this.comicsArray) {
+  convertArrayIComics(objectToconvert: Array<Object>) {
+        this.comicsArray = [];
+        let objectConverted = {};
+        console.log(objectToconvert)
+        if (objectToconvert != null) {
+          for (let comic of objectToconvert as any) {
+            this.results = {};
             const metas = comic['meta_data']
             for (let meta of metas) {
-              if (meta.id % 2 === 0) {
                 let pair = meta.value;
                 let key = meta.key;
                 this.results[key] = pair
-              }
             }
-            this.book = {
+            objectConverted = {
               id: comic.id,
               avis: Number(this.results.avis),
               categorie: this.results.categorie,
@@ -88,61 +87,141 @@ export class ComicsService {
               resume: comic.description,
               scenariste: this.results.scenariste,
               selection: this.parseBool(this.results.selection),
-              titre: comic.titre,
+              titre: comic.name,
               univers: this.results.univers,
               quantite: Number(this.results.quantite)
             }
-            this.comics.push(this.book)
+            this.comicsArray.push(objectConverted)
           }  
         }
-      },
-      (error) => {
-        console.log(error);
+        return this.comicsArray
       }
-    );
-  }
-  convertSingle(id: number, url:string){
-    this.httpClient.get(url).subscribe(
-      (data) => {
-        this.comicsArray = data;
-        if (this.comicsArray != null) {
-            const metas = this.comicsArray[id]['meta_data']
-            for (let meta of metas) {
-              if (meta.id % 2 === 0) {
-                let pair = meta.value;
-                let key = meta.key;
-                this.results[key] = pair
+
+      convertIComics(objectToConvert: Object){
+            this.results = {};
+            let data = objectToConvert as any
+            if (data != null) {
+                const metas = data['meta_data']
+                for (let meta of metas) {
+                    let pair = meta.value;
+                    let key = meta.key;
+                    this.results[key] = pair
+                }
+                console.log(this.results)
+                this.book = {
+                  id: data.id,
+                  avis: Number(this.results.avis),
+                  categorie: this.results.categorie,
+                  date: this.results.date,
+                  dessinateur: this.results.dessinateur,
+                  disponibilite: Number(this.results.disponibilite),
+                  editeur: this.results.editeur,
+                  isbn: Number(this.results.isbn),
+                  nbrPages: Number(this.results.nbrpages),
+                  nouveaute: this.parseBool(this.results.nouveaute),
+                  photo: data.images[0].src,
+                  prix: Number(data.price),
+                  promotion: this.parseBool(this.results.promotion),
+                  resume: data.description,
+                  scenariste: this.results.scenariste,
+                  selection: this.parseBool(this.results.selection),
+                  titre: data.name,
+                  univers: this.results.univers,
+                  quantite: Number(this.results.quantite)
+                }
+                this.comics = this.book;
               }
-            }
-            this.book = {
-              id: id,
-              avis: Number(this.results.avis),
-              categorie: this.results.categorie,
-              date: this.results.date,
-              dessinateur: this.results.dessinateur,
-              disponibilite: Number(this.results.disponibilite),
-              editeur: this.results.editeur,
-              isbn: Number(this.results.isbn),
-              nbrPages: Number(this.results.nbrpages),
-              nouveaute: this.parseBool(this.results.nouveaute),
-              photo: this.comicsArray.images[0].src,
-              prix: Number(this.comicsArray.price),
-              promotion: this.parseBool(this.results.promotion),
-              resume: this.comicsArray.description,
-              scenariste: this.results.scenariste,
-              selection: this.parseBool(this.results.selection),
-              titre: this.comicsArray.titre,
-              univers: this.results.univers,
-              quantite: Number(this.results.quantite)
-            }
-            this.comics.push(this.book)
+              return this.comics
           }
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
+
+  
+
+  // convertGroup(url:string) {
+  //   this.httpClient.get(url).subscribe(
+  //     (data) => {
+  //       this.comicsArray = data;
+  //       if (this.comicsArray != null) {
+  //         for (let comic of this.comicsArray) {
+  //           const metas = comic['meta_data']
+  //           for (let meta of metas) {
+  //             if (meta.id % 2 === 0) {
+  //               let pair = meta.value;
+  //               let key = meta.key;
+  //               this.results[key] = pair
+  //             }
+  //           }
+  //           this.book = {
+  //             id: comic.id,
+  //             avis: Number(this.results.avis),
+  //             categorie: this.results.categorie,
+  //             date: this.results.date,
+  //             dessinateur: this.results.dessinateur,
+  //             disponibilite: Number(this.results.disponibilite),
+  //             editeur: this.results.editeur,
+  //             isbn: Number(this.results.isbn),
+  //             nbrPages: Number(this.results.nbrpages),
+  //             nouveaute: this.parseBool(this.results.nouveaute),
+  //             photo: comic.images[0].src,
+  //             prix: Number(comic.price),
+  //             promotion: this.parseBool(this.results.promotion),
+  //             resume: comic.description,
+  //             scenariste: this.results.scenariste,
+  //             selection: this.parseBool(this.results.selection),
+  //             titre: comic.titre,
+  //             univers: this.results.univers,
+  //             quantite: Number(this.results.quantite)
+  //           }
+  //           this.comics.push(this.book)
+  //         }  
+  //       }
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //     }
+  //   );
+  // }
+  // convertSingle(id: number, url:string){
+  //   this.httpClient.get(url).subscribe(
+  //     (data) => {
+  //       this.comicsArray = data;
+  //       if (this.comicsArray != null) {
+  //           const metas = this.comicsArray[id]['meta_data']
+  //           for (let meta of metas) {
+  //             if (meta.id % 2 === 0) {
+  //               let pair = meta.value;
+  //               let key = meta.key;
+  //               this.results[key] = pair
+  //             }
+  //           }
+  //           this.book = {
+  //             id: id,
+  //             avis: Number(this.results.avis),
+  //             categorie: this.results.categorie,
+  //             date: this.results.date,
+  //             dessinateur: this.results.dessinateur,
+  //             disponibilite: Number(this.results.disponibilite),
+  //             editeur: this.results.editeur,
+  //             isbn: Number(this.results.isbn),
+  //             nbrPages: Number(this.results.nbrpages),
+  //             nouveaute: this.parseBool(this.results.nouveaute),
+  //             photo: this.comicsArray.images[0].src,
+  //             prix: Number(this.comicsArray.price),
+  //             promotion: this.parseBool(this.results.promotion),
+  //             resume: this.comicsArray.description,
+  //             scenariste: this.results.scenariste,
+  //             selection: this.parseBool(this.results.selection),
+  //             titre: this.comicsArray.titre,
+  //             univers: this.results.univers,
+  //             quantite: Number(this.results.quantite)
+  //           }
+  //           this.comics.push(this.book)
+  //         }
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //     }
+  //   );
+  // }
   parseBool(value: string): boolean {
     switch (value) {
       case '1':
